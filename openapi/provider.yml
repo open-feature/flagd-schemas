@@ -2,7 +2,7 @@
 openapi: "3.0.2"
 info:
   title: OpenFeature Provider REST API
-  version: "0.1"
+  version: "0.0.1"
 servers:
   - url: http://localhost:8080
 
@@ -64,6 +64,8 @@ components:
           properties:
             value:
               type: boolean
+          required:
+            - "value"
 
     resolutionDetailsString:
       allOf: # extend the "#/components/schemas/resolutionDetail" details with an errorCode
@@ -72,7 +74,8 @@ components:
           properties:
             value:
               type: string
-
+          required:
+            - "value"
     resolutionDetailsNumber:
       allOf: # extend the "#/components/schemas/resolutionDetail" details with an errorCode
         - $ref: "#/components/schemas/resolutionDetails"
@@ -80,6 +83,8 @@ components:
           properties:
             value:
               type: number
+          required:
+            - "value"
 
     resolutionDetailsObject:
       allOf: # extend the "#/components/schemas/resolutionDetail" details with an errorCode
@@ -89,6 +94,8 @@ components:
             value:
               type: object
               additionalProperties: true
+          required:
+            - "value"
 
     resolutionDetailsWithError: # response body for an unsuccessful flag evaluation
       allOf: # extend the "#/components/schemas/resolutionDetail" details with an errorCode
