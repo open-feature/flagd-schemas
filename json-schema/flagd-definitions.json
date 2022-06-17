@@ -1,255 +1,163 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "flagd Flag Configuration",
+  "description": "Defines flags for use in flagd, including typed variants and rules",
   "type": "object",
-  "schemas": {
-    "BooleanFlag": {
+  "properties": {
+    "flags": {
       "type": "object",
-      "properties": {
-        "variants": {
-          "description": "variants: struct.MaxFields(2) \u0026 {",
-          "type": "object",
-          "required": [
-            "enabled",
-            "disabled"
-          ],
-          "properties": {
-            "enabled": {
-              "type": "boolean",
-              "enum": [
-                true
-              ]
+      "$comment": "flag objects are one of the 4 flag types defined in $defs",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^.{1,}$": {
+          "oneOf": [
+            {
+              "title": "Boolean flag",
+              "description": "A flag associated with boolean values",
+              "$ref": "#/$defs/booleanFlag"
             },
-            "disabled": {
-              "type": "boolean",
-              "enum": [
-                false
-              ]
+            {
+              "title": "String flag",
+              "description": "A flag associated with string values",
+              "$ref": "#/$defs/stringFlag"
+            },
+            {
+              "title": "Numeric flag",
+              "description": "A flag associated with numeric values",
+              "$ref": "#/$defs/numberFlag"
+            },
+            {
+              "title": "Object flag",
+              "description": "A flag associated with arbitrary object values",
+              "$ref": "#/$defs/objectFlag"
             }
-          }
-        },
-        "defaultVariant": {
-          "type": "string",
-          "enum": [
-            "enabled",
-            "disabled"
           ],
-          "default": "enabled"
-        }
-      },
-      "allOf": [
-        {
-          "$ref": "#/schemas/Flag"
-        },
-        {
-          "required": [
-            "variants",
-            "defaultVariant"
-          ]
-        }
-      ]
-    },
-    "Flag": {
-      "type": "object",
-      "required": [
-        "state",
-        "variants",
-        "defaultVariant",
-        "rules"
-      ],
-      "properties": {
-        "state": {
-          "type": "string",
-          "enum": [
-            "enabled",
-            "disabled"
-          ]
-        },
-        "variants": {
-          "description": "variants: struct.MinFields(2) \u0026 {",
-          "type": "object"
-        },
-        "defaultVariant": {
-          "description": "The default variant must match a defined variant",
-          "type": "string"
-        },
-        "rules": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "required": [
-              "action",
-              "condition"
-            ],
-            "properties": {
-              "action": {
-                "description": "TODO: only one action can be set at a time",
-                "type": "object",
-                "required": [
-                  "variant"
-                ],
-                "properties": {
-                  "variant": {
-                    "description": "variant: or([for f, _ in variants {f}])",
-                    "type": "string"
-                  }
-                }
-              },
-              "condition": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "required": [
-                    "context",
-                    "op",
-                    "value"
-                  ],
-                  "properties": {
-                    "context": {
-                      "description": "The context key that should be evaluated in this condition",
-                      "type": "string"
-                    },
-                    "op": {
-                      "description": "The operation that should be performed",
-                      "type": "string",
-                      "enum": [
-                        "equals",
-                        "starts_with",
-                        "ends_with"
-                      ]
-                    },
-                    "value": {
-                      "description": "The value that should be evaluated\nTODO see if more values are possible",
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
+          "unevaluatedProperties": false
         }
       }
-    },
-    "Flagd": {
-      "type": "object",
-      "properties": {
-        "booleanFlags": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/schemas/BooleanFlag"
-          }
-        },
-        "stringFlags": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/schemas/StringFlag"
-          }
-        },
-        "numericFlags": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/schemas/NumericFlag"
-          }
-        },
-        "objectFlags": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/schemas/ObjectFlag"
-          }
-        }
-      }
-    },
-    "NumericFlag": {
-      "type": "object",
-      "properties": {
-        "variants": {
-          "description": "defaultVariant: or([for f, _ in variants {f}])",
-          "type": "object",
-          "additionalProperties": {
-            "type": "number"
-          }
-        }
-      },
-      "allOf": [
-        {
-          "$ref": "#/schemas/Flag"
-        },
-        {
-          "required": [
-            "variants"
-          ]
-        }
-      ]
-    },
-    "ObjectFlag": {
-      "type": "object",
-      "properties": {
-        "variants": {
-          "description": "defaultVariant: or([for f, _ in variants {f}])",
-          "type": "object",
-          "additionalProperties": {
-            "description": "Any valid structs will work",
-            "type": "object"
-          }
-        }
-      },
-      "allOf": [
-        {
-          "$ref": "#/schemas/Flag"
-        },
-        {
-          "required": [
-            "variants"
-          ]
-        }
-      ]
-    },
-    "StringFlag": {
-      "type": "object",
-      "properties": {
-        "variants": {
-          "description": "defaultVariant: or([for f, _ in variants {f}])",
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        }
-      },
-      "allOf": [
-        {
-          "$ref": "#/schemas/Flag"
-        },
-        {
-          "required": [
-            "variants"
-          ]
-        }
-      ]
     }
   },
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "properties": {
-    "booleanFlags": {
+  "$defs": {
+    "flag": {
+      "title": "Flag base",
+      "description": "Base object for all flags",
+      "properties": {
+        "state": {
+          "title:": "Flag state",
+          "description": "Indicates whether the flag is functional. Disabled flags are treated as if they don't exist",
+          "type": "string",
+          "enum": [
+            "ENABLED",
+            "DISABLED"
+          ]
+        },
+        "defaultVariant": {
+          "title": "Default variant",
+          "description": "The variant to serve if no dynamic targeting applies",
+          "type": "string"
+        }
+      },
+      "required": [
+        "state",
+        "defaultVariant"
+      ]
+    },
+    "booleanVariants": {
       "type": "object",
-      "additionalProperties": {
-        "$ref": "#/schemas/BooleanFlag"
+      "properties": {
+        "variants": {
+          "additionalProperties": false,
+          "patternProperties": {
+            "^.{1,}$": {
+              "type": "boolean"
+            }
+          },
+          "default": {
+            "on": true,
+            "off": false
+          }
+        }
       }
     },
-    "stringFlags": {
+    "stringVariants": {
       "type": "object",
-      "additionalProperties": {
-        "$ref": "#/schemas/StringFlag"
+      "properties": {
+        "variants": {
+          "additionalProperties": false,
+          "patternProperties": {
+            "^.{1,}$": {
+              "type": "string"
+            }
+          }
+        }
       }
     },
-    "numericFlags": {
+    "numberVariants": {
       "type": "object",
-      "additionalProperties": {
-        "$ref": "#/schemas/NumericFlag"
+      "properties": {
+        "variants": {
+          "additionalProperties": false,
+          "patternProperties": {
+            "^.{1,}$": {
+              "type": "number"
+            }
+          }
+        }
       }
     },
-    "objectFlags": {
+    "objectVariants": {
       "type": "object",
-      "additionalProperties": {
-        "$ref": "#/schemas/ObjectFlag"
+      "properties": {
+        "variants": {
+          "additionalProperties": false,
+          "patternProperties": {
+            "^.{1,}$": {
+              "type": "object"
+            }
+          }
+        }
       }
+    },
+    "$comment": "Merge the variants with the base flag to build our typed flags",
+    "booleanFlag": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/flag"
+        },
+        {
+          "$ref": "#/$defs/booleanVariants"
+        }
+      ]
+    },
+    "stringFlag": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/flag"
+        },
+        {
+          "$ref": "#/$defs/stringVariants"
+        }
+      ]
+    },
+    "numberFlag": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/flag"
+        },
+        {
+          "$ref": "#/$defs/numberVariants"
+        }
+      ]
+    },
+    "objectFlag": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/flag"
+        },
+        {
+          "$ref": "#/$defs/objectVariants"
+        }
+      ]
     }
   }
 }
