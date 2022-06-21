@@ -42,6 +42,13 @@ properties:
         title: Default variant
         description: The variant to serve if no dynamic targeting applies
         type: string
+      targeting:
+        type: object
+        title: Targeting Logic
+        description:
+          JsonLogic expressions to be used for dynamic evaluation. The
+          "context" is passed as the data. Rules must resolve one of the defined variants,
+          or the "defaultVariant" will be used.
     required:
       - state
       - defaultVariant
