@@ -6,7 +6,6 @@ option go_package = "schema/service/v1";
 
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
-import "protoc-gen-openapiv2/options/annotations.proto";
 
 message ResolveBooleanRequest {
     string flag_key = 1;
@@ -58,107 +57,11 @@ service Service {
             post: "/flags/{flag_key}/resolve/boolean"
             body: "*"
         };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Resolve boolean value for flagKey";
-            responses: {
-                key: "200"
-                value: {
-                    description: "OK"
-                    schema: {
-                        example: '{"flag_key":true,"reason":"","variant":""}';
-                    }
-                }
-            }
-            responses: {
-                key: "400"
-                value: {
-                    description: "Invalid flag resolution request";
-                    schema: {
-                        example: "null";
-                    }
-                };
-            }
-            responses: {
-                key: "404"
-                value: {
-                    description: "Flag not found";
-                    schema: {
-                        example: "null";
-                    }
-                };
-            }
-            responses: {
-                key: "500"
-                value: {
-                    description: "Unhandled error during flag evaluation";
-                    schema: {
-                        example: "null";
-                    }
-                };
-            }
-            responses: {
-                key: "default"
-                value: {
-                    description: "Unhandled error during flag evaluation";
-                    schema: {
-                        example: "null";
-                    }
-                };
-            }
-        };
     }
     rpc ResolveString(ResolveStringRequest) returns (ResolveStringResponse) {
         option (google.api.http) = {
             post: "/flags/{flag_key}/resolve/string"
             body: "*"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Resolve string value for flagKey";
-            responses: {
-                key: "200"
-                value: {
-                    description: "OK"
-                    schema: {
-                        example: '{"flag_key":"foo","reason":"","variant":""}';
-                    }
-                }
-            }
-            responses: {
-                key: "400"
-                value: {
-                    description: "Invalid flag resolution request";
-                    schema: {
-                        example: "null";
-                    }
-                };
-            }
-            responses: {
-                key: "404"
-                value: {
-                    description: "Flag not found";
-                    schema: {
-                        example: "null";
-                    }
-                };
-            }
-            responses: {
-                key: "500"
-                value: {
-                    description: "Unhandled error during flag evaluation";
-                    schema: {
-                        example: "null";
-                    }
-                };
-            }
-            responses: {
-                key: "default"
-                value: {
-                    description: "Unhandled error during flag evaluation";
-                    schema: {
-                        example: "null";
-                    }
-                };
-            }
         };
     }
     rpc ResolveNumber(ResolveNumberRequest) returns (ResolveNumberResponse) {
@@ -166,107 +69,11 @@ service Service {
             post: "/flags/{flag_key}/resolve/number"
             body: "*"
         };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Resolve number value for flagKey";
-            responses: {
-                key: "200"
-                value: {
-                    description: "OK"
-                    schema: {
-                        example: '{"flag_key":0.1234,"reason":"","variant":""}';
-                    }
-                }
-            }
-            responses: {
-                key: "400"
-                value: {
-                    description: "Invalid flag resolution request";
-                    schema: {
-                        example: "null";
-                    }
-                };
-            }
-            responses: {
-                key: "404"
-                value: {
-                    description: "Flag not found";
-                    schema: {
-                        example: "null";
-                    }
-                };
-            }
-            responses: {
-                key: "500"
-                value: {
-                    description: "Unhandled error during flag evaluation";
-                    schema: {
-                        example: "null";
-                    }
-                };
-            }
-            responses: {
-                key: "default"
-                value: {
-                    description: "Unhandled error during flag evaluation";
-                    schema: {
-                        example: "null";
-                    }
-                };
-            }
-        };
     }
     rpc ResolveObject(ResolveObjectRequest) returns (ResolveObjectResponse) {
         option (google.api.http) = {
             post: "/flags/{flag_key}/resolve/object"
             body: "*"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Resolve object value for flagKey";
-            responses: {
-                key: "200"
-                value: {
-                    description: "OK"
-                    schema: {
-                        example: '{"flag_key":{"foo":"bar"},"reason":"","variant":""}';
-                    }
-                }
-            }
-            responses: {
-                key: "400"
-                value: {
-                    description: "Invalid flag resolution request";
-                    schema: {
-                        example: "null";
-                    }
-                };
-            }
-            responses: {
-                key: "404"
-                value: {
-                    description: "Flag not found";
-                    schema: {
-                        example: "null";
-                    }
-                };
-            }
-            responses: {
-                key: "500"
-                value: {
-                    description: "Unhandled error during flag evaluation";
-                    schema: {
-                        example: "null";
-                    }
-                };
-            }
-            responses: {
-                key: "default"
-                value: {
-                    description: "Unhandled error during flag evaluation";
-                    schema: {
-                        example: "null";
-                    }
-                };
-            }
         };
     }
 }
