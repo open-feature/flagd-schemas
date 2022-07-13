@@ -7,7 +7,7 @@ option go_package = "schema/service/v1";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 
-message HTTPErrorResponse {
+message ErrorResponse {
     string error_code = 1;
 }
 
