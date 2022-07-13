@@ -7,10 +7,13 @@ option go_package = "schema/service/v1";
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 
+message HTTPErrorResponse {
+    string error_code = 1;
+}
+
 message ResolveBooleanRequest {
     string flag_key = 1;
     google.protobuf.Struct context = 2;
-    bool default_value = 3;
 }
 message ResolveBooleanResponse {
     bool value = 1;
@@ -21,7 +24,6 @@ message ResolveBooleanResponse {
 message ResolveStringRequest {
     string flag_key = 1;
     google.protobuf.Struct context = 2;
-    string default_value = 3;
 }
 message ResolveStringResponse {
     string value = 1;
@@ -32,7 +34,6 @@ message ResolveStringResponse {
 message ResolveNumberRequest {
     string flag_key = 1;
     google.protobuf.Struct context = 2;
-    float default_value = 3;
 }
 message ResolveNumberResponse {
     float value = 1;
@@ -43,7 +44,6 @@ message ResolveNumberResponse {
 message ResolveObjectRequest {
     string flag_key = 1;
     google.protobuf.Struct context = 2;
-    google.protobuf.Struct default_value = 3;
 }
 message ResolveObjectResponse {
     google.protobuf.Struct value = 1;
@@ -55,25 +55,25 @@ service Service {
     rpc ResolveBoolean(ResolveBooleanRequest) returns (ResolveBooleanResponse) {
         option (google.api.http) = {
             post: "/flags/{flag_key}/resolve/boolean"
-            body: "*"
+            body: "context"
         };
     }
     rpc ResolveString(ResolveStringRequest) returns (ResolveStringResponse) {
         option (google.api.http) = {
             post: "/flags/{flag_key}/resolve/string"
-            body: "*"
+            body: "context"
         };
     }
     rpc ResolveNumber(ResolveNumberRequest) returns (ResolveNumberResponse) {
         option (google.api.http) = {
             post: "/flags/{flag_key}/resolve/number"
-            body: "*"
+            body: "context"
         };
     }
     rpc ResolveObject(ResolveObjectRequest) returns (ResolveObjectResponse) {
         option (google.api.http) = {
             post: "/flags/{flag_key}/resolve/object"
-            body: "*"
+            body: "context"
         };
     }
 }
