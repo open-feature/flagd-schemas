@@ -47,25 +47,25 @@ service Service {
     rpc ResolveBoolean(ResolveBooleanRequest) returns (ResolveBooleanResponse) {
         option (google.api.http) = {
             post: "/flags/{flag_key}/resolve/boolean"
-            body: "*"
+            body: "context"
         };
     }
     rpc ResolveString(ResolveStringRequest) returns (ResolveStringResponse) {
         option (google.api.http) = {
             post: "/flags/{flag_key}/resolve/string"
-            body: "*"
+            body: "context"
         };
     }
     rpc ResolveNumber(ResolveNumberRequest) returns (ResolveNumberResponse) {
         option (google.api.http) = {
             post: "/flags/{flag_key}/resolve/number"
-            body: "*"
+            body: "context"
         };
     }
     rpc ResolveObject(ResolveObjectRequest) returns (ResolveObjectResponse) {
         option (google.api.http) = {
             post: "/flags/{flag_key}/resolve/object"
-            body: "*"
+            body: "context"
         };
     }
 }
