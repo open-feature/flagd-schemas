@@ -1,15 +1,15 @@
 version: v1
 plugins:
-  - name: go
+  - remote: buf.build/protocolbuffers/plugins/go:v1.28.0-1
     out: gen
     opt:
       - paths=source_relative
-  - name: go-grpc
+  - remote: buf.build/library/plugins/go-grpc:v1.1.0-2
     out: gen
     opt:
       - require_unimplemented_servers=false
       - paths=source_relative
-  - name: grpc-gateway
+  - remote: buf.build/grpc-ecosystem/plugins/grpc-gateway:v2.10.3-1
     out: gen
     opt:
       - paths=source_relative
