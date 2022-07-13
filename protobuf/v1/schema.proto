@@ -10,45 +10,37 @@ import "google/api/annotations.proto";
 message ResolveBooleanRequest {
     string flag_key = 1;
     google.protobuf.Struct context = 2;
-    bool default_value = 3;
 }
 message ResolveBooleanResponse {
     bool value = 1;
     string reason = 2;
-    string variant = 3;
 }
 
 message ResolveStringRequest {
     string flag_key = 1;
     google.protobuf.Struct context = 2;
-    string default_value = 3;
 }
 message ResolveStringResponse {
     string value = 1;
     string reason = 2;
-    string variant = 3;
 }
 
 message ResolveNumberRequest {
     string flag_key = 1;
     google.protobuf.Struct context = 2;
-    float default_value = 3;
 }
 message ResolveNumberResponse {
     float value = 1;
     string reason = 2;
-    string variant = 3;
 }
 
 message ResolveObjectRequest {
     string flag_key = 1;
     google.protobuf.Struct context = 2;
-    google.protobuf.Struct default_value = 3;
 }
 message ResolveObjectResponse {
     google.protobuf.Struct value = 1;
     string reason = 2;
-    string variant = 3;
 }
 
 service Service {
