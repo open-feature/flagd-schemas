@@ -9,6 +9,7 @@ import "google/api/annotations.proto";
 
 message ErrorResponse {
     string error_code = 1;
+    string reason = 2;
 }
 
 message ResolveBooleanRequest {
