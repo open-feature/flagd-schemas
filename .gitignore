@@ -5,3 +5,6 @@ semicolon_delimited_script
 
 # buf generated files
 gen/
+proto/
+
+.vscode

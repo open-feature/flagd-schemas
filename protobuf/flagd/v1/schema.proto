@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package schema.v1;
+package flagd.v1;
 
 option go_package = "schema/service/v1";
 
