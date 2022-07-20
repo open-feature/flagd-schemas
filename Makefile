@@ -13,10 +13,10 @@ lint: guard-GOPATH
 	cd protobuf && ${GOPATH}/bin/buf lint
 
 gen-go: install-buf guard-GOPATH
-	${GOPATH}/bin/buf generate buf.build/james-milligan/flagd --template protobuf/buf.gen.go.yaml
+	${GOPATH}/bin/buf generate buf.build/open-feature/flagd --template protobuf/buf.gen.go.yaml
 
 gen-go-server: install-buf guard-GOPATH
-	${GOPATH}/bin/buf generate buf.build/james-milligan/flagd --template protobuf/buf.gen.go-server.yaml
+	${GOPATH}/bin/buf generate buf.build/open-feature/flagd --template protobuf/buf.gen.go-server.yaml
 
 gen-ts: install-buf guard-GOPATH
-	${GOPATH}/bin/buf generate buf.build/james-milligan/flagd --template protobuf/buf.gen.ts.yaml
+	${GOPATH}/bin/buf generate buf.build/open-feature/flagd --template protobuf/buf.gen.ts.yaml
