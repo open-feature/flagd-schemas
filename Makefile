@@ -20,3 +20,6 @@ gen-go-server: install-buf guard-GOPATH
 
 gen-ts: install-buf guard-GOPATH
 	${GOPATH}/bin/buf generate buf.build/open-feature/flagd --template protobuf/buf.gen.ts.yaml
+
+gen-ts: install-buf guard-GOPATH
+	${GOPATH}/bin/buf generate buf.build/open-feature/flagd --template protobuf/buf.gen.java.yaml
