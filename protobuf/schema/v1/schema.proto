@@ -32,12 +32,22 @@ message ResolveStringResponse {
     string variant = 3;
 }
 
-message ResolveNumberRequest {
+message ResolveFloatRequest {
     string flag_key = 1;
     google.protobuf.Struct context = 2;
 }
-message ResolveNumberResponse {
-    float value = 1;
+message ResolveFloatResponse {
+    double value = 1;
+    string reason = 2;
+    string variant = 3;
+}
+
+message ResolveIntRequest {
+    string flag_key = 1;
+    google.protobuf.Struct context = 2;
+}
+message ResolveIntResponse {
+    int64 value = 1;
     string reason = 2;
     string variant = 3;
 }
@@ -65,9 +75,15 @@ service Service {
             body: "context"
         };
     }
-    rpc ResolveNumber(ResolveNumberRequest) returns (ResolveNumberResponse) {
+    rpc ResolveFloat(ResolveFloatRequest) returns (ResolveFloatResponse) {
         option (google.api.http) = {
-            post: "/flags/{flag_key}/resolve/number"
+            post: "/flags/{flag_key}/resolve/float"
+            body: "context"
+        };
+    }
+    rpc ResolveInt(ResolveIntRequest) returns (ResolveIntResponse) {
+        option (google.api.http) = {
+            post: "/flags/{flag_key}/resolve/int"
             body: "context"
         };
     }
