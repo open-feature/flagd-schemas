@@ -2,6 +2,9 @@
 Schemas and spec files pertaining to OpenFeature
 
 <br />
+When the below commands are used the generated code is placed in the parent directory
+<br />
+<br />
 
 **Golang:**  
 
@@ -24,4 +27,12 @@ go get go.buf.build/grpc/go/open-feature/flagd
 generate typescript stubs for grpc client and http/grpc input/output schema
 ```
 make gen-ts
+```
+<br />
+
+**Java:**  
+
+generate java stubs for grpc client and http/grpc input/output schema
+```
+make gen-java
 ```
