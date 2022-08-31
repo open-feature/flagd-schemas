@@ -3,6 +3,7 @@ syntax = "proto3";
 package schema.v1;
 
 option go_package = "schema/service/v1";
+option java_package = "dev.openfeature.flagd.grpc";
 
 import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
