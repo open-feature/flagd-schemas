@@ -6,12 +6,6 @@ option go_package = "schema/service/v1";
 option java_package = "dev.openfeature.flagd.grpc";
 
 import "google/protobuf/struct.proto";
-import "google/api/annotations.proto";
-
-message ErrorResponse {
-    string error_code = 1;
-    string reason = 2;
-}
 
 message ResolveBooleanRequest {
     string flag_key = 1;
@@ -64,34 +58,9 @@ message ResolveObjectResponse {
 }
 
 service Service {
-    rpc ResolveBoolean(ResolveBooleanRequest) returns (ResolveBooleanResponse) {
-        option (google.api.http) = {
-            post: "/flags/{flag_key}/resolve/boolean"
-            body: "context"
-        };
-    }
-    rpc ResolveString(ResolveStringRequest) returns (ResolveStringResponse) {
-        option (google.api.http) = {
-            post: "/flags/{flag_key}/resolve/string"
-            body: "context"
-        };
-    }
-    rpc ResolveFloat(ResolveFloatRequest) returns (ResolveFloatResponse) {
-        option (google.api.http) = {
-            post: "/flags/{flag_key}/resolve/float"
-            body: "context"
-        };
-    }
-    rpc ResolveInt(ResolveIntRequest) returns (ResolveIntResponse) {
-        option (google.api.http) = {
-            post: "/flags/{flag_key}/resolve/int"
-            body: "context"
-        };
-    }
-    rpc ResolveObject(ResolveObjectRequest) returns (ResolveObjectResponse) {
-        option (google.api.http) = {
-            post: "/flags/{flag_key}/resolve/object"
-            body: "context"
-        };
-    }
+    rpc ResolveBoolean(ResolveBooleanRequest) returns (ResolveBooleanResponse) {}
+    rpc ResolveString(ResolveStringRequest) returns (ResolveStringResponse) {}
+    rpc ResolveFloat(ResolveFloatRequest) returns (ResolveFloatResponse) {}
+    rpc ResolveInt(ResolveIntRequest) returns (ResolveIntResponse) {}
+    rpc ResolveObject(ResolveObjectRequest) returns (ResolveObjectResponse) {}
 }
