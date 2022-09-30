@@ -6,6 +6,7 @@ option go_package = "schema/service/v1";
 option java_package = "dev.openfeature.flagd.grpc";
 
 import "google/protobuf/struct.proto";
+import "google/protobuf/empty.proto";
 
 message ResolveBooleanRequest {
     string flag_key = 1;
@@ -57,10 +58,15 @@ message ResolveObjectResponse {
     string variant = 3;
 }
 
+message EventStreamResponse {
+    string type = 1;
+}
+
 service Service {
     rpc ResolveBoolean(ResolveBooleanRequest) returns (ResolveBooleanResponse) {}
     rpc ResolveString(ResolveStringRequest) returns (ResolveStringResponse) {}
     rpc ResolveFloat(ResolveFloatRequest) returns (ResolveFloatResponse) {}
     rpc ResolveInt(ResolveIntRequest) returns (ResolveIntResponse) {}
     rpc ResolveObject(ResolveObjectRequest) returns (ResolveObjectResponse) {}
+    rpc EventStream(google.protobuf.Empty) returns (stream EventStreamResponse) {}
 }
