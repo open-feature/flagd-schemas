@@ -60,6 +60,7 @@ message ResolveObjectResponse {
 
 message EventStreamResponse {
     string type = 1;
+    google.protobuf.Struct data = 2;
 }
 
 service Service {
