@@ -36,3 +36,10 @@ generate java stubs for grpc client and http/grpc input/output schema
 ```
 make gen-java
 ```
+
+**CSharp**
+
+generate csharp stubs for grpc client and http/grpc input/output schema
+```
+make gen-csharp
+```
