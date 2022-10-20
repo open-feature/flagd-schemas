@@ -23,3 +23,6 @@ gen-ts: install-buf guard-GOPATH
 
 gen-java: install-buf guard-GOPATH
 	${GOPATH}/bin/buf generate buf.build/open-feature/flagd --template protobuf/buf.gen.java.yaml
+
+gen-python: install-buf guard-GOPATH
+	${GOPATH}/bin/buf generate buf.build/open-feature/flagd --template protobuf/buf.gen.python.yaml
