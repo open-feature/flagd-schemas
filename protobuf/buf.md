@@ -2,7 +2,6 @@
 
 ## This repository is managed by OpenFeature  
 
-
 This module contains the core types that developers can use for interacting with [flagd](https://github.com/open-feature/flagd).
 
 Internally flagd uses the connect protocol, meaning it is compatible with grpc interfaces. If your desired language has a supported plugin for generating connect stubs then it is reccomended to use these over grpc.
