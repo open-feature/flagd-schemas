@@ -4,6 +4,7 @@ package schema.v1;
 
 option go_package = "schema/service/v1";
 option java_package = "dev.openfeature.flagd.grpc";
+option csharp_namespace = "OpenFeature.Flagd.Grpc";
 
 import "google/protobuf/struct.proto";
 import "google/protobuf/empty.proto";
