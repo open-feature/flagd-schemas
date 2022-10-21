@@ -1,4 +1,5 @@
 # schemas
+
 Schemas and spec files pertaining to OpenFeature
 
 <br />
@@ -6,47 +7,72 @@ When the below commands are used the generated code is placed in the parent dire
 <br />
 <br />
 
-**Golang:**  
+## Requirements
 
-generate grpc-gateway, go-grpc and go stubs
+- A Go installation
+- You must have your `GOPATH` environment variable set in order to run these scripts.
+
+The [Makefile](./Makefile) utilizes [Go](https://go.dev/) to install [Buf](https://buf.build/product/cli/) to the `GOPATH` and execute the binary directly.
+
+### Setting up GOPATH
+
+If you don't want to install `buf` to your global GOPATH, you can also set it for this repository only:
+
+```
+export GOPATH="$(pwd)/vendor/"
+```
+
+## Golang:
+
+Generate grpc-gateway, go-grpc and go stubs
+
 ```
 make gen-go-server
 ```
-generate go-grpc and go stubs
+
+Generate go-grpc and go stubs
+
 ```
 make gen-go
 ```
+
 go package import
+
 ```
 go get go.buf.build/grpc/go/open-feature/flagd
-```  
+```
+
 <br />
 
-**Typescript:**  
+## Typescript:
 
-generate typescript stubs for grpc client and http/grpc input/output schema
+Generate TypeScript stubs for grpc client and http/grpc input/output schema
+
 ```
 make gen-ts
 ```
+
 <br />
 
-**Java:**  
+## Java:
 
-generate java stubs for grpc client and http/grpc input/output schema
+generate Java stubs for grpc client and http/grpc input/output schema
+
 ```
 make gen-java
 ```
 
-**CSharp**
+## CSharp
 
 generate csharp stubs for grpc client and http/grpc input/output schema
 ```
 make gen-csharp
 ```
 
-**PHP:**
+## PHP:
 
-generate PHP stubs for grpc client
+Generate PHP stubs for grpc client
+
 ```
 make gen-php
 ```
