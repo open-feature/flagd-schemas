@@ -30,3 +30,5 @@ gen-python: install-buf guard-GOPATH
 gen-csharp: install-buf guard-GOPATH
 	${GOPATH}/bin/buf generate buf.build/open-feature/flagd --template protobuf/buf.gen.csharp.yaml
 
+gen-php: install-buf guard-GOPATH
+	${GOPATH}/bin/buf generate buf.build/open-feature/flagd --template protobuf/buf.gen.php.yaml

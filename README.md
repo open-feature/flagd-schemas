@@ -43,3 +43,10 @@ generate csharp stubs for grpc client and http/grpc input/output schema
 ```
 make gen-csharp
 ```
+
+**PHP:**
+
+generate PHP stubs for grpc client
+```
+make gen-php
+```
