@@ -14,4 +14,5 @@ jobs:
       # Push module to the BSR
       - uses: bufbuild/buf-push-action@v1
         with:
+          input: protobuf
           buf_token: ${{ secrets.BUF_TOKEN }}
