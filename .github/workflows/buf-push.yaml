@@ -4,6 +4,7 @@ on:
       - main
 jobs:
   push-module:
+    name: push schema to buf registry
     runs-on: ubuntu-latest
     steps:
       # Run `git checkout`
