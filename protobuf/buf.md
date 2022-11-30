@@ -13,6 +13,7 @@ The final `rpc` on the `Service` is a streamed response named `EventStream`, thi
 
 The core definitions are in the `schema.v1` package, and contains package name options for the following languages, as such these options may be excluded from build instructions:
 
-- Go: schema/service/v1       
-- Java:   dev.openfeature.flagd.grpc        
-- C#:  OpenFeature.Flagd.Grpc        
+- Go:   schema/service/v1       
+- Java: dev.openfeature.flagd.grpc        
+- C#:   OpenFeature.Flagd.Grpc        
+- PHP:  OpenFeature\\Providers\\Flagd\\Schema\\Grpc
