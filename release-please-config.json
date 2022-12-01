@@ -1,0 +1,11 @@
+{
+  "bootstrap-sha": "1f9a40aabacfef2e8bf792639755bb96e3e95477",
+  "packages": {
+    "protobuf/schema": {
+      "release-type": "simple",
+      "prerelease": false,
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true
+    }
+  }
+}
