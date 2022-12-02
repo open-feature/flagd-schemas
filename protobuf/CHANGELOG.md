@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.3](https://github.com/open-feature/schemas/compare/v0.2.2...v0.2.3) (2022-12-02)
+
+
+### Miscellaneous Chores
+
+* release ([387959e](https://github.com/open-feature/schemas/commit/387959e2d12c6c0707aadde1554282304c1bd5b4))
+
 ## [0.2.2](https://github.com/open-feature/schemas/compare/v0.2.2...v0.2.2) (2022-12-02)
 
 
