@@ -24,19 +24,16 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
           default-branch: main
     outputs:
-      release_created: ${{ steps.release.outputs.release_created }} # this may be bugged
-      release_tag_name: ${{ steps.release.outputs.tag_name }}
+      releases_created: ${{ steps.release.outputs.releases_created }}
   
   push-module:
     needs: release-please
     name: push schema to buf registry
     runs-on: ubuntu-latest
-    if: ${{ needs.release-please.outputs.release_tag_name }}
+    if: ${{ needs.release-please.outputs.releases_created }}
     steps:
       # Run `git checkout`
       - uses: actions/checkout@v3
-        with:
-          ref: ${{ needs.release-please.outputs.release_tag_name }}
       # Install the `buf` CLI
       - uses: bufbuild/buf-setup-action@v1
       # Push module to the BSR
