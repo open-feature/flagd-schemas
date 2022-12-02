@@ -1,4 +1,4 @@
-version: v1 # x-release-please-version 
+version: v1.0.0 # x-release-please-version 
 plugins:
   - remote: buf.build/grpc/plugins/php:v1.50.0-1
     out: ../proto/php

@@ -1,4 +1,4 @@
-version: v1 # x-release-please-version 
+version: v1.0.0 # x-release-please-version 
 name: buf.build/open-feature/flagd
 deps:
   - buf.build/googleapis/googleapis
