@@ -28,6 +28,7 @@ jobs:
       release_tag_name: ${{ steps.release.outputs.tag_name }}
   
   push-module:
+    needs: release-please
     name: push schema to buf registry
     runs-on: ubuntu-latest
     if: ${{ needs.release-please.outputs.release_created }}
