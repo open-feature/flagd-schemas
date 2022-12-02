@@ -1,5 +1,5 @@
 {
-  "bootstrap-sha": "1f9a40aabacfef2e8bf792639755bb96e3e95477",
+  "bootstrap-sha": "bca32fcbf0a1ffaddd8f03fa59a8e451d592ee49",
   "packages": {
     "protobuf/schema": {
       "release-type": "simple",
