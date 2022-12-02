@@ -129,7 +129,7 @@ message ResolveObjectResponse {
     string variant = 3;
 }
 
-// Response body for the EvenntStream stream response
+// Response body for the EventStream stream response
 message EventStreamResponse {
 
     // String key indicating the type of event that is being received, e.g. provider_ready or configuration_change
@@ -140,6 +140,9 @@ message EventStreamResponse {
     google.protobuf.Struct data = 2;
 }
 
+// Empty stream request body
+message EventStreamRequest {}
+
 // Service defines the exposed rpcs of flagd
 service Service {
     rpc ResolveBoolean(ResolveBooleanRequest) returns (ResolveBooleanResponse) {}
@@ -147,5 +150,5 @@ service Service {
     rpc ResolveFloat(ResolveFloatRequest) returns (ResolveFloatResponse) {}
     rpc ResolveInt(ResolveIntRequest) returns (ResolveIntResponse) {}
     rpc ResolveObject(ResolveObjectRequest) returns (ResolveObjectResponse) {}
-    rpc EventStream(google.protobuf.Empty) returns (stream EventStreamResponse) {}
+    rpc EventStream(EventStreamRequest) returns (stream EventStreamResponse) {}
 }
