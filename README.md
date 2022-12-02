@@ -1,6 +1,7 @@
 # schemas
 
-Schemas and spec files pertaining to OpenFeature
+Schemas and spec files pertaining to OpenFeature.  
+The Schema is available in the Buf Schema Registry, and can be found [here](https://buf.build/open-feature/flagd).
 
 <br />
 When the below commands are used the generated code is placed in the parent directory

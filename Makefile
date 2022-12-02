@@ -1,4 +1,4 @@
-VERSION=v1.6.0
+BUF_VERSION=v1.6.0
 
 guard-%:
 	@ if [ "${${*}}" = "" ]; then \
@@ -7,7 +7,7 @@ guard-%:
     fi
 
 install-buf:
-	go install github.com/bufbuild/buf/cmd/buf@${VERSION}
+	go install github.com/bufbuild/buf/cmd/buf@${BUF_VERSION}
 
 lint: guard-GOPATH
 	cd protobuf && ${GOPATH}/bin/buf lint
