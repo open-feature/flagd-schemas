@@ -34,6 +34,8 @@ jobs:
     steps:
       # Run `git checkout`
       - uses: actions/checkout@v3
+        with:
+        ref: ${{ needs.release-please.outputs.release_tag_name }}
       # Install the `buf` CLI
       - uses: bufbuild/buf-setup-action@v1
       # Push module to the BSR
