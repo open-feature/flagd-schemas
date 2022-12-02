@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/open-feature/schemas/compare/v0.2.0...v0.2.1) (2022-12-02)
+
+
+### Bug Fixes
+
+* buf ci fix ([#50](https://github.com/open-feature/schemas/issues/50)) ([727c0d7](https://github.com/open-feature/schemas/commit/727c0d7b6735b2712bb0a671c1a83d0e390e189f))
+
 ## [0.2.0](https://github.com/open-feature/schemas/compare/v0.1.0...v0.2.0) (2022-12-02)
 
 
