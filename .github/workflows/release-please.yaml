@@ -41,7 +41,5 @@ jobs:
       # Install the `buf` CLI
       - uses: bufbuild/buf-setup-action@v1
       # Push module to the BSR
-      - uses: bufbuild/buf-push-action@v1
-        with:
-          input: protobuf
-          buf_token: ${{ secrets.BUF_TOKEN }}
+      - name: bsr-push
+        run: BUF_TOKEN="${{ secrets.BUF_TOKEN }}" buf push --tag "${{ needs.release-please.outputs.buf_release_tag }}" protobuf
