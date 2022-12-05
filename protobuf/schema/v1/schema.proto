@@ -132,7 +132,7 @@ message ResolveObjectResponse {
 // Response body for the EventStream stream response
 message EventStreamResponse {
 
-    // String key indicating the type of event that is being received, e.g. provider_ready or configuration_change
+    // String key indicating the type of event that is being received, for example, provider_ready or configuration_change
     string type = 1;
 
     // Object structure for use when sending relevant metadata to provide context to the event.
