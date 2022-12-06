@@ -32,5 +32,5 @@ jobs:
       - uses: bufbuild/buf-breaking-action@v1
         with:
           input: protobuf
-          against: 'https://github.com/open-feature/open-feature-operator.git#branch=main,ref=HEAD~1,subdir=protobuf''
+          against: 'https://github.com/open-feature/open-feature-operator.git#branch=main,ref=HEAD~1,subdir=protobuf'
   
