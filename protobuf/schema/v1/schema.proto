@@ -8,7 +8,6 @@ option csharp_namespace = "OpenFeature.Flagd.Grpc";
 option php_namespace = "OpenFeature\\Providers\\Flagd\\Schema\\Grpc";
 
 import "google/protobuf/struct.proto";
-import "google/protobuf/empty.proto";
 
 // Request body for boolean flag evaluation, used by the ResolveBoolean rpc.
 message ResolveBooleanRequest {
