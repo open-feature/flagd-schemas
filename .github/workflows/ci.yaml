@@ -17,7 +17,8 @@ jobs:
       - uses: bufbuild/buf-setup-action@v1
       # Lint your Protobuf sources
       - uses: bufbuild/buf-lint-action@v1
-        with: protobuf
+        with: 
+          input: protobuf
 
   validate-protos:
     name: Validate Proto
@@ -30,6 +31,6 @@ jobs:
       # Run breaking change detection against the last commit
       - uses: bufbuild/buf-breaking-action@v1
         with:
-          input: 'protobuf'
-          against: 'https://github.com/open-feature/open-feature-operator.git/protobuf#branch=main,ref=HEAD~1'
+          input: protobuf
+          against: 'https://github.com/open-feature/open-feature-operator.git#branch=main,ref=HEAD~1,subdir=protobuf''
   
