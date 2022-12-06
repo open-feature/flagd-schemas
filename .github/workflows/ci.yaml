@@ -1,3 +1,5 @@
+name: buf actions
+
 on:
   pull_request:
     branches:
@@ -6,15 +8,20 @@ on:
 jobs:
 
   lint-protos:
-    # Run `git checkout`
-    - uses: actions/checkout@v2
-    # Install the `buf` CLI
-    - uses: bufbuild/buf-setup-action@v1
-    # Lint your Protobuf sources
-    - uses: bufbuild/buf-lint-action@v1
-      with: protobuf
+    name: Lint Proto
+    runs-on: ubuntu-latest
+    steps:
+      # Run `git checkout`
+      - uses: actions/checkout@v2
+      # Install the `buf` CLI
+      - uses: bufbuild/buf-setup-action@v1
+      # Lint your Protobuf sources
+      - uses: bufbuild/buf-lint-action@v1
+        with: protobuf
 
   validate-protos:
+    name: Validate Proto
+    runs-on: ubuntu-latest
     steps:
       # Run `git checkout`
       - uses: actions/checkout@v2
@@ -23,5 +30,6 @@ jobs:
       # Run breaking change detection against the last commit
       - uses: bufbuild/buf-breaking-action@v1
         with:
+          input: 'protobuf'
           against: 'https://github.com/open-feature/open-feature-operator.git/protobuf#branch=main,ref=HEAD~1'
   
