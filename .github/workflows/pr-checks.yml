@@ -11,6 +11,7 @@ permissions:
 
 jobs:
   lint-protos:
+    runs-on: ubuntu-latest
     steps:
       # Install the `buf` CLI
       - uses: bufbuild/buf-setup-action@v1
@@ -22,6 +23,7 @@ jobs:
           input: protobuf
 
   buf-format:
+    runs-on: ubuntu-latest
     steps:
       # Install the `buf` CLI
       - uses: bufbuild/buf-setup-action@v1
@@ -31,6 +33,7 @@ jobs:
         run: buf format -d --exit-code
 
   buf-breaking-changes:
+    runs-on: ubuntu-latest
     steps:
       # Install the `buf` CLI
       - uses: bufbuild/buf-setup-action@v1
