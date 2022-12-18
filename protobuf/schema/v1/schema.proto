@@ -10,6 +10,39 @@ option php_namespace = "OpenFeature\\Providers\\Flagd\\Schema\\Grpc";
 import "google/protobuf/struct.proto";
 import "google/protobuf/empty.proto";
 
+// Request body for bulk flag evaluation, used by the ResolveAll rpc.
+message ResolveAllRequest {
+
+    // Object structure describing the EvaluationContext used in the flag evaluation, see https://docs.openfeature.dev/docs/reference/concepts/evaluation-context
+    google.protobuf.Struct context = 1;
+}
+
+// Response body for bulk flag evaluation, used by the ResolveAll rpc.
+message ResolveAllResponse {
+
+    // Object structure describing the evaluated flags for the provided context.
+    map<string, AnyFlag> flags = 1;
+}
+
+// A variant type flag response.
+message AnyFlag {
+
+    // The reason for the given return value, see https://docs.openfeature.dev/docs/specification/types#resolution-details
+    string reason = 1;
+
+    // The variant name of the returned flag value.
+    string variant = 2;
+
+    // The response value of the boolean flag evaluation, will be unset in the case of error.
+    oneof value {
+        bool                    boolValue = 3;
+        string                  stringValue = 4;
+        int64                   intValue = 5;
+        double                  doubleValue = 6;
+        google.protobuf.Struct  objectValue = 7;
+    }
+}
+
 // Request body for boolean flag evaluation, used by the ResolveBoolean rpc.
 message ResolveBooleanRequest {
 
@@ -145,6 +178,7 @@ message EventStreamRequest {}
 
 // Service defines the exposed rpcs of flagd
 service Service {
+    rpc ResolveAll(ResolveAllRequest) returns (ResolveAllResponse) {}
     rpc ResolveBoolean(ResolveBooleanRequest) returns (ResolveBooleanResponse) {}
     rpc ResolveString(ResolveStringRequest) returns (ResolveStringResponse) {}
     rpc ResolveFloat(ResolveFloatRequest) returns (ResolveFloatResponse) {}
