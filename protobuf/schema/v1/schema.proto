@@ -8,7 +8,6 @@ option csharp_namespace = "OpenFeature.Flagd.Grpc";
 option php_namespace = "OpenFeature\\Providers\\Flagd\\Schema\\Grpc";
 
 import "google/protobuf/struct.proto";
-import "google/protobuf/empty.proto";
 
 // Request body for bulk flag evaluation, used by the ResolveAll rpc.
 message ResolveAllRequest {
@@ -35,11 +34,11 @@ message AnyFlag {
 
     // The response value of the boolean flag evaluation, will be unset in the case of error.
     oneof value {
-        bool                    boolValue = 3;
-        string                  stringValue = 4;
-        int64                   intValue = 5;
-        double                  doubleValue = 6;
-        google.protobuf.Struct  objectValue = 7;
+        bool                    bool_value = 3;
+        string                  string_value = 4;
+        int64                   int_value = 5;
+        double                  double_value = 6;
+        google.protobuf.Struct  object_value = 7;
     }
 }
 
