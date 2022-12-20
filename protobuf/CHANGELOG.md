@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.6](https://github.com/open-feature/schemas/compare/v0.2.5...v0.2.6) (2022-12-20)
+
+
+### Features
+
+* resolve-all functionality ([#62](https://github.com/open-feature/schemas/issues/62)) ([9ca9ee3](https://github.com/open-feature/schemas/commit/9ca9ee3fa8b677c48ec6e859d0b78cc9f2042dfc))
+
 ## [0.2.5](https://github.com/open-feature/schemas/compare/v0.2.4...v0.2.5) (2022-12-05)
 
 
