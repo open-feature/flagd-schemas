@@ -9,3 +9,6 @@ proto/
 
 # Allow use `vendor` for GOPATH
 /vendor
+
+# IDE
+.idea
