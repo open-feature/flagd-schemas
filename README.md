@@ -1,6 +1,6 @@
 # schemas
 
-Schemas and spec files pertaining to OpenFeature.  
+Schemas and spec files pertaining to OpenFeature.
 The Schema is available in the Buf Schema Registry, and can be found [here](https://buf.build/open-feature/flagd).
 
 <br />
@@ -76,4 +76,13 @@ Generate PHP stubs for grpc client
 
 ```
 make gen-php
+```
+
+
+## Ruby:
+
+Generate Ruby stubs for grpc client
+
+```
+make gen-ruby
 ```
