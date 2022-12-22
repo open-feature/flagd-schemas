@@ -2,43 +2,40 @@ syntax = "proto3";
 
 package schema.v1;
 
+import "google/protobuf/struct.proto";
+
 option csharp_namespace = "OpenFeature.Flagd.Grpc";
 option go_package = "schema/service/v1";
 option java_package = "dev.openfeature.flagd.grpc";
 option php_namespace = "OpenFeature\\Providers\\Flagd\\Schema\\Grpc";
 
-import "google/protobuf/struct.proto";
-
 // Request body for bulk flag evaluation, used by the ResolveAll rpc.
 message ResolveAllRequest {
-
-    // Object structure describing the EvaluationContext used in the flag evaluation, see https://docs.openfeature.dev/docs/reference/concepts/evaluation-context
-    google.protobuf.Struct context = 1;
+  // Object structure describing the EvaluationContext used in the flag evaluation, see https://docs.openfeature.dev/docs/reference/concepts/evaluation-context
+  google.protobuf.Struct context = 1;
 }
 
 // Response body for bulk flag evaluation, used by the ResolveAll rpc.
 message ResolveAllResponse {
-
-    // Object structure describing the evaluated flags for the provided context.
-    map<string, AnyFlag> flags = 1;
+  // Object structure describing the evaluated flags for the provided context.
+  map<string, AnyFlag> flags = 1;
 }
 
 // A variant type flag response.
 message AnyFlag {
+  // The reason for the given return value, see https://docs.openfeature.dev/docs/specification/types#resolution-details
+  string reason = 1;
 
-    // The reason for the given return value, see https://docs.openfeature.dev/docs/specification/types#resolution-details
-    string reason = 1;
+  // The variant name of the returned flag value.
+  string variant = 2;
 
-    // The variant name of the returned flag value.
-    string variant = 2;
-
-    // The response value of the boolean flag evaluation, will be unset in the case of error.
-    oneof value {
-        bool                    bool_value = 3;
-        string                  string_value = 4;
-        double                  double_value = 5;
-        google.protobuf.Struct  object_value = 6;
-    }
+  // The response value of the boolean flag evaluation, will be unset in the case of error.
+  oneof value {
+    bool bool_value = 3;
+    string string_value = 4;
+    double double_value = 5;
+    google.protobuf.Struct object_value = 6;
+  }
 }
 
 // Request body for boolean flag evaluation, used by the ResolveBoolean rpc.
@@ -163,11 +160,11 @@ message EventStreamRequest {}
 
 // Service defines the exposed rpcs of flagd
 service Service {
-    rpc ResolveAll(ResolveAllRequest) returns (ResolveAllResponse) {}
-    rpc ResolveBoolean(ResolveBooleanRequest) returns (ResolveBooleanResponse) {}
-    rpc ResolveString(ResolveStringRequest) returns (ResolveStringResponse) {}
-    rpc ResolveFloat(ResolveFloatRequest) returns (ResolveFloatResponse) {}
-    rpc ResolveInt(ResolveIntRequest) returns (ResolveIntResponse) {}
-    rpc ResolveObject(ResolveObjectRequest) returns (ResolveObjectResponse) {}
-    rpc EventStream(EventStreamRequest) returns (stream EventStreamResponse) {}
+  rpc ResolveAll(ResolveAllRequest) returns (ResolveAllResponse) {}
+  rpc ResolveBoolean(ResolveBooleanRequest) returns (ResolveBooleanResponse) {}
+  rpc ResolveString(ResolveStringRequest) returns (ResolveStringResponse) {}
+  rpc ResolveFloat(ResolveFloatRequest) returns (ResolveFloatResponse) {}
+  rpc ResolveInt(ResolveIntRequest) returns (ResolveIntResponse) {}
+  rpc ResolveObject(ResolveObjectRequest) returns (ResolveObjectResponse) {}
+  rpc EventStream(EventStreamRequest) returns (stream EventStreamResponse) {}
 }
