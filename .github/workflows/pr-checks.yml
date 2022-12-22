@@ -12,6 +12,8 @@ jobs:
     steps:
       # Install the `buf` CLI
       - uses: bufbuild/buf-setup-action@v1
+        with:
+          github_token: ${{ github.token }}
       - name: Checkout repository
         uses: actions/checkout@v3
       # Lint your Protobuf sources
@@ -24,6 +26,8 @@ jobs:
     steps:
       # Install the `buf` CLI
       - uses: bufbuild/buf-setup-action@v1
+        with:
+          github_token: ${{ github.token }}
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Buf format check
@@ -34,6 +38,8 @@ jobs:
     steps:
       # Install the `buf` CLI
       - uses: bufbuild/buf-setup-action@v1
+        with:
+          github_token: ${{ github.token }}
       - name: Checkout repository
         uses: actions/checkout@v3
       # Run breaking change detection against the last commit
