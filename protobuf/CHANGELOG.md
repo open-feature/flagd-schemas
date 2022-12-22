@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.7](https://github.com/open-feature/schemas/compare/v0.2.6...v0.2.7) (2022-12-22)
+
+
+### Features
+
+* Add ruby support ([#65](https://github.com/open-feature/schemas/issues/65)) ([31a02e4](https://github.com/open-feature/schemas/commit/31a02e447436d91bcbab7ecd057730cfcb560700))
+
 ## [0.2.6](https://github.com/open-feature/schemas/compare/v0.2.5...v0.2.6) (2022-12-20)
 
 
