@@ -17,4 +17,4 @@ The core definitions are in the `schema.v1` package, and contains package name o
 - Java: dev.openfeature.flagd.grpc
 - C#:   OpenFeature.Flagd.Grpc
 - PHP:  OpenFeature\\Providers\\Flagd\\Schema\\Grpc
-- Ruby: openfeature/provider/flagd/v1/grpc
+- Ruby: "OpenFeature::FlagD::Provider::Grpc"

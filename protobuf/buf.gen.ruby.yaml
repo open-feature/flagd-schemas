@@ -1,6 +1,6 @@
 version: v1
 plugins:
   - remote: buf.build/grpc/plugins/ruby:v1.51.1-1
-    out: ../openfeature-flagd-provider/lib/openfeature/flagd/provider
+    out: ./lib/openfeature/flagd/provider
   - remote: buf.build/protocolbuffers/plugins/ruby:v21.10.0-1
-    out: ../openfeature-flagd-provider/lib/openfeature/flagd/provider
+    out: ./lib/openfeature/flagd/provider
