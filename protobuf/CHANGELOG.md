@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.8](https://github.com/open-feature/schemas/compare/v0.2.7...v0.2.8) (2022-12-26)
+
+
+### Bug Fixes
+
+* Fix ruby package to correct namespace ([#68](https://github.com/open-feature/schemas/issues/68)) ([0acbda3](https://github.com/open-feature/schemas/commit/0acbda3cf205915bde8dac4f7d3a6965fcb16c19))
+
 ## [0.2.7](https://github.com/open-feature/schemas/compare/v0.2.6...v0.2.7) (2022-12-22)
 
 
