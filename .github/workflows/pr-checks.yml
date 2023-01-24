@@ -47,3 +47,12 @@ jobs:
         with:
           input: protobuf
           against: 'https://github.com/open-feature/schemas.git#branch=main,ref=HEAD~1,subdir=protobuf'
+
+  ajv-schema-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup node
+        uses: actions/setup-node@v3.5.1
+
+      - name: Validate schema 
+        run: ajv-validate-flagd-schema
