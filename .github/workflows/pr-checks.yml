@@ -47,3 +47,14 @@ jobs:
         with:
           input: protobuf
           against: 'https://github.com/open-feature/schemas.git#branch=main,ref=HEAD~1,subdir=protobuf'
+
+  docs-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - run: make install-yq-linux
+      - run: make gen-schema-yaml
+      - name: Check no diff
+        run: |
+          if [ ! -z "$(git status --porcelain)" ]; then echo "Yaml schema generation produced diff. Run 'make gen-schema-yaml' and commit results."; exit 1; fi
