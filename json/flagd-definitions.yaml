@@ -1,5 +1,5 @@
 $schema: http://json-schema.org/draft-07/schema#
-title: flagd Flag Configuration
+title: Flagd Flag Configuration
 description: Defines flags for use in flagd, including typed variants and rules
 type: object
 properties:
@@ -25,11 +25,11 @@ properties:
         unevaluatedProperties: false
 $defs:
   flag:
-    title: Flag base
+    title: Flag Base
     description: Base object for all flags
     properties:
       state:
-        'title:': Flag state
+        'title:': Flag State
         description: Indicates whether the flag is functional. Disabled flags are treated as if they don't exist
         type: string
         enum:
