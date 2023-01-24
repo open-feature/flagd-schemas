@@ -55,7 +55,8 @@ jobs:
   validate-schema:
     runs-on: ubuntu-latest
     steps:
-
+      - uses: actions/checkout@v3
+      
       # Use ajv to validate schema
       - name: Setup node
         uses: actions/setup-node@v3.5.1
@@ -64,7 +65,6 @@ jobs:
         run: make ajv-validate-flagd-schema
 
       # Run go test suite to validate the json schema against positive and/or negative validations in /json/test
-      - uses: actions/checkout@v3
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
