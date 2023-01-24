@@ -38,4 +38,4 @@ gen-ruby: install-buf guard-GOPATH
 
 ajv-validate-flagd-schema:
 	@if ! npm ls ajv-cli; then npm ci; fi
-	ajv compile -s json/flagd-definitions.json
+	npx ajv compile -s json/flagd-definitions.json
