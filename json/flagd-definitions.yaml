@@ -42,7 +42,7 @@ $defs:
       targeting:
         type: object
         title: Targeting Logic
-        description: JsonLogic expressions to be used for dynamic evaluation. The "context" is passed as the data. Rules must resolve one of the defined variants, or the "defaultVariant" will be used.
+        description: JsonLogic expressions to be used for dynamic evaluation. The "evaluation context" is passed as the data. Rules must resolve one of the defined variants, or the "defaultVariant" will be used.
     required:
       - state
       - defaultVariant
