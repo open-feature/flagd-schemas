@@ -6,6 +6,9 @@ on:
 permissions:
   contents: read
 
+env:
+  GO_VERSION: 1.19.3
+
 jobs:
   lint-protos:
     runs-on: ubuntu-latest
@@ -48,11 +51,29 @@ jobs:
           input: protobuf
           against: 'https://github.com/open-feature/schemas.git#branch=main,ref=HEAD~1,subdir=protobuf'
 
-  ajv-schema-validation:
+  # Run go test suite to validate the json schema against positive and/or negative validations in /json/test
+  ajv-compile-validation:
     runs-on: ubuntu-latest
     steps:
+
+  
+  validate-schema:
+    runs-on: ubuntu-latest
+    steps:
+
+      # Use ajv to validate schema
       - name: Setup node
         uses: actions/setup-node@v3.5.1
 
       - name: Validate schema 
         run: ajv-validate-flagd-schema
+
+      # Run go test suite to validate the json schema against positive and/or negative validations in /json/test
+      - uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: ${{ env.GO_VERSION }}
+      - name: Validate Schema
+        run: go test -v ./json
+
