@@ -61,7 +61,7 @@ jobs:
         uses: actions/setup-node@v3.5.1
 
       - name: Validate schema 
-        run: ajv-validate-flagd-schema
+        run: make ajv-validate-flagd-schema
 
       # Run go test suite to validate the json schema against positive and/or negative validations in /json/test
       - uses: actions/checkout@v3
