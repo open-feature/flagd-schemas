@@ -6,6 +6,9 @@ on:
 permissions:
   contents: read
 
+env:
+  GO_VERSION: 1.19.3
+
 jobs:
   lint-protos:
     runs-on: ubuntu-latest
@@ -47,3 +50,16 @@ jobs:
         with:
           input: protobuf
           against: 'https://github.com/open-feature/schemas.git#branch=main,ref=HEAD~1,subdir=protobuf'
+  
+  validate-schema:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: ${{ env.GO_VERSION }}
+      # Run go test suirte to validate the json schema against positive and/or negative validations in /json/test
+      - name: Validate Schema
+        run: go test -v ./json
+

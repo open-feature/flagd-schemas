@@ -1,4 +1,4 @@
-package flagd_defintitions
+package flagd_definitions
 
 import _ "embed"
 
