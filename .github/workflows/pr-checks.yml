@@ -6,6 +6,9 @@ on:
 permissions:
   contents: read
 
+env:
+  GO_VERSION: 1.19.3
+
 jobs:
   lint-protos:
     runs-on: ubuntu-latest
@@ -47,14 +50,23 @@ jobs:
         with:
           input: protobuf
           against: 'https://github.com/open-feature/schemas.git#branch=main,ref=HEAD~1,subdir=protobuf'
-
-  docs-check:
+  
+  validate-schema:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: ${{ env.GO_VERSION }}
+      # Run go test suirte to validate the json schema against positive and/or negative validations in /json/test
+      - name: Validate Schema
+        run: go test -v ./json
+
+      # Ensure there is no dif when make gen-schema-yaml is run 
       - run: make install-yq-linux
       - run: make gen-schema-yaml
-      - name: Check no diff
+      - name: Check no diff 
         run: |
           if [ ! -z "$(git status --porcelain)" ]; then echo "Yaml schema generation produced diff. Run 'make gen-schema-yaml' and commit results."; exit 1; fi
+

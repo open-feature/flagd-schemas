@@ -1,0 +1,12 @@
+{
+    "flags": {
+      "myBoolFlag": {
+        "state": "WILL-FAIL",
+        "variants": {
+          "on": true,
+          "off": false
+        },
+        "defaultVariant": "on"
+      }
+    }
+  }
