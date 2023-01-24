@@ -63,9 +63,9 @@ jobs:
       - name: Validate Schema
         run: go test -v ./json
 
-      # Ensure there is no dif when make gen-schema-yaml is run 
-      - run: make gen-schema-yaml
+      # Ensure there is no dif when make gen-schema-json is run 
+      - run: make gen-schema-json
       - name: Check no diff 
         run: |
-          if [ ! -z "$(git status --porcelain)" ]; then echo "Yaml schema generation produced diff. Run 'make gen-schema-yaml' and commit results."; exit 1; fi
+          if [ ! -z "$(git status --porcelain)" ]; then echo "JSON schema generation produced diff. Run 'make gen-schema-json' and commit results."; exit 1; fi
 

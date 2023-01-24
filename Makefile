@@ -39,5 +39,5 @@ gen-php: install-buf guard-GOPATH
 gen-ruby: install-buf guard-GOPATH
 	${GOPATH}/bin/buf generate buf.build/open-feature/flagd --template protobuf/buf.gen.ruby.yaml
 
-gen-schema-yaml: install-yq
-	yq eval -o=json json/flagd-definitions.json | yq -P > json/flagd-definitions.yaml
+gen-schema-json: install-yq
+	yq eval -o=json json/flagd-definitions.yaml > json/flagd-definitions.json
