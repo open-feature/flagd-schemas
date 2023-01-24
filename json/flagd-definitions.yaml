@@ -12,16 +12,16 @@ properties:
         oneOf:
           - title: Boolean flag
             description: A flag associated with boolean values
-            $ref: "#/$defs/booleanFlag"
+            $ref: '#/$defs/booleanFlag'
           - title: String flag
             description: A flag associated with string values
-            $ref: "#/$defs/stringFlag"
+            $ref: '#/$defs/stringFlag'
           - title: Numeric flag
             description: A flag associated with numeric values
-            $ref: "#/$defs/numberFlag"
+            $ref: '#/$defs/numberFlag'
           - title: Object flag
             description: A flag associated with arbitrary object values
-            $ref: "#/$defs/objectFlag"
+            $ref: '#/$defs/objectFlag'
 $defs:
   flag:
     title: Flag base
@@ -85,17 +85,17 @@ $defs:
   $comment: Merge the variants with the base flag to build our typed flags
   booleanFlag:
     allOf:
-      - $ref: "#/$defs/flag"
-      - $ref: "#/$defs/booleanVariants"
+      - $ref: '#/$defs/flag'
+      - $ref: '#/$defs/booleanVariants'
   stringFlag:
     allOf:
-      - $ref: "#/$defs/flag"
-      - $ref: "#/$defs/stringVariants"
+      - $ref: '#/$defs/flag'
+      - $ref: '#/$defs/stringVariants'
   numberFlag:
     allOf:
-      - $ref: "#/$defs/flag"
-      - $ref: "#/$defs/numberVariants"
+      - $ref: '#/$defs/flag'
+      - $ref: '#/$defs/numberVariants'
   objectFlag:
     allOf:
-      - $ref: "#/$defs/flag"
-      - $ref: "#/$defs/objectVariants"
+      - $ref: '#/$defs/flag'
+      - $ref: '#/$defs/objectVariants'
