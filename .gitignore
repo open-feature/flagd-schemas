@@ -12,3 +12,5 @@ proto/
 
 # IDE
 .idea
+
+node_modules
