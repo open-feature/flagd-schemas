@@ -64,7 +64,6 @@ jobs:
         run: go test -v ./json
 
       # Ensure there is no dif when make gen-schema-yaml is run 
-      - run: make install-yq-linux
       - run: make gen-schema-yaml
       - name: Check no diff 
         run: |

@@ -9,9 +9,8 @@ guard-%:
 install-buf:
 	go install github.com/bufbuild/buf/cmd/buf@${BUF_VERSION}
 
-install-yq-linux:
-	wget https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64 -O /usr/bin/yq &&\
-		chmod +x /usr/bin/yq
+install-yq:
+	go install github.com/mikefarah/yq/v4@latest
 
 lint: guard-GOPATH
 	cd protobuf && ${GOPATH}/bin/buf lint
@@ -40,5 +39,5 @@ gen-php: install-buf guard-GOPATH
 gen-ruby: install-buf guard-GOPATH
 	${GOPATH}/bin/buf generate buf.build/open-feature/flagd --template protobuf/buf.gen.ruby.yaml
 
-gen-schema-yaml:
+gen-schema-yaml: install-yq
 	yq eval -j json/flagd-definitions.json | yq -P > json/flagd-definitions.yaml
