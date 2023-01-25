@@ -31,8 +31,7 @@
               "description": "A flag associated with arbitrary object values",
               "$ref": "#/$defs/objectFlag"
             }
-          ],
-          "unevaluatedProperties": false
+          ]
         }
       }
     }
@@ -41,9 +40,9 @@
     "flag": {
       "title": "Flag base",
       "description": "Base object for all flags",
+      "type": "object",
       "properties": {
         "state": {
-          "title:": "Flag state",
           "description": "Indicates whether the flag is functional. Disabled flags are treated as if they don't exist",
           "type": "string",
           "enum": [
@@ -52,13 +51,11 @@
           ]
         },
         "defaultVariant": {
-          "title": "Default variant",
           "description": "The variant to serve if no dynamic targeting applies",
           "type": "string"
         },
         "targeting": {
           "type": "object",
-          "title": "Targeting Logic",
           "description": "JsonLogic expressions to be used for dynamic evaluation. The \"context\" is passed as the data. Rules must resolve one of the defined variants, or the \"defaultVariant\" will be used."
         }
       },
@@ -71,6 +68,7 @@
       "type": "object",
       "properties": {
         "variants": {
+          "type": "object",
           "additionalProperties": false,
           "patternProperties": {
             "^.{1,}$": {
@@ -88,6 +86,7 @@
       "type": "object",
       "properties": {
         "variants": {
+          "type": "object",
           "additionalProperties": false,
           "patternProperties": {
             "^.{1,}$": {
@@ -101,6 +100,7 @@
       "type": "object",
       "properties": {
         "variants": {
+          "type": "object",
           "additionalProperties": false,
           "patternProperties": {
             "^.{1,}$": {
@@ -114,6 +114,7 @@
       "type": "object",
       "properties": {
         "variants": {
+          "type": "object",
           "additionalProperties": false,
           "patternProperties": {
             "^.{1,}$": {

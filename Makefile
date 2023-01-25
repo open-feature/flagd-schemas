@@ -35,3 +35,7 @@ gen-php: install-buf guard-GOPATH
 
 gen-ruby: install-buf guard-GOPATH
 	${GOPATH}/bin/buf generate buf.build/open-feature/flagd --template protobuf/buf.gen.ruby.yaml
+
+ajv-validate-flagd-schema:
+	@if ! npm ls ajv-cli; then npm ci; fi
+	npx ajv compile -s json/flagd-definitions.json
