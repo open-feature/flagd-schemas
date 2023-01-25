@@ -63,7 +63,7 @@ jobs:
       - name: Validate Schema
         run: go test -v ./json
 
-      # Ensure there is no dif when make gen-schema-json is run 
+      # Ensure there is no diff when make gen-schema-json is run 
       - run: make gen-schema-json
       - name: Check no diff 
         run: |
