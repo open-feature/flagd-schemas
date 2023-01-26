@@ -32,7 +32,7 @@ jobs:
     needs: release-please
     name: push schema to buf registry
     runs-on: ubuntu-latest
-    if: ${{ needs.release-please.outputs.releases_created }}
+    if: ${{ needs.release-please.outputs.releases_created && needs.release-please.outputs.buf_release_tag }}
     steps:
       # Run `git checkout`
       - uses: actions/checkout@v3

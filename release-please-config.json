@@ -2,6 +2,14 @@
   "bootstrap-sha": "bca32fcbf0a1ffaddd8f03fa59a8e451d592ee49",
   "packages": {
     "protobuf": {
+      "package-name": "protobuf",
+      "release-type": "simple",
+      "prerelease": false,
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true
+    },
+    "json": {
+      "package-name": "json-schema",
       "release-type": "simple",
       "prerelease": false,
       "bump-minor-pre-major": true,
