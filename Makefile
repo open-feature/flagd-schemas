@@ -41,3 +41,7 @@ gen-ruby: install-buf guard-GOPATH
 
 gen-schema-json: install-yq
 	yq eval -o=json json/flagd-definitions.yaml > json/flagd-definitions.json
+	
+ajv-validate-flagd-schema:
+	@if ! npm ls ajv-cli; then npm ci; fi
+	npx ajv compile -s json/flagd-definitions.json
