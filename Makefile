@@ -9,6 +9,9 @@ guard-%:
 install-buf:
 	go install github.com/bufbuild/buf/cmd/buf@${BUF_VERSION}
 
+install-yq:
+	go install github.com/mikefarah/yq/v4@latest
+
 lint: guard-GOPATH
 	cd protobuf && ${GOPATH}/bin/buf lint
 
@@ -36,6 +39,9 @@ gen-php: install-buf guard-GOPATH
 gen-ruby: install-buf guard-GOPATH
 	${GOPATH}/bin/buf generate buf.build/open-feature/flagd --template protobuf/buf.gen.ruby.yaml
 
+gen-schema-json: install-yq
+	yq eval -o=json json/flagd-definitions.yaml > json/flagd-definitions.json
+	
 ajv-validate-flagd-schema:
 	@if ! npm ls ajv-cli; then npm ci; fi
 	npx ajv compile -s json/flagd-definitions.json

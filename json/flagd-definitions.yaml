@@ -24,7 +24,7 @@ properties:
             $ref: '#/$defs/objectFlag'
 $defs:
   flag:
-    title: Flag base
+    title: Flag Base
     description: Base object for all flags
     type: object
     properties:
