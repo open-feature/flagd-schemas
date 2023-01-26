@@ -1,5 +1,5 @@
 {
-  "bootstrap-sha": "d40361f56f67684a1de2d18e965d8a811e55227d",
+  "bootstrap-sha": "0618fc5db2590ed69549a42b2c703104d3da36c7",
   "monorepo-tags": true,
   "packages": {
     "protobuf": {
