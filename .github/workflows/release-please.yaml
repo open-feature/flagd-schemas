@@ -3,7 +3,7 @@ name: Run Release Please
 on:
   push:
     branches:
-      - release-please-schemas
+      - main
 
 permissions:
   contents: read
