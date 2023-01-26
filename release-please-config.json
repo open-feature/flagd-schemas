@@ -1,5 +1,6 @@
 {
-  "bootstrap-sha": "bca32fcbf0a1ffaddd8f03fa59a8e451d592ee49",
+  "bootstrap-sha": "d40361f56f67684a1de2d18e965d8a811e55227d",
+  "monorepo-tags": true,
   "packages": {
     "protobuf": {
       "package-name": "protobuf",
@@ -9,7 +10,7 @@
       "bump-patch-for-minor-pre-major": true
     },
     "json": {
-      "package-name": "json-schema",
+      "package-name": "json/json-schema",
       "release-type": "simple",
       "prerelease": false,
       "bump-minor-pre-major": true,
