@@ -47,7 +47,7 @@ jobs:
 
   create-schema-store-issue:
     needs: release-please
-    name: push schema to buf registry
+    name: create schema release reminder issue
     runs-on: ubuntu-latest
     if: ${{ needs.release-please.outputs.releases_created && needs.release-please.outputs.json_release_tag }}
     steps:
