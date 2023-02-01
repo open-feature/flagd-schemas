@@ -1,19 +1,19 @@
 syntax = "proto3";
 
-package dev.openfeature.sync.v1;
+package sync.v1;
 
 option go_package = "flagd/grpcsync";
 
 /*
-SyncFlagsRequest convey a key that identifies the flagd instance, enabling Sync provider to filter
-specific flags for a specific flagd deployment.
+   SyncFlagsRequest convey a key that identifies the flagd instance, enabling Sync provider to filter
+   specific flags for a specific flagd deployment.
 */
 message SyncFlagsRequest {
   string key = 1;
 }
 
 //SyncState convey the state of the payload
-enum SyncState{
+enum SyncState {
   // Value is ignored by the listening flagd
   SYNC_STATE_UNSPECIFIED = 0;
 
@@ -45,5 +45,5 @@ message SyncFlagsResponse {
 
 // FlagService implements a server streaming to provide realtime flag configurations
 service FlagService {
-  rpc SyncFlags(SyncFlagsRequest) returns (stream SyncFlagsResponse) {};
+  rpc SyncFlags(SyncFlagsRequest) returns (stream SyncFlagsResponse) {}
 }
