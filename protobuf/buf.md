@@ -1,20 +1,35 @@
 # Flagd build spec
 
-## This repository is managed by OpenFeature
+### Managed by [OpenFeature](https://github.com/open-feature). 
 
-This module contains the core types that developers can use for interacting with [flagd](https://github.com/open-feature/flagd).
+This repository contains grpc service definitions that developers can use for interacting with [flagd](https://github.com/open-feature/flagd).
 
-Internally flagd uses the connect protocol, meaning it is compatible with grpc interfaces. If your desired language has a supported plugin for generating connect stubs then it is recommended to use these over grpc.
+Given below are the modules exposed through this repository,
 
-The package contains a single `Service`, describing the 5 core `rpcs` for feature flag evaluation (`ResolveBoolean`, `ResolveString`, `ResolveFloat`, `ResolveInt` and `ResolveObject`) each with their type specific request and response objects(`ResolveXXXRequest` and `ResolveXXXResponse`).
-The final `rpc` on the `Service` is a streamed response named `EventStream`, this is used to pass internal events to the client, such as `configuration_change` and `provider_ready`.
+- [Flag evaluation](#Flag-evaluation)
+- [Flag sync](#Flag-sync)
 
-## Build options
+## Flag evaluation
 
-The core definitions are in the `schema.v1` package, and contains package name options for the following languages, as such these options may be excluded from build instructions:
+The module `schema.v1` contains a single `Service`, describing the 5 core `rpcs` for feature flag evaluation (`ResolveBoolean`,
+`ResolveString`, `ResolveFloat`, `ResolveInt` and `ResolveObject`) each with their type specific request and
+response objects(`ResolveXXXRequest` and `ResolveXXXResponse`). The final `rpc` on the `Service` is a streamed response
+named `EventStream`, this is used to pass internal events to the client, such as `configuration_change` and `provider_ready`.
 
-- Go:   schema/service/v1.0.0
-- Java: dev.openfeature.flagd.grpc
-- C#:   OpenFeature.Flagd.Grpc
-- PHP:  OpenFeature\\Providers\\Flagd\\Schema\\Grpc
-- Ruby: "OpenFeature::FlagD::Provider::Grpc"
+Internally flagd uses the connect protocol, meaning it is compatible with grpc interfaces. If your desired language has 
+a supported plugin for generating connect stubs then it is recommended to use these over grpc.
+
+## Flag sync
+
+The module `sync.v1` is a grpc server streaming service definition to provide flagd with feature flag configurations.
+This service expose a single method `SyncFlags`. Flagd acts as the client and initiate the streaming with `SyncFlagsRequest`.
+
+The server implementation will then stream feature flag configurations through `SyncFlagsResponse`. The response contains
+`SyncState` which can be utilized to provide flagd with flexible configuration updates.
+
+## Code generate
+
+Easiest way to generate grpc code for your language of choice is using provided [buf](https://buf.build/) templates.
+For example, with required binaries in your path, java code generation can be done using 
+`buf generate --template buf.gen.java.yaml` command.
+
