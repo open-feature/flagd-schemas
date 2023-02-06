@@ -5,7 +5,7 @@ package sync.v1;
 option go_package = "flagd/grpcsync";
 
 /*
-   SyncFlagsRequest convey a key that identifies the flagd instance, enabling Sync provider to filter
+   SyncFlagsRequest conveys a key that identifies the flagd instance, enabling Sync provider to filter
    specific flags for a specific flagd deployment.
 */
 message SyncFlagsRequest {
