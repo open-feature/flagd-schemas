@@ -18,7 +18,7 @@ enum SyncState {
   SYNC_STATE_UNSPECIFIED = 0;
 
   // All the flags matching the request. This is the default response and other states can be ignored
-  // by the implementation. Flagd internally replace all existing flags for this response state.
+  // by the implementation. Flagd internally replaces all existing flags for this response state.
   SYNC_STATE_ALL = 1;
 
   // Convey an addition of a flag. Flagd internally handles this by combining new flags with existing ones
