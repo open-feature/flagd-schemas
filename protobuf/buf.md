@@ -13,7 +13,7 @@ Given below are the modules exposed through this repository,
 
 The module `schema.v1` contains a single `Service`, describing the 5 core `rpcs` for feature flag evaluation (`ResolveBoolean`,
 `ResolveString`, `ResolveFloat`, `ResolveInt` and `ResolveObject`), each with their type specific request and
-response objects(`ResolveXXXRequest` and `ResolveXXXResponse`). The final `rpc` on the `Service` is a streamed response
+response objects (`ResolveXXXRequest` and `ResolveXXXResponse`). The final `rpc` on the `Service` is a streamed response
 named `EventStream`, this is used to pass internal events to the client, such as `configuration_change` and `provider_ready`.
 
 Internally flagd uses the connect protocol, meaning it is compatible with grpc interfaces. If your desired language has 
