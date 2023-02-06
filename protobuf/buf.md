@@ -22,7 +22,7 @@ a supported plugin for generating connect stubs then it is recommended to use th
 ## Flag sync
 
 The module `sync.v1` is a grpc server streaming service definition to provide flagd with feature flag configurations.
-This service expose a single method `SyncFlags`. Flagd acts as the client and initiate the streaming with `SyncFlagsRequest`.
+This service exposes a single method `SyncFlags`. Flagd acts as the client and initiates the streaming with `SyncFlagsRequest`.
 
 The server implementation will then stream feature flag configurations through `SyncFlagsResponse`. The response contains
 `SyncState` which can be utilized to provide flagd with flexible configuration updates.
