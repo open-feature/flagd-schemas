@@ -16,7 +16,7 @@ The module `schema.v1` contains a single `Service`, describing the 5 core `rpcs`
 response objects (`ResolveXXXRequest` and `ResolveXXXResponse`). The final `rpc` on the `Service` is a streamed response
 named `EventStream`, this is used to pass internal events to the client, such as `configuration_change` and `provider_ready`.
 
-Internally flagd uses the connect protocol, meaning it is compatible with grpc interfaces. If your desired language has 
+Internally, flagd uses the connect protocol, meaning it is compatible with grpc interfaces. If your desired language has 
 a supported plugin for generating connect stubs then it is recommended to use these over grpc.
 
 ## Flag sync
