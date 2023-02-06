@@ -4,15 +4,16 @@ package sync.v1;
 
 option go_package = "flagd/grpcsync";
 
-/*
-   SyncFlagsRequest conveys a key that identifies the flagd instance, enabling Sync provider to filter
-   specific flags for a specific flagd deployment.
-*/
+// SyncFlagsRequest is the request initiating the sever-streaming rpc. Flagd sends this request, acting as the client
 message SyncFlagsRequest {
-  string key = 1;
+  // Optional: A unique identifier for flagd  provider (grpc client) initiating the request. The server implementations
+  // can utilize this identifier to aggregate flag configurations and stream them to a specific client. This identifier
+  // is intended to be optional. However server implementation may enforce it.
+  string provider_id = 1;
 }
 
-// SyncState convey the state of the payload
+// SyncState convey the state of the payload. These states are related to flagd isync.go type definitions but
+// contains extras to optimize grpc use case. Refer - https://github.com/open-feature/flagd/blob/main/pkg/sync/isync.go
 enum SyncState {
   // Value is ignored by the listening flagd
   SYNC_STATE_UNSPECIFIED = 0;
@@ -35,15 +36,17 @@ enum SyncState {
   SYNC_STATE_PING = 5;
 }
 
-// SyncFlagsResponse is the response contains flags and state
+// SyncFlagsResponse is the sever response containing feature flag configurations and the state
 message SyncFlagsResponse {
   // flagd feature flag configuration
   string flags = 1;
-  // State conveying the operation to be performed by flagd. See descriptions of state for an explanation of values
+
+  // State conveying the operation to be performed by flagd. See the descriptions of SyncState for an explanation of
+  // supported values
   SyncState state = 2;
 }
 
 // FlagService implements a server streaming to provide realtime flag configurations
-service FlagService {
+service FlagSyncService {
   rpc SyncFlags(SyncFlagsRequest) returns (stream SyncFlagsResponse) {}
 }
