@@ -27,7 +27,7 @@ This service exposes a single method `SyncFlags`. Flagd acts as the client and i
 The server implementation will then stream feature flag configurations through `SyncFlagsResponse`. The response contains
 `SyncState` which can be utilized to provide flagd with flexible configuration updates.
 
-## Code generate
+## Code generation
 
 Easiest way to generate grpc code for your language of choice is using provided [buf](https://buf.build/) templates.
 For example, with required binaries in your path, java code generation can be done using 
