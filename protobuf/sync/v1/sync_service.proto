@@ -24,7 +24,7 @@ enum SyncState {
   // Convey an addition of a flag. Flagd internally handles this by combining new flags with existing ones
   SYNC_STATE_ADD = 2;
 
-  // Convey an update of a flag. Flagd internally try to update if the updated flag already exist OR if it is not,
+  // Convey an update of a flag. Flagd internally attempts to update if the updated flag already exist OR if it does not,
   // then it will get added
   SYNC_STATE_UPDATE = 3;
 
