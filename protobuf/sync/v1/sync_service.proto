@@ -12,7 +12,7 @@ message SyncFlagsRequest {
   string key = 1;
 }
 
-//SyncState convey the state of the payload
+// SyncState convey the state of the payload
 enum SyncState {
   // Value is ignored by the listening flagd
   SYNC_STATE_UNSPECIFIED = 0;
