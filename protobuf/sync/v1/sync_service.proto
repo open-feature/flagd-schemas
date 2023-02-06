@@ -39,7 +39,7 @@ enum SyncState {
 // SyncFlagsResponse is the sever response containing feature flag configurations and the state
 message SyncFlagsResponse {
   // flagd feature flag configuration. Must be validated to schema - https://raw.githubusercontent.com/open-feature/schemas/main/json/flagd-definitions.json
-  string flag_configurations = 1;
+  string flag_configuration = 1;
 
   // State conveying the operation to be performed by flagd. See the descriptions of SyncState for an explanation of
   // supported values
