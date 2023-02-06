@@ -25,7 +25,7 @@ enum SyncState {
   SYNC_STATE_ADD = 2;
 
   // Convey an update of a flag. Flagd internally attempts to update if the updated flag already exist OR if it does not,
-  // then it will get added
+  // it will get added
   SYNC_STATE_UPDATE = 3;
 
   // Convey a deletion of a flag. Flagd internally removes the flag
