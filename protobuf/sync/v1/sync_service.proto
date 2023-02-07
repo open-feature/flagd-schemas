@@ -12,7 +12,7 @@ message SyncFlagsRequest {
   string provider_id = 1;
 }
 
-// SyncState convey the state of the payload. These states are related to flagd isync.go type definitions but
+// SyncState conveys the state of the payload. These states are related to flagd isync.go type definitions but
 // contains extras to optimize grpc use case. Refer - https://github.com/open-feature/flagd/blob/main/pkg/sync/isync.go
 enum SyncState {
   // Value is ignored by the listening flagd
