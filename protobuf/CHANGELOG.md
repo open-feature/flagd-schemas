@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.9](https://github.com/open-feature/schemas/compare/protobuf-v0.2.8...protobuf-v0.2.9) (2023-02-07)
+
+
+### Features
+
+* Introduce service definition for GRPC sync contract ([#78](https://github.com/open-feature/schemas/issues/78)) ([2ba81e3](https://github.com/open-feature/schemas/commit/2ba81e3580a3944b837fe63482993d31b02dd9c0))
+
 ## [0.2.8](https://github.com/open-feature/schemas/compare/v0.2.7...v0.2.8) (2022-12-26)
 
 
