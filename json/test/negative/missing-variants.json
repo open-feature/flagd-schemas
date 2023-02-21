@@ -1,8 +1,0 @@
-{
-    "flags": {
-      "myBoolFlag": {
-        "state": "ENABLED",
-        "defaultVariant": "on"
-      }
-    }
-  }
