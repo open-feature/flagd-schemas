@@ -1,0 +1,11 @@
+{
+  "flags": {
+    "myBoolFlag": {
+      "variants": {
+        "on": true,
+        "off": false
+      },
+      "defaultVariant": "on"
+    }
+  }
+}
