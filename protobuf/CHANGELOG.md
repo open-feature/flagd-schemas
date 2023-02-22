@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.10](https://github.com/open-feature/schemas/compare/protobuf-v0.2.9...protobuf-v0.2.10) (2023-02-22)
+
+
+### Features
+
+* fetch all flags rpc for sync server ([#82](https://github.com/open-feature/schemas/issues/82)) ([c42dbbb](https://github.com/open-feature/schemas/commit/c42dbbb2c6cfb91e8e534d17242ee941bdbcad98))
+
 ## [0.2.9](https://github.com/open-feature/schemas/compare/protobuf-v0.2.8...protobuf-v0.2.9) (2023-02-07)
 
 
