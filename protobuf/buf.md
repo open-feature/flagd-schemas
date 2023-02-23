@@ -26,8 +26,13 @@ The server exposes 2 `rpcs`.
 
 ### SyncFlags
 Flagd acts as the client and initiates the streaming with `SyncFlagsRequest`.
-The server implementation will then stream feature flag configurations through `SyncFlagsResponse`. The response contains
-`SyncState` which can be utilized to provide flagd with flexible configuration updates.
+The server implementation will then stream feature flag configurations through `SyncFlagsResponse`. The response is 
+either a `SyncPayload` (`sync`)  or a `google.rpc.Status` (`error`). 
+
+`SyncPayload` contain flag configurations as a string and `SyncState` which can be utilized to provide flagd with 
+flexible flag configuration updates.
+
+Errors are communicated through `google.rpc.Status` and client should expect a connection termination.
 
 ### FetchAllFlags
 Flagd acts as the client and sends the empty message `FetchAllFlagsRequest`.

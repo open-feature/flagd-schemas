@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/rpc/status.proto";
+
 package sync.v1;
 
 option go_package = "flagd/grpcsync";
@@ -36,14 +38,25 @@ enum SyncState {
   SYNC_STATE_PING = 5;
 }
 
-// SyncFlagsResponse is the server response containing feature flag configurations and the state
-message SyncFlagsResponse {
+// SyncPayload represents a successful sync response
+message SyncPayload {
   // flagd feature flag configuration. Must be validated to schema - https://raw.githubusercontent.com/open-feature/schemas/main/json/flagd-definitions.json
   string flag_configuration = 1;
 
   // State conveying the operation to be performed by flagd. See the descriptions of SyncState for an explanation of
   // supported values
   SyncState state = 2;
+}
+
+// SyncFlagsResponse is the server response for grpc sync
+message SyncFlagsResponse {
+  oneof response {
+    // Sync response
+    SyncPayload sync = 1;
+
+    // Error response. Client should expect a connection termination when error is returned
+    google.rpc.Status error = 2;
+  }
 }
 
 // FetchAllFlagsRequest is the request to fetch all flags. Flagd sends this request as the client in order to resync its internal state
