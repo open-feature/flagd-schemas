@@ -1,0 +1,7 @@
+# buf.gen.yaml
+version: v1
+managed:
+  enabled: true
+plugins:
+  - plugin: buf.build/community/neoeinstein-prost
+    out: ../proto/rust

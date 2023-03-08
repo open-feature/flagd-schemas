@@ -86,3 +86,12 @@ Generate Ruby stubs for grpc client
 ```
 make gen-ruby
 ```
+
+
+## Rust:
+
+Generate Rust stubs for grpc client
+
+```
+make gen-rust
+```
