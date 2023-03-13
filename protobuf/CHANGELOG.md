@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.11](https://github.com/open-feature/schemas/compare/protobuf-v0.2.10...protobuf-v0.2.11) (2023-03-13)
+
+
+### Features
+
+* introduce provider_id to sync service FetchAllFlags ([#87](https://github.com/open-feature/schemas/issues/87)) ([32a5ba7](https://github.com/open-feature/schemas/commit/32a5ba7b4681bff8c998e4010aa997187b7f7d2e))
+
 ## [0.2.10](https://github.com/open-feature/schemas/compare/protobuf-v0.2.9...protobuf-v0.2.10) (2023-02-22)
 
 
