@@ -6,7 +6,7 @@ option go_package = "flagd/grpcsync";
 
 // SyncFlagsRequest is the request initiating the sever-streaming rpc. Flagd sends this request, acting as the client
 message SyncFlagsRequest {
-  // Optional: A unique identifier for flagd  provider (grpc client) initiating the request. The server implementations
+  // Optional: A unique identifier for flagd provider (grpc client) initiating the request. The server implementations
   // can utilize this identifier to aggregate flag configurations and stream them to a specific client. This identifier
   // is intended to be optional. However server implementation may enforce it.
   string provider_id = 1;
@@ -48,7 +48,7 @@ message SyncFlagsResponse {
 
 // FetchAllFlagsRequest is the request to fetch all flags. Flagd sends this request as the client in order to resync its internal state
 message FetchAllFlagsRequest {
-  // Optional: A unique identifier for flagd  provider (grpc client) initiating the request. The server implementations
+  // Optional: A unique identifier for flagd provider (grpc client) initiating the request. The server implementations
   // can utilize this identifier to aggregate flag configurations and stream them to a specific client. This identifier
   // is intended to be optional. However server implementation may enforce it.
   string provider_id = 1;
