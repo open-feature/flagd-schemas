@@ -10,14 +10,14 @@ message SyncFlagsRequest {
   // utilize this identifier to uniquely identify, validate(ex:- enforce authentication/authorization) and filter
   // flag configurations that it can expose to this request. This field is intended to be optional. However server
   // implementations may enforce it.
-  //    ex:- provider_id: flagd-weatherApp-sidecar
+  //    ex:- provider_id: flagd-weatherapp-sidecar
   string provider_id = 1;
 
   // Optional: A filtering key for the flag configuration request. The server implementation may utilize this to filter
   // flag configurations from a collection, select the source of the flag or combine this to any desired underlying
   // filtering mechanism.
-  //    ex:- filtering: 'source=database,key=weatherApp'
-  string filtering = 2;
+  //    ex:- filter: 'source=database,app=weatherapp'
+  string filter = 2;
 }
 
 // SyncState conveys the state of the payload. These states are related to flagd isync.go type definitions but
@@ -60,14 +60,14 @@ message FetchAllFlagsRequest {
   // utilize this identifier to uniquely identify, validate(ex:- enforce authentication/authorization) and filter
   // flag configurations that it can expose to this request. This field is intended to be optional. However server
   // implementations may enforce it.
-  //    ex:- provider_id: flagd-weatherApp-sidecar
+  //    ex:- provider_id: flagd-weatherapp-sidecar
   string provider_id = 1;
 
   // Optional: A filtering key for the flag configuration request. The server implementation may utilize this to filter
   // flag configurations from a collection, select the source of the flag or combine this to any desired underlying
   // filtering mechanism.
-  //    ex:- filtering: 'source=database,key=weatherApp'
-  string filtering = 2;
+  //    ex:- filter: 'source=database,app=weatherapp'
+  string filter = 2;
 }
 
 //  FetchAllFlagsResponse is the server response containing feature flag configurations
