@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.12](https://github.com/open-feature/schemas/compare/protobuf-v0.2.11...protobuf-v0.2.12) (2023-03-17)
+
+
+### ✨ New Features
+
+* introduce selector field to requests ([#89](https://github.com/open-feature/schemas/issues/89)) ([d7ded9d](https://github.com/open-feature/schemas/commit/d7ded9d83d6b66884998764236c452c29ddaa215))
+
 ## [0.2.11](https://github.com/open-feature/schemas/compare/protobuf-v0.2.10...protobuf-v0.2.11) (2023-03-13)
 
 
