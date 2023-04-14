@@ -12,7 +12,7 @@ option ruby_package = "OpenFeature::FlagD::Provider::Grpc";
 
 // Request body for bulk flag evaluation, used by the ResolveAll rpc.
 message ResolveAllRequest {
-  // Object structure describing the EvaluationContext used in the flag evaluation, see https://docs.openfeature.dev/docs/reference/concepts/evaluation-context
+  // Object structure describing the EvaluationContext used in the flag evaluation, see https://openfeature.dev/docs/reference/concepts/evaluation-context
   google.protobuf.Struct context = 1;
 }
 
@@ -24,7 +24,7 @@ message ResolveAllResponse {
 
 // A variant type flag response.
 message AnyFlag {
-  // The reason for the given return value, see https://docs.openfeature.dev/docs/specification/types#resolution-details
+  // The reason for the given return value, see https://openfeature.dev/docs/specification/types#resolution-details
   string reason = 1;
 
   // The variant name of the returned flag value.
@@ -44,7 +44,7 @@ message ResolveBooleanRequest {
   // Flag key of the requested flag.
   string flag_key = 1;
 
-  // Object structure describing the EvaluationContext used in the flag evaluation, see https://docs.openfeature.dev/docs/reference/concepts/evaluation-context
+  // Object structure describing the EvaluationContext used in the flag evaluation, see https://openfeature.dev/docs/reference/concepts/evaluation-context
   google.protobuf.Struct context = 2;
 }
 
@@ -53,7 +53,7 @@ message ResolveBooleanResponse {
   // The response value of the boolean flag evaluation, will be unset in the case of error.
   bool value = 1;
 
-  // The reason for the given return value, see https://docs.openfeature.dev/docs/specification/types#resolution-details
+  // The reason for the given return value, see https://openfeature.dev/docs/specification/types#resolution-details
   string reason = 2;
 
   // The variant name of the returned flag value.
@@ -65,7 +65,7 @@ message ResolveStringRequest {
   // Flag key of the requested flag.
   string flag_key = 1;
 
-  // Object structure describing the EvaluationContext used in the flag evaluation, see https://docs.openfeature.dev/docs/reference/concepts/evaluation-context
+  // Object structure describing the EvaluationContext used in the flag evaluation, see https://openfeature.dev/docs/reference/concepts/evaluation-context
   google.protobuf.Struct context = 2;
 }
 
@@ -74,7 +74,7 @@ message ResolveStringResponse {
   // The response value of the string flag evaluation, will be unset in the case of error.
   string value = 1;
 
-  // The reason for the given return value, see https://docs.openfeature.dev/docs/specification/types#resolution-details
+  // The reason for the given return value, see https://openfeature.dev/docs/specification/types#resolution-details
   string reason = 2;
 
   // The variant name of the returned flag value.
@@ -86,7 +86,7 @@ message ResolveFloatRequest {
   // Flag key of the requested flag.
   string flag_key = 1;
 
-  // Object structure describing the EvaluationContext used in the flag evaluation, see https://docs.openfeature.dev/docs/reference/concepts/evaluation-context
+  // Object structure describing the EvaluationContext used in the flag evaluation, see https://openfeature.dev/docs/reference/concepts/evaluation-context
   google.protobuf.Struct context = 2;
 }
 
@@ -95,7 +95,7 @@ message ResolveFloatResponse {
   // The response value of the float flag evaluation, will be empty in the case of error.
   double value = 1;
 
-  // The reason for the given return value, see https://docs.openfeature.dev/docs/specification/types#resolution-details
+  // The reason for the given return value, see https://openfeature.dev/docs/specification/types#resolution-details
   string reason = 2;
 
   // The variant name of the returned flag value.
@@ -107,7 +107,7 @@ message ResolveIntRequest {
   // Flag key of the requested flag.
   string flag_key = 1;
 
-  // Object structure describing the EvaluationContext used in the flag evaluation, see https://docs.openfeature.dev/docs/reference/concepts/evaluation-context
+  // Object structure describing the EvaluationContext used in the flag evaluation, see https://openfeature.dev/docs/reference/concepts/evaluation-context
   google.protobuf.Struct context = 2;
 }
 
@@ -116,7 +116,7 @@ message ResolveIntResponse {
   // The response value of the int flag evaluation, will be unset in the case of error.
   int64 value = 1;
 
-  // The reason for the given return value, see https://docs.openfeature.dev/docs/specification/types#resolution-details
+  // The reason for the given return value, see https://openfeature.dev/docs/specification/types#resolution-details
   string reason = 2;
 
   // The variant name of the returned flag value.
@@ -128,7 +128,7 @@ message ResolveObjectRequest {
   // Flag key of the requested flag.
   string flag_key = 1;
 
-  // Object structure describing the EvaluationContext used in the flag evaluation, see https://docs.openfeature.dev/docs/reference/concepts/evaluation-context
+  // Object structure describing the EvaluationContext used in the flag evaluation, see https://openfeature.dev/docs/reference/concepts/evaluation-context
   google.protobuf.Struct context = 2;
 }
 
@@ -139,7 +139,7 @@ message ResolveObjectResponse {
   // NOTE: This structure will need to be decoded from google/protobuf/struct.proto before it is returned to the SDK
   google.protobuf.Struct value = 1;
 
-  // The reason for the given return value, see https://docs.openfeature.dev/docs/specification/types#resolution-details
+  // The reason for the given return value, see https://openfeature.dev/docs/specification/types#resolution-details
   string reason = 2;
 
   // The variant name of the returned flag value.
