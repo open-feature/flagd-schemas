@@ -59,7 +59,7 @@ jobs:
       
       # Use ajv to validate schema
       - name: Setup node
-        uses: actions/setup-node@v3.6.0
+        uses: actions/setup-node@v3.7.0
 
       - name: Validate schema 
         run: make ajv-validate-flagd-schema
