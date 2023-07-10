@@ -1,6 +1,6 @@
 version: v1
 plugins:
-  - remote: buf.build/grpc/plugins/php:v1.50.0-1
+  - plugin: buf.build/grpc/php:v1.56.0
     out: ../proto/php
-  - remote: buf.build/protocolbuffers/plugins/php:v21.8.0-1
+  - plugin: buf.build/protocolbuffers/php:v23.4
     out: ../proto/php
