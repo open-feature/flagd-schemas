@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.3.0](https://github.com/open-feature/schemas/compare/protobuf-v0.2.12...protobuf-v0.3.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* migrate to buf managed plugins ([#95](https://github.com/open-feature/schemas/issues/95))
+
+### ✨ New Features
+
+* migrate to buf managed plugins ([#95](https://github.com/open-feature/schemas/issues/95)) ([b582e5d](https://github.com/open-feature/schemas/commit/b582e5d5318d26dad08351b6a40bfed296247add))
+
 ## [0.2.12](https://github.com/open-feature/schemas/compare/protobuf-v0.2.11...protobuf-v0.2.12) (2023-03-17)
 
 
