@@ -58,6 +58,9 @@ message ResolveBooleanResponse {
 
   // The variant name of the returned flag value.
   string variant = 3;
+
+  // Metadata for this evaluation
+  google.protobuf.Struct metadata = 4;
 }
 
 // Request body for string flag evaluation, used by the ResolveString rpc.
@@ -79,6 +82,9 @@ message ResolveStringResponse {
 
   // The variant name of the returned flag value.
   string variant = 3;
+
+  // Metadata for this evaluation
+  google.protobuf.Struct metadata = 4;
 }
 
 // Request body for float flag evaluation, used by the ResolveFloat rpc.
@@ -100,6 +106,9 @@ message ResolveFloatResponse {
 
   // The variant name of the returned flag value.
   string variant = 3;
+
+  // Metadata for this evaluation
+  google.protobuf.Struct metadata = 4;
 }
 
 // Request body for int flag evaluation, used by the ResolveInt rpc.
@@ -121,6 +130,9 @@ message ResolveIntResponse {
 
   // The variant name of the returned flag value.
   string variant = 3;
+
+  // Metadata for this evaluation
+  google.protobuf.Struct metadata = 4;
 }
 
 // Request body for object flag evaluation, used by the ResolveObject rpc.
@@ -144,6 +156,9 @@ message ResolveObjectResponse {
 
   // The variant name of the returned flag value.
   string variant = 3;
+
+  // Metadata for this evaluation
+  google.protobuf.Struct metadata = 4;
 }
 
 // Response body for the EventStream stream response
