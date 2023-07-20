@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/open-feature/schemas/compare/protobuf-v0.3.0...protobuf-v0.3.1) (2023-07-20)
+
+
+### ✨ New Features
+
+* introduce flagd evaluation metadata ([#97](https://github.com/open-feature/schemas/issues/97)) ([99db23a](https://github.com/open-feature/schemas/commit/99db23a3a6e4e68010801f45c4126080f7689d1d))
+
 ## [0.3.0](https://github.com/open-feature/schemas/compare/protobuf-v0.2.12...protobuf-v0.3.0) (2023-07-10)
 
 
