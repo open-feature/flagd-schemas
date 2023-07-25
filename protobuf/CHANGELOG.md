@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.4.0](https://github.com/open-feature/schemas/compare/protobuf-v0.3.1...protobuf-v0.4.0) (2023-07-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* use ts-proto for node ([#99](https://github.com/open-feature/schemas/issues/99))
+
+### ✨ New Features
+
+* use ts-proto for node ([#99](https://github.com/open-feature/schemas/issues/99)) ([33e127c](https://github.com/open-feature/schemas/commit/33e127c1fc8da11c53d44e843b425065e0844b0b))
+
 ## [0.3.1](https://github.com/open-feature/schemas/compare/protobuf-v0.3.0...protobuf-v0.3.1) (2023-07-20)
 
 
