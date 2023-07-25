@@ -1,7 +1,8 @@
 version: v1
 plugins:
-  - plugin: buf.build/community/timostamm-protobuf-ts:v2.9.0
+  - plugin: buf.build/community/stephenh-ts-proto:v1.156.0
     out: ../proto/ts
-    opt:
-      - long_type_string
-      - generate_dependencies
+    opt: 
+      - outputServices=grpc-js
+      - forceLong=string
+      - esModuleInterop=true
