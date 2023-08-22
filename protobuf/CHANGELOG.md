@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.5.0](https://github.com/open-feature/schemas/compare/protobuf-v0.4.0...protobuf-v0.5.0) (2023-08-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* add language packaging options for sync proto ([#102](https://github.com/open-feature/schemas/issues/102))
+
+### ✨ New Features
+
+* add language packaging options for sync proto ([#102](https://github.com/open-feature/schemas/issues/102)) ([617c32a](https://github.com/open-feature/schemas/commit/617c32ade300720c3c90138fc697ccb339a4cac4))
+
 ## [0.4.0](https://github.com/open-feature/schemas/compare/protobuf-v0.3.1...protobuf-v0.4.0) (2023-07-25)
 
 
