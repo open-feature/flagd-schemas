@@ -1,6 +1,6 @@
 /**
  * Flag definition sync API
- * 
+ *
  * This proto defines a simple API to synchronize a feature flag definition.
  * It supports establishing a stream for getting notifications about changes in a flag definition.
  */
