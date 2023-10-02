@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/open-feature/schemas/compare/protobuf-v0.5.0...protobuf-v0.5.1) (2023-10-02)
+
+
+### 🧹 Chore
+
+* add schema proto description ([#105](https://github.com/open-feature/schemas/issues/105)) ([f3e419c](https://github.com/open-feature/schemas/commit/f3e419c5ea676b6e0a4384b1ba3c9ad43b047eed))
+
 ## [0.5.0](https://github.com/open-feature/schemas/compare/protobuf-v0.4.0...protobuf-v0.5.0) (2023-08-22)
 
 
