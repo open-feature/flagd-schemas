@@ -1,6 +1,6 @@
 # schemas
 
-Schemas and spec files pertaining primarily to flagd.
+Schemas and spec files pertaining primarily to [flagd](https://github.com/open-feature/flagd).
 The Schema is available in the Buf Schema Registry, and can be found [here](https://buf.build/open-feature/flagd).
 
 <br />
