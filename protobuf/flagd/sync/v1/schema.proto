@@ -38,20 +38,20 @@ enum SyncState {
   SYNC_STATE_UNSPECIFIED = 0;
 
   // All the flags matching the request. This is the default response and other states can be ignored
-  // by the implementation. Flagd implementations internally replace all existing flags for this response state.
+  // by the implementation. Clients internally replace all existing flags for this response state.
   SYNC_STATE_ALL = 1;
 
-  // Convey an addition of a flag. Flagd implementations internally handle this by combining new flags with existing ones
+  // Convey an addition of a flag. Clients internally handle this by combining new flags with existing ones
   SYNC_STATE_ADD = 2;
 
-  // Convey an update of a flag. Flagd implementations internally attempt to update if the updated flag already exist OR if it does not,
+  // Convey an update of a flag. Clients internally attempt to update if the updated flag already exist OR if it does not,
   // it will get added
   SYNC_STATE_UPDATE = 3;
 
-  // Convey a deletion of a flag. Flagd implementations internally remove the flag
+  // Convey a deletion of a flag. Clients internally remove the flag
   SYNC_STATE_DELETE = 4;
 
-  // Optional server ping to check client connectivity. Handling is ignored by flagd implementations and is to merely support live check
+  // Optional server ping to check client connectivity. Handling is ignored by Clients and is to merely support live check
   SYNC_STATE_PING = 5;
 }
 
@@ -60,14 +60,14 @@ message SyncFlagsResponse {
   // flagd feature flag configuration. Must be validated to schema - https://raw.githubusercontent.com/open-feature/schemas/main/json/flagd-definitions.json
   string flag_configuration = 1;
 
-  // State conveying the operation to be performed by flagd implementations. See the descriptions of SyncState for an explanation of
+  // State conveying the operation to be performed by clients. See the descriptions of SyncState for an explanation of
   // supported values
   SyncState state = 2;
 }
 
-// FetchAllFlagsRequest is the request to fetch all flags. Flagd implementations send this request as the client in order to resync their internal state
+// FetchAllFlagsRequest is the request to fetch all flags. Clients send this request as the client in order to resync their internal state
 message FetchAllFlagsRequest {
-  // Optional: A unique identifier for flagd implementations (grpc client) initiating the request. The server implementations may
+  // Optional: A unique identifier for clients initiating the request. The server implementations may
   // utilize this identifier to uniquely identify, validate(ex:- enforce authentication/authorization) and filter
   // flag configurations that it can expose to this request. This field is intended to be optional. However server
   // implementations may enforce it.
