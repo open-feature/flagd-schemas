@@ -87,23 +87,8 @@ message FetchAllFlagsResponse {
   string flag_configuration = 1;
 }
 
-// MetadataResponse contains metadata from the sync service
-message MetadataResponse {
-  repeated KeyValue metadata = 1;
-}
-
-// KeyValue represents a key/value pair
-message KeyValue {
-  string key = 1;
-  string value = 2;
-}
-
-// MetadataRequest is the request for retrieving metadata from the sync service
-message MetadataRequest {}
-
 // FlagService implements a server streaming to provide realtime flag configurations
 service FlagSyncService {
   rpc SyncFlags(SyncFlagsRequest) returns (stream SyncFlagsResponse) {}
   rpc FetchAllFlags(FetchAllFlagsRequest) returns (FetchAllFlagsResponse) {}
-  rpc GetMetadata(MetadataRequest) returns (MetadataResponse) {}
 }
