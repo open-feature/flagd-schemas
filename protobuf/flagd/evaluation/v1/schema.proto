@@ -15,7 +15,7 @@ option csharp_namespace = "OpenFeature.Flagd.Grpc.Evaluation";
 option go_package = "flagd/evaluation/v1";
 option java_package = "dev.openfeature.flagd.grpc.evaluation";
 option php_namespace = "OpenFeature\\Providers\\Flagd\\Schema\\Grpc\\Evaluation";
-option ruby_package = "OpenFeature::FlagD::Provider::Grpc::Evaluation";
+option ruby_package = "OpenFeature::Flagd::Provider::Grpc::Evaluation";
 
 // Request body for bulk flag evaluation, used by the ResolveAll rpc.
 message ResolveAllRequest {
