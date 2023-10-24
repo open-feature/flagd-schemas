@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.5.2](https://github.com/open-feature/flagd-schemas/compare/protobuf-v0.5.1...protobuf-v0.5.2) (2023-10-24)
+
+
+### ✨ New Features
+
+* add better-named evaluation/sync protos ([#109](https://github.com/open-feature/flagd-schemas/issues/109)) ([7b8e75d](https://github.com/open-feature/flagd-schemas/commit/7b8e75d7511ac310e8cb077d0b9a3d4732d24563))
+
+
+### 🧹 Chore
+
+* fixed typo in the flag evaluation api comment ([c6cc820](https://github.com/open-feature/flagd-schemas/commit/c6cc820975181ec5e0f8d287c34e2692949f8e9e))
+
 ## [0.5.1](https://github.com/open-feature/schemas/compare/protobuf-v0.5.0...protobuf-v0.5.1) (2023-10-02)
 
 
