@@ -31,38 +31,10 @@ message SyncFlagsRequest {
   string selector = 2;
 }
 
-// SyncState conveys the state of the payload. These states are related to flagd isync.go type definitions but
-// contains extras to optimize grpc use case. Refer - https://github.com/open-feature/flagd/blob/main/pkg/sync/isync.go
-enum SyncState {
-  // Value is ignored by the listening flagd implementation
-  SYNC_STATE_UNSPECIFIED = 0;
-
-  // All the flags matching the request. This is the default response and other states can be ignored
-  // by the implementation. Clients internally replace all existing flags for this response state.
-  SYNC_STATE_ALL = 1;
-
-  // Convey an addition of a flag. Clients internally handle this by combining new flags with existing ones
-  SYNC_STATE_ADD = 2;
-
-  // Convey an update of a flag. Clients internally attempt to update if the updated flag already exist OR if it does not,
-  // it will get added
-  SYNC_STATE_UPDATE = 3;
-
-  // Convey a deletion of a flag. Clients internally remove the flag
-  SYNC_STATE_DELETE = 4;
-
-  // Optional server ping to check client connectivity. Handling is ignored by Clients and is to merely support live check
-  SYNC_STATE_PING = 5;
-}
-
 // SyncFlagsResponse is the server response containing feature flag configurations and the state
 message SyncFlagsResponse {
   // flagd feature flag configuration. Must be validated to schema - https://raw.githubusercontent.com/open-feature/schemas/main/json/flagd-definitions.json
   string flag_configuration = 1;
-
-  // State conveying the operation to be performed by clients. See the descriptions of SyncState for an explanation of
-  // supported values
-  SyncState state = 2;
 }
 
 // FetchAllFlagsRequest is the request to fetch all flags. Clients send this request as the client in order to resync their internal state
