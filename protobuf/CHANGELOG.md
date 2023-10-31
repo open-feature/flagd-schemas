@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.3](https://github.com/open-feature/flagd-schemas/compare/protobuf-v0.5.2...protobuf-v0.5.3) (2023-10-31)
+
+
+### ✨ New Features
+
+* add metadata endpoint ([#113](https://github.com/open-feature/flagd-schemas/issues/113)) ([3c19735](https://github.com/open-feature/flagd-schemas/commit/3c1973514a1f087d0514700ed772f5502eb8adfe))
+
 ## [0.5.2](https://github.com/open-feature/flagd-schemas/compare/protobuf-v0.5.1...protobuf-v0.5.2) (2023-10-24)
 
 
