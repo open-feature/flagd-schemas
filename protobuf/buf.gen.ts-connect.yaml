@@ -3,7 +3,7 @@ plugins:
   - plugin: buf.build/bufbuild/es:v1.2.1
     out: ../proto/ts
     opt:
-      - target=js+dts
+      - target=ts
   - plugin: buf.build/bufbuild/connect-es:v0.11.0
     out: ../proto/ts
     opt:
