@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.4](https://github.com/open-feature/flagd-schemas/compare/protobuf-v0.5.3...protobuf-v0.5.4) (2023-12-15)
+
+
+### 🐛 Bug Fixes
+
+* js+dts -&gt; ts in connect build ([#118](https://github.com/open-feature/flagd-schemas/issues/118)) ([ceb0bff](https://github.com/open-feature/flagd-schemas/commit/ceb0bff823a7b3e9b81e2720ac67cbafc324ff65))
+
 ## [0.5.3](https://github.com/open-feature/flagd-schemas/compare/protobuf-v0.5.2...protobuf-v0.5.3) (2023-10-31)
 
 
