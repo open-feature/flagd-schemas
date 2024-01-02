@@ -1,4 +1,5 @@
 {
+  "$schema": "../../flagd-definitions.json",
   "flags": {
     "myBoolFlag": {
       "state": "ENABLED",
@@ -56,9 +57,7 @@
           {
             "==": [
               {
-                "var": [
-                  "color"
-                ]
+                "var": ["color"]
               },
               "yellow"
             ]
@@ -81,7 +80,9 @@
         "if": [
           {
             "$ref": "emailWithFaas"
-          }, "binet", null
+          },
+          "binet",
+          null
         ]
       }
     },
@@ -97,38 +98,30 @@
       "targeting": {
         "if": [
           {
-            "$ref": "emailWithFaas"
+            "$ref": 1
           },
           {
             "fractionalEvaluation": [
               "email",
-              [
-                "red",
-                25
-              ],
-              [
-                "blue",
-                25
-              ],
-              [
-                "green",
-                25
-              ],
-              [
-                "yellow",
-                25
-              ]
+              ["red", 25],
+              ["blue", 25],
+              ["green", 25],
+              ["yellow", 25]
             ]
-          }, null
+          },
+          null
         ]
       }
     }
-    },
-    "$evaluators": {
-      "emailWithFaas": {
-            "in": ["@faas.com", {
-              "var": ["email"]
-            }]
-      }
+  },
+  "$evaluators": {
+    "emailWithFaas": {
+      "in": [
+        "@faas.com",
+        {
+          "var": ["email"]
+        }
+      ]
     }
   }
+}
