@@ -48,5 +48,6 @@ gen-schema-json: install-yq
 	
 ajv-validate-flagd-schema:
 	@if ! npm ls ajv-cli; then npm ci; fi
-	npx ajv compile -s json/flagd-definitions.json
 	npx ajv compile -s json/targeting.json
+# 	load the targeting json so flagd-definitions.json can reference it
+	npx ajv compile -r json/targeting.json -s json/flagd-definitions.json

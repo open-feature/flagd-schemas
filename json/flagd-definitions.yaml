@@ -1,4 +1,4 @@
-$id: "flagd.dev/schema/flagd-definitions.json"
+$id: "https://flagd.dev/schema/flagd-definitions.json"
 $schema: http://json-schema.org/draft-07/schema#
 title: flagd Flag Configuration
 description: Defines flags for use in flagd, including typed variants and rules
@@ -25,7 +25,7 @@ properties:
         - title: Object flag
           description: A flag having arbitrary object values.
           $ref: "#/$defs/objectFlag"
-  "$evaluators":
+  $evaluators:
     title: Evaluators
     description: 'Reusable targeting rules that can be referenced with "$ref": "myRule"
       in multiple flags.'
@@ -35,7 +35,7 @@ properties:
       "^.{1,}$":
         $comment: this relative ref means that targeting.json MUST be in the same
           dir, or available on the same HTTP path
-        $ref: "./targeting.json#/$defs/targeting"
+        $ref: "https://flagd.dev/schema/targeting.json#/$defs/targeting"
 "$defs":
   flag:
     $comment: base flag object; no title/description here, allows for better UX,
@@ -56,7 +56,7 @@ properties:
           if the targeting returns null).
         type: string
       targeting:
-        $ref: "./targeting.json#/$defs/targeting"
+        $ref: "https://flagd.dev/schema/targeting.json#/$defs/targeting"
     required:
     - state
     - defaultVariant
