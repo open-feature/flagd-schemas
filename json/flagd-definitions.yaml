@@ -4,45 +4,64 @@ description: Defines flags for use in flagd, including typed variants and rules
 type: object
 properties:
   flags:
+    title: Flags
+    description: Top-level flags object. All flags are defined here.
     type: object
-    $comment: flag objects are one of the 4 flag types defined in $defs
+    "$comment": flag objects are one of the 4 flag types defined in $defs
     additionalProperties: false
     patternProperties:
-      ^.{1,}$:
+      "^.{1,}$":
+        "$comment": "'unevaluatedProperties': 'false' prevents additional props on
+          a flag (ie: targetting)"
+        unevaluatedProperties: false
         oneOf:
-          - title: Boolean flag
-            description: A flag associated with boolean values
-            $ref: '#/$defs/booleanFlag'
-          - title: String flag
-            description: A flag associated with string values
-            $ref: '#/$defs/stringFlag'
-          - title: Numeric flag
-            description: A flag associated with numeric values
-            $ref: '#/$defs/numberFlag'
-          - title: Object flag
-            description: A flag associated with arbitrary object values
-            $ref: '#/$defs/objectFlag'
-$defs:
+        - title: Boolean flag
+          description: A flag having boolean values.
+          $ref: "#/$defs/booleanFlag"
+        - title: String flag
+          description: A flag having string values.
+          $ref: "#/$defs/stringFlag"
+        - title: Numeric flag
+          description: A flag having numeric values.
+          $ref: "#/$defs/numberFlag"
+        - title: Object flag
+          description: A flag having arbitrary object values.
+          $ref: "#/$defs/objectFlag"
+  "$evaluators":
+    title: Evaluators
+    description: 'Reusable targeting rules that can be referenced with "$ref": "myRule"
+      in multiple flags.'
+    type: object
+    additionalProperties: false
+    patternProperties:
+      "^.{1,}$":
+        "$comment": this relative ref means that targeting.json MUST be in the same
+          dir, or available on the same HTTP path
+        $ref: "./targeting.json#/$defs/targeting"
+"$defs":
   flag:
-    title: Flag Base
-    description: Base object for all flags
+    "$comment": base flag object; no title/description here, allows for better UX,
+      keep it in the overrides
     type: object
     properties:
       state:
-        description: Indicates whether the flag is functional. Disabled flags are treated as if they don't exist
+        title: Flag State
+        description: Indicates whether the flag is functional. Disabled flags are
+          treated as if they don't exist.
         type: string
         enum:
-          - ENABLED
-          - DISABLED
+        - ENABLED
+        - DISABLED
       defaultVariant:
-        description: The variant to serve if no dynamic targeting applies
+        title: Default Variant
+        description: The variant to serve if no dynamic targeting applies (including
+          if the targeting returns null).
         type: string
       targeting:
-        type: object
-        description: JsonLogic expressions to be used for dynamic evaluation. The "context" is passed as the data. Rules must resolve one of the defined variants, or the "defaultVariant" will be used.
+        $ref: "./targeting.json#/$defs/targeting"
     required:
-      - state
-      - defaultVariant
+    - state
+    - defaultVariant
   booleanVariants:
     type: object
     properties:
@@ -50,11 +69,11 @@ $defs:
         type: object
         additionalProperties: false
         patternProperties:
-          ^.{1,}$:
+          "^.{1,}$":
             type: boolean
         default:
-          "on": true
-          "off": false
+          'on': true
+          'off': false
   stringVariants:
     type: object
     properties:
@@ -62,7 +81,7 @@ $defs:
         type: object
         additionalProperties: false
         patternProperties:
-          ^.{1,}$:
+          "^.{1,}$":
             type: string
   numberVariants:
     type: object
@@ -71,7 +90,7 @@ $defs:
         type: object
         additionalProperties: false
         patternProperties:
-          ^.{1,}$:
+          "^.{1,}$":
             type: number
   objectVariants:
     type: object
@@ -80,22 +99,22 @@ $defs:
         type: object
         additionalProperties: false
         patternProperties:
-          ^.{1,}$:
+          "^.{1,}$":
             type: object
-  $comment: Merge the variants with the base flag to build our typed flags
+  "$comment": merge the variants with the base flag to build our typed flags
   booleanFlag:
     allOf:
-      - $ref: '#/$defs/flag'
-      - $ref: '#/$defs/booleanVariants'
+    - $ref: "#/$defs/flag"
+    - $ref: "#/$defs/booleanVariants"
   stringFlag:
     allOf:
-      - $ref: '#/$defs/flag'
-      - $ref: '#/$defs/stringVariants'
+    - $ref: "#/$defs/flag"
+    - $ref: "#/$defs/stringVariants"
   numberFlag:
     allOf:
-      - $ref: '#/$defs/flag'
-      - $ref: '#/$defs/numberVariants'
+    - $ref: "#/$defs/flag"
+    - $ref: "#/$defs/numberVariants"
   objectFlag:
     allOf:
-      - $ref: '#/$defs/flag'
-      - $ref: '#/$defs/objectVariants'
+    - $ref: "#/$defs/flag"
+    - $ref: "#/$defs/objectVariants"

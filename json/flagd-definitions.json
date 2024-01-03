@@ -61,7 +61,10 @@
           "title": "Flag State",
           "description": "Indicates whether the flag is functional. Disabled flags are treated as if they don't exist.",
           "type": "string",
-          "enum": ["ENABLED", "DISABLED"]
+          "enum": [
+            "ENABLED",
+            "DISABLED"
+          ]
         },
         "defaultVariant": {
           "title": "Default Variant",
@@ -72,7 +75,10 @@
           "$ref": "./targeting.json#/$defs/targeting"
         }
       },
-      "required": ["state", "defaultVariant"]
+      "required": [
+        "state",
+        "defaultVariant"
+      ]
     },
     "booleanVariants": {
       "type": "object",
