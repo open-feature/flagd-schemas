@@ -1,3 +1,4 @@
+$id: "flagd.dev/schema/targeting.json"
 $schema: http://json-schema.org/draft-07/schema#
 title: flagd Targeting
 description: Defines targeting logic for flagd; a extension of JSONLogic, including
@@ -10,7 +11,7 @@ type: object
       used as a targeting key, or null (to fall back to defaultVariant). If targeting
       returns a value which is not a variant key, it's considered an error.
     anyOf:
-    - "$comment": we need this to support empty targeting
+    - $comment: we need this to support empty targeting
       type: object
       additionalProperties: false
       properties: {}
@@ -46,9 +47,20 @@ type: object
         - type: string
           pattern: "^(?!\\$flagd\\.).+"
         - type: array
+          $comment: this is to support the form of var with a default... there seems to be a bug here, where ajv gives a warning (not an error) because maxItems doesn't equal the number of entries in items, though this is valid in this case
+          minItems: 1
           items:
-          - type: string
-          - type: {}
+            - type: string
+          additionalItems: 
+            anyOf:
+              - type:
+                  'null'
+              - type:
+                  boolean
+              - type: 
+                  string
+              - type:
+                  number
   missingRule:
     title: Missing Operation
     description: Takes an array of data keys to search for (same format as var). Returns
@@ -69,6 +81,8 @@ type: object
     additionalProperties: false
     properties:
       missing_some:
+        minItems: 2
+        maxItems: 2
         type: array
         items:
         - type: number
@@ -78,16 +92,16 @@ type: object
   ifRule:
     type: object
     additionalProperties: false
-    minItems: 3
-    maxItems: 3
     properties:
       if:
         title: If Operator
         description: 'The if statement takes 3 arguments: a condition (if), what to
-          do if it’s true (then), and what to do if it’s false (else). Note that the
+          do if its true (then), and what to do if its false (else). Note that the
           form accepting more than 3 arguments (if/else) is not supported in flagd;
           use nesting instead.'
         type: array
+        minItems: 3
+        maxItems: 3
         items:
           $ref: "#/$defs/args"
   binaryOp:
@@ -229,6 +243,7 @@ type: object
     items:
       $ref: "#/$defs/args"
   variadicRule:
+    $comment: "note < and <= can be used with up to 3 ops (between)"
     type: object
     additionalProperties: false
     properties:
@@ -242,7 +257,6 @@ type: object
         description: Simple boolean test, with 1 or more arguments. At a more sophisticated
           level, "and" returns the first falsy argument, or the last argument.
         $ref: "#/$defs/variadicOp"
-      "$comment": "< and <= can be used with up to 3 ops (between)"
       "<":
         title: Less-Than/Between Operation. Can be used to test that one value is
           between two others.
@@ -304,6 +318,7 @@ type: object
           "^" (match major version).'
         type: array
         minItems: 3
+        maxItems: 3
         items:
         - oneOf:
           - $ref: "#/$defs/semVerString"
@@ -323,7 +338,7 @@ type: object
           - $ref: "#/$defs/semVerString"
           - $ref: "#/$defs/varRule"
   fractionalWeightArg:
-    "$comment": if we remove the "some to 100" restriction, update the descriptions
+    $comment: if we remove the "some to 100" restriction, update the descriptions
       below!
     description: Distribution for all possible variants, with their associated weighting
       out of 100.
@@ -334,17 +349,19 @@ type: object
     - description: If this bucket is randomly selected, this string is used to as
         a key to retrieve the associated value from the "variants" object.
       type: string
-    additionalItems:
-      description: Weighted distribution for this variant key (must sum to 100).
+    - description: Weighted distribution for this variant key (must sum to 100).
       type: number
   fractionalOp:
     type: array
     minItems: 3
+    $comment: there seems to be a bug here, where ajv gives a warning (not an error) because maxItems doesn't equal the number of entries in items, though this is valid in this case
     items:
     - description: Bucketing value used in pseudorandom assignment; should be unique
         and stable for each subject of flag evaluation. Defaults to a concatenation
         of the flagKey and targetingKey.
       $ref: "#/$defs/varRule"
+    - $ref: "#/$defs/fractionalWeightArg"
+    - $ref: "#/$defs/fractionalWeightArg"
     additionalItems:
       $ref: "#/$defs/fractionalWeightArg"
   fractionalShorthandOp:

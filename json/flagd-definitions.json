@@ -1,4 +1,5 @@
 {
+  "$id": "flagd.dev/schema/flagd-definitions.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "flagd Flag Configuration",
   "description": "Defines flags for use in flagd, including typed variants and rules",
@@ -12,8 +13,6 @@
       "additionalProperties": false,
       "patternProperties": {
         "^.{1,}$": {
-          "$comment": "'unevaluatedProperties': 'false' prevents additional props on a flag (ie: targetting)",
-          "unevaluatedProperties": false,
           "oneOf": [
             {
               "title": "Boolean flag",

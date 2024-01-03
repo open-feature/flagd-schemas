@@ -1,4 +1,5 @@
 {
+  "$id": "flagd.dev/schema/targeting.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "flagd Targeting",
   "description": "Defines targeting logic for flagd; a extension of JSONLogic, including purpose-built feature-flagging operations.",
@@ -58,14 +59,29 @@
             },
             {
               "type": "array",
+              "$comment": "this is to support the form of var with a default... there seems to be a bug here, where ajv gives a warning (not an error) because maxItems doesn't equal the number of entries in items, though this is valid in this case",
+              "minItems": 1,
               "items": [
                 {
                   "type": "string"
-                },
-                {
-                  "type": {}
                 }
-              ]
+              ],
+              "additionalItems": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ]
+              }
             }
           ]
         }
@@ -92,6 +108,8 @@
       "additionalProperties": false,
       "properties": {
         "missing_some": {
+          "minItems": 2,
+          "maxItems": 2,
           "type": "array",
           "items": [
             {
@@ -110,13 +128,13 @@
     "ifRule": {
       "type": "object",
       "additionalProperties": false,
-      "minItems": 3,
-      "maxItems": 3,
       "properties": {
         "if": {
           "title": "If Operator",
-          "description": "The if statement takes 3 arguments: a condition (if), what to do if it’s true (then), and what to do if it’s false (else). Note that the form accepting more than 3 arguments (if/else) is not supported in flagd; use nesting instead.",
+          "description": "The if statement takes 3 arguments: a condition (if), what to do if its true (then), and what to do if its false (else). Note that the form accepting more than 3 arguments (if/else) is not supported in flagd; use nesting instead.",
           "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
           "items": {
             "$ref": "#/$defs/args"
           }
@@ -281,6 +299,7 @@
       }
     },
     "variadicRule": {
+      "$comment": "note < and <= can be used with up to 3 ops (between)",
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -294,7 +313,6 @@
           "description": "Simple boolean test, with 1 or more arguments. At a more sophisticated level, \"and\" returns the first falsy argument, or the last argument.",
           "$ref": "#/$defs/variadicOp"
         },
-        "$comment": "< and <= can be used with up to 3 ops (between)",
         "<": {
           "title": "Less-Than/Between Operation. Can be used to test that one value is between two others.",
           "description": "",
@@ -369,6 +387,7 @@
           "description": "Attribute matches a semantic version condition. Accepts \"npm-style\" range specifiers: \"=\", \"!=\", \">\", \"<\", \">=\", \"<=\", \"~\" (match minor version), \"^\" (match major version).",
           "type": "array",
           "minItems": 3,
+          "maxItems": 3,
           "items": [
             {
               "oneOf": [
@@ -417,20 +436,27 @@
         {
           "description": "If this bucket is randomly selected, this string is used to as a key to retrieve the associated value from the \"variants\" object.",
           "type": "string"
+        },
+        {
+          "description": "Weighted distribution for this variant key (must sum to 100).",
+          "type": "number"
         }
-      ],
-      "additionalItems": {
-        "description": "Weighted distribution for this variant key (must sum to 100).",
-        "type": "number"
-      }
+      ]
     },
     "fractionalOp": {
       "type": "array",
       "minItems": 3,
+      "$comment": "there seems to be a bug here, where ajv gives a warning (not an error) because maxItems doesn't equal the number of entries in items, though this is valid in this case",
       "items": [
         {
           "description": "Bucketing value used in pseudorandom assignment; should be unique and stable for each subject of flag evaluation. Defaults to a concatenation of the flagKey and targetingKey.",
           "$ref": "#/$defs/varRule"
+        },
+        {
+          "$ref": "#/$defs/fractionalWeightArg"
+        },
+        {
+          "$ref": "#/$defs/fractionalWeightArg"
         }
       ],
       "additionalItems": {
