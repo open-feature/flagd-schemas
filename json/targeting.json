@@ -50,7 +50,7 @@
           "anyOf": [
             {
               "type": "string",
-              "description": "flagd automatically injects \"$lagd.timestamp\" (unix epoch) and \"$lagd.flagKey\" (the key of the flag in evaluation) into the context.",
+              "description": "flagd automatically injects \"$flagd.timestamp\" (unix epoch) and \"$flagd.flagKey\" (the key of the flag in evaluation) into the context.",
               "pattern": "^\\$flagd\\.((timestamp)|(flagKey))$"
             },
             {
