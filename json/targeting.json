@@ -239,7 +239,7 @@
     },
     "associativeRule": {
       "title": "Mathematically Associative Operation",
-      "description": "Pperation applicable to 2 or more parameters.",
+      "description": "Operation applicable to 2 or more parameters.",
       "type": "object",
       "additionalProperties": false,
       "properties": {
