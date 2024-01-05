@@ -70,8 +70,8 @@ properties:
           "^.{1,}$":
             type: boolean
         default:
-          'on': true
-          'off': false
+          'true': true
+          'false': false
   stringVariants:
     type: object
     properties:
