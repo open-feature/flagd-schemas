@@ -13,17 +13,16 @@ import (
 	"github.com/xeipuuv/gojsonschema"
 )
 
-var schemaLoader *gojsonschema.SchemaLoader
-var s *gojsonschema.Schema
+var compiledSchema *gojsonschema.Schema
 
 func init() {
-	schemaLoader = gojsonschema.NewSchemaLoader()
+	schemaLoader := gojsonschema.NewSchemaLoader()
 	schemaLoader.AddSchemas(gojsonschema.NewStringLoader(flagd_definitions.Targeting))
 	var err error
-	s, err = schemaLoader.Compile(gojsonschema.NewStringLoader(flagd_definitions.FlagdDefinitions))
+	compiledSchema, err = schemaLoader.Compile(gojsonschema.NewStringLoader(flagd_definitions.FlagdDefinitions))
 	if err != nil {
-		s := fmt.Errorf("err: %v", err)
-		log.Fatal(s)
+		message := fmt.Errorf("err: %v", err)
+		log.Fatal(message)
 	}
 }
 
@@ -57,7 +56,7 @@ func walkPath(shouldPass bool, root string) error {
 
 		flagStringLoader := gojsonschema.NewStringLoader(string(file))
 
-		p, err := s.Validate(flagStringLoader)
+		p, err := compiledSchema.Validate(flagStringLoader)
 		if err != nil {
 			return err
 		}
