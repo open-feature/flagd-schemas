@@ -41,8 +41,8 @@ type: object
       var:
         anyOf:
         - type: string
-          description: flagd automatically injects "$lagd.timestamp" (unix epoch)
-            and "$lagd.flagKey" (the key of the flag in evaluation) into the context.
+          description: flagd automatically injects "$flagd.timestamp" (unix epoch)
+            and "$flagd.flagKey" (the key of the flag in evaluation) into the context.
           pattern: "^\\$flagd\\.((timestamp)|(flagKey))$"
         - type: string
           pattern: "^(?!\\$flagd\\.).+"
@@ -196,7 +196,7 @@ type: object
       $ref: "#/$defs/args"
   associativeRule:
     title: Mathematically Associative Operation
-    description: Pperation applicable to 2 or more parameters.
+    description: Operation applicable to 2 or more parameters.
     type: object
     additionalProperties: false
     properties:
