@@ -12,7 +12,7 @@
       "targeting": {
         "if": [
           {
-            "==": [{ "var": "$flagd.myprop" }, { "var": "someprop" }]
+            "==": [{ "var": "$flagd.invalidProp" }, { "var": "someprop" }]
           },
           "yes",
           "no"
