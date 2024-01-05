@@ -35,7 +35,7 @@ properties:
       "^.{1,}$":
         $comment: this relative ref means that targeting.json MUST be in the same
           dir, or available on the same HTTP path
-        $ref: "https://flagd.dev/schema/targeting.json#/$defs/targeting"
+        $ref: "./targeting.json#/$defs/targeting"
 "$defs":
   flag:
     $comment: base flag object; no title/description here, allows for better UX,
@@ -56,7 +56,7 @@ properties:
           if the targeting returns null).
         type: string
       targeting:
-        $ref: "https://flagd.dev/schema/targeting.json#/$defs/targeting"
+        $ref: "./targeting.json#/$defs/targeting"
     required:
     - state
     - defaultVariant

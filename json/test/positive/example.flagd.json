@@ -98,11 +98,11 @@
       "targeting": {
         "if": [
           {
-            "$ref": 1
+            "$ref": "emailWithFaas"
           },
           {
-            "fractionalEvaluation": [
-              "email",
+            "fractional": [
+              { "var": "email" },
               ["red", 25],
               ["blue", 25],
               ["green", 25],

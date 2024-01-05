@@ -1,0 +1,23 @@
+{
+  "$schema": "../../flagd-definitions.json",
+  "$comments": "tests that an unsupported $flagd property is invalid",
+  "flags": {
+    "invalid-flagd-props": {
+      "state": "ENABLED",
+      "variants": {
+        "yes": "1",
+        "no": "2"
+      },
+      "defaultVariant": "none",
+      "targeting": {
+        "if": [
+          {
+            "==": [{ "var": "$flagd.myprop" }, { "var": "someprop" }]
+          },
+          "yes",
+          "no"
+        ]
+      }
+    }
+  }
+}

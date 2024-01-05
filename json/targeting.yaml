@@ -44,8 +44,12 @@ type: object
           description: flagd automatically injects "$flagd.timestamp" (unix epoch)
             and "$flagd.flagKey" (the key of the flag in evaluation) into the context.
           pattern: "^\\$flagd\\.((timestamp)|(flagKey))$"
-        - type: string
-          pattern: "^(?!\\$flagd\\.).+"
+        - not:
+            $comment: this is a negated (not) match of "$flagd.{some-key}", which is faster and more compatible that a negative lookahead regex
+            type: string
+            description: flagd automatically injects "$flagd.timestamp" (unix epoch) and "$flagd.flagKey"
+              (the key of the flag in evaluation) into the context.
+            pattern: "^\\$flagd\\..*$"
         - type: array
           $comment: this is to support the form of var with a default... there seems to be a bug here, where ajv gives a warning (not an error) because maxItems doesn't equal the number of entries in items, though this is valid in this case
           minItems: 1
@@ -393,7 +397,7 @@ type: object
     - $ref: "#/$defs/anyRule"
     - $ref: "#/$defs/primitive"
   anyRule:
-    oneOf:
+    anyOf:
     - $ref: "#/$defs/varRule"
     - $ref: "#/$defs/missingRule"
     - $ref: "#/$defs/missingSomeRule"

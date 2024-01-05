@@ -54,8 +54,12 @@
               "pattern": "^\\$flagd\\.((timestamp)|(flagKey))$"
             },
             {
-              "type": "string",
-              "pattern": "^(?!\\$flagd.).*$"
+              "not": {
+                "$comment": "this is a negated (not) match of \"$flagd.{some-key}\", which is faster and more compatible that a negative lookahead regex",
+                "type": "string",
+                "description": "flagd automatically injects \"$flagd.timestamp\" (unix epoch) and \"$flagd.flagKey\" (the key of the flag in evaluation) into the context.",
+                "pattern": "^\\$flagd\\..*$"
+              }
             },
             {
               "type": "array",
@@ -513,7 +517,7 @@
       ]
     },
     "anyRule": {
-      "oneOf": [
+      "anyOf": [
         {
           "$ref": "#/$defs/varRule"
         },

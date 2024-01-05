@@ -1,0 +1,25 @@
+{
+  "$schema": "../../flagd-definitions.json",
+  "$comments": "tests that an invalid weight value is invalid",
+  "flags": {
+    "fractional-invalid-weighting": {
+      "state": "ENABLED",
+      "variants": {
+        "clubs": "clubs",
+        "diamonds": "diamonds",
+        "hearts": "hearts",
+        "spades": "spades",
+        "none": "none"
+      },
+      "defaultVariant": "none",
+      "targeting": {
+        "fractional": [
+          ["clubs", 25],
+          ["diamonds", "25"],
+          ["hearts", 25],
+          ["spades", 25]
+        ]
+      }
+    }
+  }
+}

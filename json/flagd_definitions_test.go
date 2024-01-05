@@ -18,8 +18,6 @@ var s *gojsonschema.Schema
 
 func init() {
 	schemaLoader = gojsonschema.NewSchemaLoader()
-	//gojsonschema.NewStringLoader(flagd_definitions.FlagdDefinitions)
-	//schemaLoader.AddSchemas()
 	schemaLoader.AddSchemas(gojsonschema.NewStringLoader(flagd_definitions.Targeting))
 	var err error
 	s, err = schemaLoader.Compile(gojsonschema.NewStringLoader(flagd_definitions.FlagdDefinitions))
