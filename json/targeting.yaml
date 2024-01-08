@@ -299,7 +299,7 @@ type: object
     properties:
       starts_with:
         title: Starts-With Operation
-        description: Attribute starts with the specified value.
+        description: The string attribute starts with the specified string value.
         $ref: "#/$defs/stringCompareArgs"
       ends_with:
         title: Ends-With Operation
