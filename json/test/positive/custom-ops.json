@@ -1,42 +1,7 @@
 {
-  "$schema": "../flagd-definitions.json",
+  "$schema": "../../flagd-definitions.json",
+  "$comments": "tests that all the custom ops work",
   "flags": {
-    "myBoolFlag": {
-      "state": "ENABLED",
-      "variants": {
-        "on": true,
-        "off": false
-      },
-      "defaultVariant": "on"
-    },
-    "myStringFlag": {
-      "state": "ENABLED",
-      "variants": {
-        "key1": "val1",
-        "key2": "val2"
-      },
-      "defaultVariant": "key1"
-    },
-    "myNumberFlag": {
-      "state": "ENABLED",
-      "variants": {
-        "one": 1,
-        "two": 2
-      },
-      "defaultVariant": "two"
-    },
-    "myObjectFlag": {
-      "state": "ENABLED",
-      "variants": {
-        "object1": {
-          "key": "val"
-        },
-        "object2": {
-          "key": true
-        }
-      },
-      "defaultVariant": "object1"
-    },
     "fractional-flag": {
       "state": "ENABLED",
       "variants": {
@@ -96,15 +61,7 @@
                 "ends_with": [{ "var": "id" }, "xyz"]
               },
               "postfix",
-              {
-                "if": [
-                  {
-                    "ends_with": [{ "var": "id" }, 3]
-                  },
-                  "fail",
-                  "none"
-                ]
-              }
+              null
             ]
           }
         ]
@@ -137,15 +94,7 @@
                     "sem_ver": [{ "var": "version" }, "<", "2.0.0"]
                   },
                   "lesser",
-                  {
-                    "if": [
-                      {
-                        "sem_ver": [{ "var": "version" }, "=", "2.0.0.0"]
-                      },
-                      "fail",
-                      null
-                    ]
-                  }
+                  null
                 ]
               }
             ]
@@ -179,68 +128,6 @@
         ]
       }
     },
-    "test-cat": {
-      "state": "ENABLED",
-      "variants": {
-        "minor": "minor",
-        "major": "major",
-        "none": "none"
-      },
-      "defaultVariant": "none",
-      "targeting": {
-        "cat": ["1", "@"]
-      }
-    },
-    "context-aware": {
-      "state": "ENABLED",
-      "variants": {
-        "internal": "INTERNAL",
-        "external": "EXTERNAL"
-      },
-      "defaultVariant": "external",
-      "targeting": {
-        "if": [
-          {
-            "and": [
-              {
-                "==": [
-                  {
-                    "var": ["fn"]
-                  },
-                  "Sulisław"
-                ]
-              },
-              {
-                "==": [
-                  {
-                    "var": ["ln"]
-                  },
-                  "Świętopełk"
-                ]
-              },
-              {
-                "==": [
-                  {
-                    "var": ["age"]
-                  },
-                  29
-                ]
-              },
-              {
-                "==": [
-                  {
-                    "var": ["customer"]
-                  },
-                  false
-                ]
-              }
-            ]
-          },
-          "internal",
-          "external"
-        ]
-      }
-    },
     "timestamp-flag": {
       "state": "ENABLED",
       "variants": {
@@ -266,14 +153,6 @@
           }
         ]
       }
-    },
-    "wrong-flag": {
-      "state": "ENABLED",
-      "variants": {
-        "one": "uno",
-        "two": "dos"
-      },
-      "defaultVariant": "one"
     }
   }
 }

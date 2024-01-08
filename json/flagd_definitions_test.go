@@ -2,19 +2,28 @@ package flagd_definitions_test
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
 	"testing"
 
 	flagd_definitions "github.com/open-feature/schemas/json"
+
 	"github.com/xeipuuv/gojsonschema"
 )
 
-var schemaLoader gojsonschema.JSONLoader
+var compiledSchema *gojsonschema.Schema
 
 func init() {
-	schemaLoader = gojsonschema.NewStringLoader(flagd_definitions.FlagdDefinitions)
+	schemaLoader := gojsonschema.NewSchemaLoader()
+	schemaLoader.AddSchemas(gojsonschema.NewStringLoader(flagd_definitions.Targeting))
+	var err error
+	compiledSchema, err = schemaLoader.Compile(gojsonschema.NewStringLoader(flagd_definitions.FlagdDefinitions))
+	if err != nil {
+		message := fmt.Errorf("err: %v", err)
+		log.Fatal(message)
+	}
 }
 
 func TestPositiveParsing(t *testing.T) {
@@ -46,7 +55,8 @@ func walkPath(shouldPass bool, root string) error {
 		}
 
 		flagStringLoader := gojsonschema.NewStringLoader(string(file))
-		p, err := gojsonschema.Validate(schemaLoader, flagStringLoader)
+
+		p, err := compiledSchema.Validate(flagStringLoader)
 		if err != nil {
 			return err
 		}

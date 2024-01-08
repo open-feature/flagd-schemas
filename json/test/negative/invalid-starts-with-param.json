@@ -1,0 +1,23 @@
+{
+  "$schema": "../../flagd-definitions.json",
+  "$comments": "tests that an an int is not a valid starts_with param",
+  "flags": {
+    "invalid-starts-with-param": {
+      "state": "ENABLED",
+      "variants": {
+        "prefix": 1,
+        "postfix": 2
+      },
+      "defaultVariant": "none",
+      "targeting": {
+        "if": [
+          {
+            "starts_with": [{ "var": "id" }, 0]
+          },
+          "prefix",
+          "postfix"
+        ]
+      }
+    }
+  }
+}

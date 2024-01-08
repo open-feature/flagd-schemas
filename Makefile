@@ -44,7 +44,14 @@ gen-rust: install-buf guard-GOPATH
 
 gen-schema-json: install-yq
 	yq eval -o=json json/flagd-definitions.yaml > json/flagd-definitions.json
+	yq eval -o=json json/targeting.yaml > json/targeting.json
 	
+.PHONY: test
+test:
+	go test -v ./json
+
 ajv-validate-flagd-schema:
 	@if ! npm ls ajv-cli; then npm ci; fi
-	npx ajv compile -s json/flagd-definitions.json
+	npx ajv compile -s json/targeting.json
+# 	load the targeting json so flagd-definitions.json can reference it
+	npx ajv compile -r json/targeting.json -s json/flagd-definitions.json
