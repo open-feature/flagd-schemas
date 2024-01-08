@@ -291,6 +291,7 @@ type: object
   stringCompareArgs:
     type: array
     minItems: 2
+    maxItems: 2
     items:
       $ref: "#/$defs/stringCompareArg"
   stringCompareRule:
@@ -303,7 +304,7 @@ type: object
         $ref: "#/$defs/stringCompareArgs"
       ends_with:
         title: Ends-With Operation
-        description: Attribute ends with the specified value.
+        description: The string attribute ends with the specified string value.
         $ref: "#/$defs/stringCompareArgs"
   semVerString:
     title: Semantic Version String
