@@ -1,5 +1,5 @@
 {
-  "$id": "https://flagd.dev/schema/targeting.json",
+  "$id": "https://flagd.dev/schema/v0/targeting.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "flagd Targeting",
   "description": "Defines targeting logic for flagd; a extension of JSONLogic, including purpose-built feature-flagging operations.",
@@ -137,7 +137,7 @@
           "title": "If Operator",
           "description": "The if statement takes 3 arguments: a condition (if), what to do if its true (then), and what to do if its false (else). Note that the form accepting more than 3 arguments (if/else) is not supported in flagd; use nesting instead.",
           "type": "array",
-          "minItems": 3,
+          "minItems": 2,
           "maxItems": 3,
           "items": {
             "$ref": "#/$defs/args"
