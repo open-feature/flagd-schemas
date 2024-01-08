@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.1.1...json/json-schema-v0.1.2) (2024-01-08)
+
+
+### ✨ New Features
+
+* add targeting schema, improve def. schema ([#120](https://github.com/open-feature/flagd-schemas/issues/120)) ([6041fc7](https://github.com/open-feature/flagd-schemas/commit/6041fc7ef05fdd6ea9013718f253c869cb528b68))
+
 ## [0.1.1](https://github.com/open-feature/schemas/compare/json/json-schema-v0.1.0...json/json-schema-v0.1.1) (2023-01-26)
 
 
