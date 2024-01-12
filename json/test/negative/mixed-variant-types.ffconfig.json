@@ -1,4 +1,5 @@
 {
+  "$schema": "../../flagd-definitions.json",
   "flags": {
     "myBoolFlag": {
       "state": "ENABLED",
