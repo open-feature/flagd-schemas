@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.1.2...json/json-schema-v0.1.3) (2024-01-15)
+
+
+### 🐛 Bug Fixes
+
+* add "/" op and fix special cases in schema ([#122](https://github.com/open-feature/flagd-schemas/issues/122)) ([4a0be4f](https://github.com/open-feature/flagd-schemas/commit/4a0be4f48816ea0ac83d909ae58b8dcf5acda4b8))
+
 ## [0.1.2](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.1.1...json/json-schema-v0.1.2) (2024-01-08)
 
 
