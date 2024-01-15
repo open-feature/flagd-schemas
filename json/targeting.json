@@ -37,6 +37,10 @@
         {
           "description": "When returned from rules, strings are used to as keys to retrieve the associated value from the \"variants\" object. Be sure that the returned string is present as a key in the variants!.",
           "type": "string"
+        },
+        {
+          "description": "When returned from rules, strings are used to as keys to retrieve the associated value from the \"variants\" object. Be sure that the returned string is present as a key in the variants!.",
+          "type": "array"
         }
       ]
     },
@@ -129,19 +133,35 @@
         }
       }
     },
-    "ifRule": {
+    "binaryOrTernaryOp": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 3,
+      "items": {
+        "$ref": "#/$defs/args"
+      }
+    },
+    "binaryOrTernaryRule": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "if": {
           "title": "If Operator",
-          "description": "The if statement takes 3 arguments: a condition (if), what to do if its true (then), and what to do if its false (else). Note that the form accepting more than 3 arguments (if/else) is not supported in flagd; use nesting instead.",
-          "type": "array",
-          "minItems": 2,
-          "maxItems": 3,
-          "items": {
-            "$ref": "#/$defs/args"
-          }
+          "description": "The if statement takes 3 arguments: a condition (if), what to do if its true (then), and what to do if its false (else, optional). Note that the form accepting more than 3 arguments (if/else) is not supported in flagd; use nesting instead.",
+          "$ref": "#/$defs/binaryOrTernaryOp"
+        },
+        "substr": {
+          "title": "Substring Operation",
+          "description": "Get a portion of a string. Give a positive start position to return everything beginning at that index. Give a negative start position to work backwards from the end of the string, then return everything. Give a positive length to express how many characters to return.",
+          "$ref": "#/$defs/binaryOrTernaryOp"
+        },
+        "<": {
+          "title": "Less-Than/Between Operation. Can be used to test that one value is between two others.",
+          "$ref": "#/$defs/binaryOrTernaryOp"
+        },
+        "<=": {
+          "title": "Less-Than-Or-Equal-To/Between Operation. Can be used to test that one value is between two others.",
+          "$ref": "#/$defs/binaryOrTernaryOp"
         }
       }
     },
@@ -192,14 +212,13 @@
           "description": "Finds the remainder after the first argument is divided by the second argument.",
           "$ref": "#/$defs/binaryOp"
         },
+        "/": {
+          "title": "Division Operation",
+          "$ref": "#/$defs/binaryOp"
+        },
         "map": {
           "title": "Map Operation",
           "description": "Perform an action on every member of an array. Note, that inside the logic being used to map, var operations are relative to the array element being worked on.",
-          "$ref": "#/$defs/binaryOp"
-        },
-        "reduce": {
-          "title": "Reduce Operation",
-          "description": "Combine all the elements in an array into a single value, like adding up a list of numbers. Note, that inside the logic being used to reduce, var operations only have access to an object with a \"current\" and a \"accumulator\".",
           "$ref": "#/$defs/binaryOp"
         },
         "filter": {
@@ -226,11 +245,22 @@
           "title": "In Operation",
           "description": "If the second argument is an array, tests that the first argument is a member of the array.",
           "$ref": "#/$defs/binaryOp"
-        },
-        "substr": {
-          "title": "Substring Operation",
-          "description": "Get a portion of a string, given a positive start position as an index (indexes of course start at zero).",
-          "$ref": "#/$defs/binaryOp"
+        }
+      }
+    },
+    "reduceRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reduce": {
+          "title": "Reduce Operation",
+          "description": "Combine all the elements in an array into a single value, like adding up a list of numbers. Note, that inside the logic being used to reduce, var operations only have access to an object with a \"current\" and a \"accumulator\".",
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "$ref": "#/$defs/args"
+          }
         }
       }
     },
@@ -247,11 +277,6 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "+": {
-          "title": "Addition Operation",
-          "description": "Addition; associative, will accept and unlimited amount of arguments.",
-          "$ref": "#/$defs/associativeOp"
-        },
         "*": {
           "title": "Multiplication Operation",
           "description": "Multiplication; associative, will accept and unlimited amount of arguments.",
@@ -282,16 +307,6 @@
           "title": "Double Negation Operation",
           "description": "Double negation, or 'cast to a boolean'. Takes a single argument.",
           "$ref": "#/$defs/unaryOp"
-        },
-        "max": {
-          "title": "Maximum Operation",
-          "description": "Return the maximum from a list of values.",
-          "$ref": "#/$defs/unaryOp"
-        },
-        "min": {
-          "title": "Minimum Operation",
-          "description": "Return the minimum from a list of values.",
-          "$ref": "#/$defs/unaryOp"
         }
       }
     },
@@ -317,22 +332,27 @@
           "description": "Simple boolean test, with 1 or more arguments. At a more sophisticated level, \"and\" returns the first falsy argument, or the last argument.",
           "$ref": "#/$defs/variadicOp"
         },
-        "<": {
-          "title": "Less-Than/Between Operation. Can be used to test that one value is between two others.",
-          "description": "",
-          "$ref": "#/$defs/variadicOp"
-        },
-        "<=": {
-          "title": "Less-Than-Or-Equal-To/Between Operation. Can be used to test that one value is between two others.",
-          "description": "",
+        "+": {
+          "title": "Addition Operation",
+          "description": "Addition; associative, will accept and unlimited amount of arguments.",
           "$ref": "#/$defs/variadicOp"
         },
         "-": {
           "title": "Subtraction Operation",
           "$ref": "#/$defs/variadicOp"
         },
+        "max": {
+          "title": "Maximum Operation",
+          "description": "Return the maximum from a list of values.",
+          "$ref": "#/$defs/variadicOp"
+        },
+        "min": {
+          "title": "Minimum Operation",
+          "description": "Return the minimum from a list of values.",
+          "$ref": "#/$defs/variadicOp"
+        },
         "merge": {
-          "title": "Subtraction Operation",
+          "title": "Merge Operation",
           "description": "Takes one or more arrays, and merges them into one array. If arguments aren't arrays, they get cast to arrays.",
           "$ref": "#/$defs/variadicOp"
         },
@@ -432,7 +452,7 @@
       }
     },
     "fractionalWeightArg": {
-      "$comment": "if we remove the \"some to 100\" restriction, update the descriptions below!",
+      "$comment": "if we remove the \"sum to 100\" restriction, update the descriptions below!",
       "description": "Distribution for all possible variants, with their associated weighting out of 100.",
       "type": "array",
       "minItems": 2,
@@ -529,10 +549,10 @@
           "$ref": "#/$defs/missingSomeRule"
         },
         {
-          "$ref": "#/$defs/ifRule"
+          "$ref": "#/$defs/binaryRule"
         },
         {
-          "$ref": "#/$defs/binaryRule"
+          "$ref": "#/$defs/binaryOrTernaryRule"
         },
         {
           "$ref": "#/$defs/associativeRule"
@@ -542,6 +562,9 @@
         },
         {
           "$ref": "#/$defs/variadicRule"
+        },
+        {
+          "$ref": "#/$defs/reduceRule"
         },
         {
           "$ref": "#/$defs/stringCompareRule"

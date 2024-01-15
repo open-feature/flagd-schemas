@@ -1,12 +1,13 @@
 {
-    "flags": {
-      "myBoolFlag": {
-        "state": "WILL-FAIL",
-        "variants": {
-          "on": true,
-          "off": false
-        },
-        "defaultVariant": "on"
-      }
+  "$schema": "../../flagd-definitions.json",
+  "flags": {
+    "myBoolFlag": {
+      "state": "WILL-FAIL",
+      "variants": {
+        "on": true,
+        "off": false
+      },
+      "defaultVariant": "on"
     }
   }
+}

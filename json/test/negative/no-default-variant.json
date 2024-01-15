@@ -1,11 +1,12 @@
 {
-    "flags": {
-      "myBoolFlag": {
-        "state": "ENABLED",
-        "variants": {
-          "on": true,
-          "off": false
-        }
+  "$schema": "../../flagd-definitions.json",
+  "flags": {
+    "myBoolFlag": {
+      "state": "ENABLED",
+      "variants": {
+        "on": true,
+        "off": false
       }
     }
+  }
 }
