@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.2.0](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.1.3...json/json-schema-v0.2.0) (2024-01-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* improve naming, fix module url ([#128](https://github.com/open-feature/flagd-schemas/issues/128))
+
+### 🐛 Bug Fixes
+
+* "if" json schema description ([#126](https://github.com/open-feature/flagd-schemas/issues/126)) ([eee6a28](https://github.com/open-feature/flagd-schemas/commit/eee6a2810d9c45a360841a30f3fb92b534f5611d))
+
+
+### ✨ New Features
+
+* improve naming, fix module url ([#128](https://github.com/open-feature/flagd-schemas/issues/128)) ([0e6cbbd](https://github.com/open-feature/flagd-schemas/commit/0e6cbbd89d1591df728c9ab06d6cf4065f432dfe))
+
 ## [0.1.3](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.1.2...json/json-schema-v0.1.3) (2024-01-15)
 
 
