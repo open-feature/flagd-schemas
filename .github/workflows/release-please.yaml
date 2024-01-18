@@ -44,20 +44,3 @@ jobs:
       # Push module to the BSR
       - name: bsr-push
         run: BUF_TOKEN="${{ secrets.BUF_TOKEN }}" buf push --tag "${{ needs.release-please.outputs.buf_release_tag }}" protobuf
-
-  create-schema-store-issue:
-    needs: release-please
-    name: create schema release reminder issue
-    runs-on: ubuntu-latest
-    if: ${{ needs.release-please.outputs.releases_created && needs.release-please.outputs.json_release_tag }}
-    steps:
-      # Run `git checkout`
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ needs.release-please.outputs.json_release_tag }}
-      - uses: JasonEtco/create-an-issue@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG: ${{ needs.release-please.outputs.json_release_tag }}
-        with:
-          filename: .github/schema-store-issue-template.md

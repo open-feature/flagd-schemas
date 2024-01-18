@@ -2,8 +2,8 @@ package flagd_definitions
 
 import _ "embed"
 
-//go:embed flagd-definitions.json
-var FlagdDefinitions string
+//go:embed flags.json
+var FlagSchema string
 
 //go:embed targeting.json
-var Targeting string
+var TargetingSchema string

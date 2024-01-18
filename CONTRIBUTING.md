@@ -11,5 +11,5 @@ TLDR: be respectful.
 ### flagd JSON schema
 
 The flagd JSON schema defines the json structure used within flagd for flag configurations.   
-To contribute to the schema, make changes in `json/flagd-definitions.yaml`, these changes should then be propagated to `json/flagd-definitions.json` by running `make gen-schema-json`.  
+To contribute to the schema, make changes in `json/flags.yaml`, these changes should then be propagated to `json/flags.json` by running `make gen-schema-json`.  
 Unit testing for the schema is managed through [json/test/negative](./json/test/negative) (in which all json files must fail validation against the schema) and [json/test/positive](./json/test/positive) (in which all json files must pass).
