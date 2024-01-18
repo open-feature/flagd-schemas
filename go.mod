@@ -1,4 +1,4 @@
-module github.com/open-feature/schemas
+module github.com/open-feature/flagd-schemas
 
 go 1.18
 

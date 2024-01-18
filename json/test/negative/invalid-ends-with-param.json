@@ -1,5 +1,5 @@
 {
-  "$schema": "../../flagd-definitions.json",
+  "$schema": "../../flags.json",
   "$comments": "tests that an an int is not a valid ends_with param",
   "flags": {
     "invalid-ends-with-param": {

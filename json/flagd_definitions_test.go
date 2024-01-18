@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	flagd_definitions "github.com/open-feature/schemas/json"
+	flagd_definitions "github.com/open-feature/flagd-schemas/json"
 
 	"github.com/xeipuuv/gojsonschema"
 )
@@ -17,9 +17,9 @@ var compiledSchema *gojsonschema.Schema
 
 func init() {
 	schemaLoader := gojsonschema.NewSchemaLoader()
-	schemaLoader.AddSchemas(gojsonschema.NewStringLoader(flagd_definitions.Targeting))
+	schemaLoader.AddSchemas(gojsonschema.NewStringLoader(flagd_definitions.TargetingSchema))
 	var err error
-	compiledSchema, err = schemaLoader.Compile(gojsonschema.NewStringLoader(flagd_definitions.FlagdDefinitions))
+	compiledSchema, err = schemaLoader.Compile(gojsonschema.NewStringLoader(flagd_definitions.FlagSchema))
 	if err != nil {
 		message := fmt.Errorf("err: %v", err)
 		log.Fatal(message)

@@ -1,5 +1,5 @@
 {
-  "$schema": "../../flagd-definitions.json",
+  "$schema": "../../flags.json",
   "$comments": "tests that an invalid version is invalid",
   "flags": {
     "sem-ver-invalid-ver-expression": {
