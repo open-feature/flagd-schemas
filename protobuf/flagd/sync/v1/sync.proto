@@ -8,6 +8,8 @@ syntax = "proto3";
 
 package flagd.sync.v1;
 
+import "google/protobuf/struct.proto";
+
 option csharp_namespace = "OpenFeature.Flagd.Grpc.Sync";
 option go_package = "flagd/sync/v1";
 option java_package = "dev.openfeature.flagd.grpc.sync";
