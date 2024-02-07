@@ -64,13 +64,7 @@ message GetMetadataRequest {}
 
 // GetMetadataResponse contains metadata from the sync service
 message GetMetadataResponse {
-  repeated KeyValue metadata = 1;
-}
-
-// KeyValue represents a key/value pair
-message KeyValue {
-  string key = 1;
-  string value = 2;
+  google.protobuf.Struct metadata = 1;
 }
 
 // FlagService implements a server streaming to provide realtime flag configurations
