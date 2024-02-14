@@ -1,0 +1,70 @@
+{
+  "$schema": "../../flags.json",
+  "flags": {
+    "if-shorthand-1": {
+      "state": "ENABLED",
+      "variants": {
+        "true": true,
+        "false": false
+      },
+      "defaultVariant": "true",
+      "targeting": {
+        "if": [
+          {
+            "===": [
+              {
+                "var": "env"
+              },
+              "production"
+            ]
+          }
+        ]
+      }
+    },
+    "if-shorthand-2": {
+      "state": "ENABLED",
+      "variants": {
+        "true": true,
+        "false": false
+      },
+      "defaultVariant": "true",
+      "targeting": {
+        "if": [
+          {
+            "===": [
+              {
+                "var": "env"
+              },
+              "production"
+            ]
+          }, "true"
+        ]
+      }
+    },
+    "if-shorthand-ref": {
+      "state": "ENABLED",
+      "variants": {
+        "true": true,
+        "false": false
+      },
+      "defaultVariant": "true",
+      "targeting": {
+        "if": [
+          {
+            "$ref": "env-production"
+          }
+        ]
+      }
+    }
+  },
+  "$evaluators": {
+    "env-production": {
+      "===": [
+        {
+          "var": "env"
+        },
+        "production"
+      ]
+    }
+  }
+}
