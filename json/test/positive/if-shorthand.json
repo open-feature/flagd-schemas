@@ -1,5 +1,6 @@
 {
   "$schema": "../../flags.json",
+  "$comments": "tests that all the variants of 'if' work (bugfix)",
   "flags": {
     "if-shorthand-1": {
       "state": "ENABLED",
