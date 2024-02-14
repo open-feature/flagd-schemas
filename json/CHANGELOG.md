@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.0...json/json-schema-v0.2.1) (2024-02-14)
+
+
+### 🐛 Bug Fixes
+
+* support "if" 1-arg shorthand ([#131](https://github.com/open-feature/flagd-schemas/issues/131)) ([463d33a](https://github.com/open-feature/flagd-schemas/commit/463d33a3895f1cd1149c9d99cdc5fb7981abd296))
+
 ## [0.2.0](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.1.3...json/json-schema-v0.2.0) (2024-01-18)
 
 
