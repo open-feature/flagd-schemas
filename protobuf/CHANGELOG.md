@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.6.0](https://github.com/open-feature/flagd-schemas/compare/protobuf-v0.5.4...protobuf-v0.6.0) (2024-02-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* struct for metadata for consistency and power ([#130](https://github.com/open-feature/flagd-schemas/issues/130))
+
+### ✨ New Features
+
+* struct for metadata for consistency and power ([#130](https://github.com/open-feature/flagd-schemas/issues/130)) ([673fc15](https://github.com/open-feature/flagd-schemas/commit/673fc1539bbde0b60f2a706e68714cfe8ff17913))
+
 ## [0.5.4](https://github.com/open-feature/flagd-schemas/compare/protobuf-v0.5.3...protobuf-v0.5.4) (2023-12-15)
 
 
