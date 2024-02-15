@@ -66,7 +66,8 @@ message GetMetadataRequest {}
 
 // GetMetadataResponse contains metadata from the sync service
 message GetMetadataResponse {
-  google.protobuf.Struct metadata = 1;
+  reserved 1; // old key/value metadata impl
+  google.protobuf.Struct metadata = 2;
 }
 
 // FlagService implements a server streaming to provide realtime flag configurations
