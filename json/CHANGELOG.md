@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.1...json/json-schema-v0.2.2) (2024-02-28)
+
+
+### 🐛 Bug Fixes
+
+* workaround bad $ref derefs ([#134](https://github.com/open-feature/flagd-schemas/issues/134)) ([40a0677](https://github.com/open-feature/flagd-schemas/commit/40a0677a6a97b9e15d4c8e9419d4b666bfa778b3))
+
 ## [0.2.1](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.0...json/json-schema-v0.2.1) (2024-02-14)
 
 
