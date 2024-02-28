@@ -527,8 +527,9 @@
     "reference": {
       "additionalProperties": false,
       "type": "object",
-      "properties": {
-        "$ref": {
+      "$comment": "patternProperties here is a bit of a hack to prevent this definition from being dereferenced early.",
+      "patternProperties": {
+        "^\\$ref$": {
           "title": "Reference",
           "description": "A reference to another entity, used for $evaluators (shared rules).",
           "type": "string"
