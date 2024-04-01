@@ -486,7 +486,7 @@
       "items": [
         {
           "description": "Bucketing value used in pseudorandom assignment; should be unique and stable for each subject of flag evaluation. Defaults to a concatenation of the flagKey and targetingKey.",
-          "$ref": "#/$defs/varRule"
+          "$ref": "#/$defs/anyRule"
         },
         {
           "$ref": "#/$defs/fractionalWeightArg"
@@ -506,37 +506,6 @@
         "$ref": "#/$defs/fractionalWeightArg"
       }
     },
-    "fractionalCustomSeedOp": {
-      "type": "array",
-      "minItems": 4,
-      "$comment": "there seems to be a bug here, where ajv gives a warning (not an error) because maxItems doesn't equal the number of entries in items, though this is valid in this case",
-      "items": [
-        {
-          "description": "Bucketing value used in pseudorandom assignment; should be unique and stable for each subject of flag evaluation. Defaults to targetingKey.",
-          "$ref": "#/$defs/varRule"
-        },
-        {
-          "description": "Seed used in pseudorandom assignment. Defaults to flagKey.",
-          "anyOf": [
-            {
-              "$ref": "#/$defs/varRule"
-            },
-            {
-              "type": "string"
-            }
-          ]
-        },
-        {
-          "$ref": "#/$defs/fractionalWeightArg"
-        },
-        {
-          "$ref": "#/$defs/fractionalWeightArg"
-        }
-      ],
-      "additionalItems": {
-        "$ref": "#/$defs/fractionalWeightArg"
-      }
-    },
     "fractionalRule": {
       "type": "object",
       "additionalProperties": false,
@@ -545,9 +514,6 @@
           "title": "Fractional Operation",
           "description": "Deterministic, pseudorandom fractional distribution.",
           "oneOf": [
-            {
-              "$ref": "#/$defs/fractionalCustomSeedOp"
-            },
             {
               "$ref": "#/$defs/fractionalOp"
             },

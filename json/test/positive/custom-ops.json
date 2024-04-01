@@ -14,7 +14,10 @@
       "defaultVariant": "wild",
       "targeting": {
         "fractional": [
-          { "var": "user.name" },
+          { "cat": [
+            { "var": "$flagd.flagKey" },
+            { "var": "user.name" }
+          ]},
           ["clubs", 25],
           ["diamonds", 25],
           ["hearts", 25],
@@ -34,27 +37,6 @@
       "defaultVariant": "wild",
       "targeting": {
         "fractional": [
-          ["clubs", 25],
-          ["diamonds", 25],
-          ["hearts", 25],
-          ["spades", 25]
-        ]
-      }
-    },
-    "custom-seed-fractional-flag": {
-      "state": "ENABLED",
-      "variants": {
-        "clubs": "clubs",
-        "diamonds": "diamonds",
-        "hearts": "hearts",
-        "spades": "spades",
-        "wild": "wild"
-      },
-      "defaultVariant": "wild",
-      "targeting": {
-        "fractional": [
-          { "var": "user.name" },
-          "my-seed",
           ["clubs", 25],
           ["diamonds", 25],
           ["hearts", 25],
