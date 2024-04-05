@@ -10,6 +10,7 @@
       "defaultVariant": "on",
       "targeting": {
         "*" : [
+          {"if" : [false, "false", false, "false", true, "true"] },
           {"if" : [ true, "yes", "no" ]},
           {"if" : [ true, "yes" ]},
           {"if" : [ true ]},
