@@ -1,5 +1,5 @@
 ---
-title: "chore: update flagd.dev, and schema store"
+title: "chore: update flagd and schema store"
 ---
 
 # Update Schema Store JSON Schema
