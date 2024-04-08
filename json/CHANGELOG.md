@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.3](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.2...json/json-schema-v0.2.3) (2024-04-08)
+
+
+### ✨ New Features
+
+* allow custom seed in fractional op ([#136](https://github.com/open-feature/flagd-schemas/issues/136)) ([ea4f119](https://github.com/open-feature/flagd-schemas/commit/ea4f119d2bd716ec4aec05e554d51e7e79ba187b))
+* support chainable if conditions ([#138](https://github.com/open-feature/flagd-schemas/issues/138)) ([cc7832a](https://github.com/open-feature/flagd-schemas/commit/cc7832ab20c9e0b8e438ffc4299f661974149454))
+
 ## [0.2.2](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.1...json/json-schema-v0.2.2) (2024-02-28)
 
 
