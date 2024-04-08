@@ -550,9 +550,6 @@
           "$ref": "#/$defs/missingSomeRule"
         },
         {
-          "$ref": "#/$defs/ifRule"
-        },
-        {
           "$ref": "#/$defs/binaryRule"
         },
         {

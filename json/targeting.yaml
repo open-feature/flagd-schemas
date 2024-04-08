@@ -416,7 +416,6 @@ type: object
     - $ref: "#/$defs/varRule"
     - $ref: "#/$defs/missingRule"
     - $ref: "#/$defs/missingSomeRule"
-    - $ref: "#/$defs/ifRule"
     - $ref: "#/$defs/binaryRule"
     - $ref: "#/$defs/binaryOrTernaryRule"
     - $ref: "#/$defs/associativeRule"
