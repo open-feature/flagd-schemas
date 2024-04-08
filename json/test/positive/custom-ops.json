@@ -14,7 +14,10 @@
       "defaultVariant": "wild",
       "targeting": {
         "fractional": [
-          { "var": "user.name" },
+          { "cat": [
+            { "var": "$flagd.flagKey" },
+            { "var": "user.name" }
+          ]},
           ["clubs", 25],
           ["diamonds", 25],
           ["hearts", 25],

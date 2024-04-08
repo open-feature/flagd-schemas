@@ -486,7 +486,7 @@
       "items": [
         {
           "description": "Bucketing value used in pseudorandom assignment; should be unique and stable for each subject of flag evaluation. Defaults to a concatenation of the flagKey and targetingKey.",
-          "$ref": "#/$defs/varRule"
+          "$ref": "#/$defs/anyRule"
         },
         {
           "$ref": "#/$defs/fractionalWeightArg"
