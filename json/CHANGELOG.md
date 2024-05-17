@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.4](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.3...json/json-schema-v0.2.4) (2024-05-17)
+
+
+### 🐛 Bug Fixes
+
+* change $defs to definitions per draft07 ([#140](https://github.com/open-feature/flagd-schemas/issues/140)) ([87ab28a](https://github.com/open-feature/flagd-schemas/commit/87ab28a58cac260b911c03b35451c8175ec1f148))
+
 ## [0.2.3](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.2...json/json-schema-v0.2.3) (2024-04-08)
 
 
