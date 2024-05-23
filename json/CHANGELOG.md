@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.5](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.4...json/json-schema-v0.2.5) (2024-05-23)
+
+
+### 🐛 Bug Fixes
+
+* unary op shorthand unsupported ([#142](https://github.com/open-feature/flagd-schemas/issues/142)) ([946ffc4](https://github.com/open-feature/flagd-schemas/commit/946ffc4d2ed29e91d3beddd7b0650df350411c71))
+
 ## [0.2.4](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.3...json/json-schema-v0.2.4) (2024-05-17)
 
 
