@@ -285,12 +285,19 @@
       }
     },
     "unaryOp": {
-      "type": "array",
-      "minItems": 1,
-      "maxItems": 1,
-      "items": {
-        "$ref": "#/definitions/args"
-      }
+      "anyOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "items": {
+            "$ref": "#/definitions/args"
+          }
+        },
+        {
+          "$ref": "#/definitions/args"
+        }
+      ]
     },
     "unaryRule": {
       "title": "Unary Operation",
