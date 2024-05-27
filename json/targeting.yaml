@@ -1,4 +1,4 @@
-$id: "https://flagd.dev/schema/v0/targeting.json"
+$id: "https://flagd.dev/schema/v0.2.5/targeting.json" # x-release-please-version
 $schema: http://json-schema.org/draft-07/schema#
 title: flagd Targeting
 description: Defines targeting logic for flagd; a extension of JSONLogic, including
