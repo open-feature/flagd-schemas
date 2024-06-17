@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.7](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.6...json/json-schema-v0.2.7) (2024-06-17)
+
+
+### 🐛 Bug Fixes
+
+* revert full schema versioning ([#166](https://github.com/open-feature/flagd-schemas/issues/166)) ([64b6d98](https://github.com/open-feature/flagd-schemas/commit/64b6d9831bc40c4b78df78f7f77f2d482632903f))
+
 ## [0.2.6](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.5...json/json-schema-v0.2.6) (2024-05-27)
 
 
