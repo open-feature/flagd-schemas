@@ -4,7 +4,7 @@ on:
   pull_request:
 
 permissions:
-  contents: write
+  contents: read
 
 env:
   GO_VERSION: 1.22
@@ -52,12 +52,10 @@ jobs:
           against: 'https://github.com/open-feature/schemas.git#branch=main,ref=HEAD~1,subdir=protobuf'
 
   
-  validate-and-sync-schema:
+  validate-schema:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
       
       # Use ajv to validate schema
       - name: Setup node
@@ -74,18 +72,9 @@ jobs:
       - name: Validate Schema
         run: make test
 
-      # Sync JSON schemas from YAML versions
-      - name: Sync JSON from YAML
+      # Ensure there is no diff when make gen-schema-json is run 
+      - run: make gen-schema-json
+      - name: Check no diff 
         run: |
-          make gen-schema-json
-          if [ ! -z "$(git status --porcelain)" ]; then
-            echo "JSON schema generation produced diff, regenerating and committing result...";
-            git config --global user.name "validate-and-sync-schema-job"
-            git config --global user.email "bot@openfeature.dev"
-            git add json/*.json
-            git commit -m 'chore: sync json schema from yaml' -s
-            git push
-          else
-            echo "No delta between YAML and JSON schemas, finishing..."
-          fi
-
+          if [ ! -z "$(git status --porcelain)" ]; then echo "JSON schema generation produced diff. Run 'make gen-schema-json' and commit results."; exit 1; fi
+          
