@@ -29,14 +29,14 @@ func init() {
 	}
 }
 
-func TestPositiveParsing(t *testing.T) {
+func TestPositiveFlagParsing(t *testing.T) {
 	if err := walkPath(true, "./test/flags/positive", compiledFlagDefinitionSchema); err != nil {
 		t.Error(err)
 		t.FailNow()
 	}
 }
 
-func TestNegativeParsing(t *testing.T) {
+func TestNegativeFlagParsing(t *testing.T) {
 	if err := walkPath(false, "./test/flags/negative", compiledFlagDefinitionSchema); err != nil {
 		t.Error(err)
 		t.FailNow()
