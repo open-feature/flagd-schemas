@@ -1,0 +1,39 @@
+{
+  "$schema": "../../../targeting.json",
+  "$comments": "tests that all the variants of 'if' work (bugfix)",
+  "targeting": {
+    "*": [
+      {
+        "if": [
+          {
+            "===": [
+              {
+                "var": "env"
+              },
+              "production"
+            ]
+          }
+        ]
+      },
+      {
+        "if": [
+          {
+            "===": [
+              {
+                "var": "env"
+              },
+              "production"
+            ]
+          }, "true"
+        ]
+      },
+      {
+        "if": [
+          {
+            "$ref": "some-ref"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -4,6 +4,11 @@
   "title": "flagd Targeting",
   "description": "Defines targeting logic for flagd; a extension of JSONLogic, including purpose-built feature-flagging operations.",
   "type": "object",
+  "properties": {
+    "targeting": {
+      "$ref": "#/definitions/targeting"
+    }
+  },
   "definitions": {
     "targeting": {
       "title": "Targeting",
@@ -462,7 +467,7 @@
       "$comment": "if we remove the \"sum to 100\" restriction, update the descriptions below!",
       "description": "Distribution for all possible variants, with their associated weighting out of 100.",
       "type": "array",
-      "minItems": 2,
+      "minItems": 1,
       "maxItems": 2,
       "items": [
         {

@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../targeting.json",
+  "$comments": "tests that an an int is not a valid ends_with param",
+  "targeting": {
+    "if": [
+      {
+        "ends_with": [{ "var": "id" }, 0]
+      },
+      "postfix",
+      "prefix"
+    ]
+  }
+}

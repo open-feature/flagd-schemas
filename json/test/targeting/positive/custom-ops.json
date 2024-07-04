@@ -1,18 +1,9 @@
 {
-  "$schema": "../../flags.json",
+  "$schema": "../../../targeting.json",
   "$comments": "tests that all the custom ops work",
-  "flags": {
-    "fractional-flag": {
-      "state": "ENABLED",
-      "variants": {
-        "clubs": "clubs",
-        "diamonds": "diamonds",
-        "hearts": "hearts",
-        "spades": "spades",
-        "wild": "wild"
-      },
-      "defaultVariant": "wild",
-      "targeting": {
+  "targeting": {
+    "*": [
+      {
         "fractional": [
           { "cat": [
             { "var": "$flagd.flagKey" },
@@ -23,36 +14,30 @@
           ["hearts", 25],
           ["spades", 25]
         ]
-      }
-    },
-    "shorthand-fractional-flag": {
-      "state": "ENABLED",
-      "variants": {
-        "clubs": "clubs",
-        "diamonds": "diamonds",
-        "hearts": "hearts",
-        "spades": "spades",
-        "wild": "wild"
       },
-      "defaultVariant": "wild",
-      "targeting": {
+      {
+        "fractional": [
+          [ "heads" ],
+          [ "tails", 1 ]
+        ]
+      },
+      {
         "fractional": [
           ["clubs", 25],
           ["diamonds", 25],
           ["hearts", 25],
           ["spades", 25]
         ]
-      }
-    },
-    "starts-ends-flag": {
-      "state": "ENABLED",
-      "variants": {
-        "prefix": "prefix",
-        "postfix": "postfix",
-        "none": "none"
       },
-      "defaultVariant": "none",
-      "targeting": {
+      {
+        "fractional": [
+          ["clubs", 25],
+          ["diamonds", 25],
+          ["hearts", 25],
+          ["spades", 25]
+        ]
+      },
+      {
         "if": [
           {
             "starts_with": [{ "var": "id" }, "abc"]
@@ -68,18 +53,8 @@
             ]
           }
         ]
-      }
-    },
-    "equal-greater-lesser-version-flag": {
-      "state": "ENABLED",
-      "variants": {
-        "equal": "equal",
-        "greater": "greater",
-        "lesser": "lesser",
-        "none": "none"
       },
-      "defaultVariant": "none",
-      "targeting": {
+      {
         "if": [
           {
             "sem_ver": [{ "var": "version" }, "=", "2.0.0"]
@@ -103,17 +78,8 @@
             ]
           }
         ]
-      }
-    },
-    "major-minor-version-flag": {
-      "state": "ENABLED",
-      "variants": {
-        "minor": "minor",
-        "major": "major",
-        "none": "none"
       },
-      "defaultVariant": "none",
-      "targeting": {
+      {
         "if": [
           {
             "sem_ver": [{ "var": "version" }, "~", "3.0.0"]
@@ -129,17 +95,8 @@
             ]
           }
         ]
-      }
-    },
-    "timestamp-flag": {
-      "state": "ENABLED",
-      "variants": {
-        "past": -1,
-        "future": 1,
-        "none": 0
       },
-      "defaultVariant": "none",
-      "targeting": {
+      {
         "if": [
           {
             ">": [{ "var": "$flagd.timestamp" }, { "var": "time" }]
@@ -156,6 +113,6 @@
           }
         ]
       }
-    }
+    ]
   }
 }
