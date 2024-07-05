@@ -1,13 +1,9 @@
 {
-  "$schema": "../../../targeting.json",
-  "$comments": "tests that an an int is not a valid starts_with param",
-  "targeting": {
-    "if": [
-      {
-        "starts_with": [{ "var": "id" }, 0]
-      },
-      "prefix",
-      "postfix"
-    ]
-  }
+  "if": [
+    {
+      "starts_with": [{ "var": "id" }, 0]
+    },
+    "prefix",
+    "postfix"
+  ]
 }

@@ -1,12 +1,8 @@
 {
-  "$schema": "../../../targeting.json",
-  "$comments": "tests that an invalid weight value is invalid",
-  "targeting": {
-    "fractional": [
-      ["clubs", 25],
-      ["diamonds", "25"],
-      ["hearts", 25],
-      ["spades", 25]
-    ]
-  }
+  "fractional": [
+    ["clubs", 25],
+    ["diamonds", "25"],
+    ["hearts", 25],
+    ["spades", 25]
+  ]
 }

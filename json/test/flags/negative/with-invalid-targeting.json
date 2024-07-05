@@ -1,11 +1,15 @@
 {
   "$schema": "../../../flags.json",
   "flags": {
-    "myBoolFlag": {
+    "targetedFlag": {
       "state": "ENABLED",
       "variants": {
         "on": true,
         "off": false
+      },
+      "defaultVariant": "on",
+      "targeting": {
+        "not-a-real-rule": [1, 2]
       }
     }
   }

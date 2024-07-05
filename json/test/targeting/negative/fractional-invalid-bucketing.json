@@ -1,13 +1,9 @@
 {
-  "$schema": "../../../targeting.json",
-  "$comments": "tests that an invalid bucking value is invalid",
-  "targeting": {
-    "fractional": [
-      "invalid",
-      ["clubs", 25],
-      ["diamonds", 25],
-      ["hearts", 25],
-      ["spades", 25]
-    ]
-  }
+  "fractional": [
+    "invalid",
+    ["clubs", 25],
+    ["diamonds", 25],
+    ["hearts", 25],
+    ["spades", 25]
+  ]
 }

@@ -1,13 +1,9 @@
 {
-  "$schema": "../../../targeting.json",
-  "$comments": "tests that an unsupported $flagd property is invalid",
-  "targeting": {
-    "if": [
-      {
-        "==": [{ "var": "$flagd.invalidProp" }, { "var": "someprop" }]
-      },
-      "yes",
-      "no"
-    ]
-  }
+  "if": [
+    {
+      "==": [{ "var": "$flagd.invalidProp" }, { "var": "someprop" }]
+    },
+    "yes",
+    "no"
+  ]
 }
