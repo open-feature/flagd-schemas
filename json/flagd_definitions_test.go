@@ -13,34 +13,51 @@ import (
 	"github.com/xeipuuv/gojsonschema"
 )
 
-var compiledSchema *gojsonschema.Schema
+var compiledFlagDefinitionSchema *gojsonschema.Schema
+var compiledTargetingSchema *gojsonschema.Schema
 
 func init() {
-	schemaLoader := gojsonschema.NewSchemaLoader()
-	schemaLoader.AddSchemas(gojsonschema.NewStringLoader(flagd_definitions.TargetingSchema))
+	flagDefinitionSchemaLoader := gojsonschema.NewSchemaLoader()
+	flagDefinitionSchemaLoader.AddSchemas(gojsonschema.NewStringLoader(flagd_definitions.TargetingSchema))
+	targetingSchemaLoader := gojsonschema.NewSchemaLoader()
 	var err error
-	compiledSchema, err = schemaLoader.Compile(gojsonschema.NewStringLoader(flagd_definitions.FlagSchema))
+	compiledFlagDefinitionSchema, err = flagDefinitionSchemaLoader.Compile(gojsonschema.NewStringLoader(flagd_definitions.FlagSchema))
+	compiledTargetingSchema, err = targetingSchemaLoader.Compile(gojsonschema.NewStringLoader(flagd_definitions.TargetingSchema))
 	if err != nil {
 		message := fmt.Errorf("err: %v", err)
 		log.Fatal(message)
 	}
 }
 
-func TestPositiveParsing(t *testing.T) {
-	if err := walkPath(true, "./test/positive"); err != nil {
+func TestPositiveFlagParsing(t *testing.T) {
+	if err := walkPath(true, "./test/flags/positive", compiledFlagDefinitionSchema); err != nil {
 		t.Error(err)
 		t.FailNow()
 	}
 }
 
-func TestNegativeParsing(t *testing.T) {
-	if err := walkPath(false, "./test/negative"); err != nil {
+func TestNegativeFlagParsing(t *testing.T) {
+	if err := walkPath(false, "./test/flags/negative", compiledFlagDefinitionSchema); err != nil {
 		t.Error(err)
 		t.FailNow()
 	}
 }
 
-func walkPath(shouldPass bool, root string) error {
+func TestPositiveTargetingParsing(t *testing.T) {
+	if err := walkPath(true, "./test/targeting/positive", compiledTargetingSchema); err != nil {
+		t.Error(err)
+		t.FailNow()
+	}
+}
+
+func TestNegativeTargetingParsing(t *testing.T) {
+	if err := walkPath(false, "./test/targeting/negative", compiledTargetingSchema); err != nil {
+		t.Error(err)
+		t.FailNow()
+	}
+}
+
+func walkPath(shouldPass bool, root string, schema *gojsonschema.Schema) error {
 	return filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
@@ -56,7 +73,7 @@ func walkPath(shouldPass bool, root string) error {
 
 		flagStringLoader := gojsonschema.NewStringLoader(string(file))
 
-		p, err := compiledSchema.Validate(flagStringLoader)
+		p, err := schema.Validate(flagStringLoader)
 		if err != nil {
 			return err
 		}
