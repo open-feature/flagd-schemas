@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.8](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.7...json/json-schema-v0.2.8) (2024-07-08)
+
+
+### ✨ New Features
+
+* standalone targeting, fractional shorthand ([#168](https://github.com/open-feature/flagd-schemas/issues/168)) ([6211e3a](https://github.com/open-feature/flagd-schemas/commit/6211e3a5ea413809c2818fbe54ba1b6769ac0f54))
+
 ## [0.2.7](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.6...json/json-schema-v0.2.7) (2024-06-17)
 
 
