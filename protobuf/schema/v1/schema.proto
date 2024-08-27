@@ -12,8 +12,8 @@ package schema.v1;
 
 import "google/protobuf/struct.proto";
 
-option deprecated = true;
 option csharp_namespace = "OpenFeature.Flagd.Grpc";
+option deprecated = true;
 option go_package = "schema/service/v1";
 option java_package = "dev.openfeature.flagd.grpc";
 option php_namespace = "OpenFeature\\Providers\\Flagd\\Schema\\Grpc";
