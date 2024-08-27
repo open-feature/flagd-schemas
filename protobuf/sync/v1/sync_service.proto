@@ -1,4 +1,5 @@
 /**
+ * DEPRECATED; use flagd.sync.v1
  * Flag definition sync API
  *
  * This proto defines a simple API to synchronize a feature flag definition.
@@ -8,6 +9,7 @@ syntax = "proto3";
 
 package sync.v1;
 
+option deprecated = true;
 option csharp_namespace = "OpenFeature.Flagd.Sync";
 option go_package = "flagd/grpcsync";
 option java_package = "dev.openfeature.flagd.sync";

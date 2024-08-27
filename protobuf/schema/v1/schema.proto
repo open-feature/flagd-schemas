@@ -1,4 +1,5 @@
 /**
+ * DEPRECATED; use flagd.evaluation.v1
  * Flag evaluation API
  *
  * This proto forms the basis of a flag-evaluation API.
@@ -11,6 +12,7 @@ package schema.v1;
 
 import "google/protobuf/struct.proto";
 
+option deprecated = true;
 option csharp_namespace = "OpenFeature.Flagd.Grpc";
 option go_package = "schema/service/v1";
 option java_package = "dev.openfeature.flagd.grpc";
