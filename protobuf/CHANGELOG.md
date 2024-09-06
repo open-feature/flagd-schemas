@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.1](https://github.com/open-feature/flagd-schemas/compare/protobuf-v0.6.0...protobuf-v0.6.1) (2024-08-28)
+
+
+### 🧹 Chore
+
+* deprecate old protos ([#170](https://github.com/open-feature/flagd-schemas/issues/170)) ([53374a7](https://github.com/open-feature/flagd-schemas/commit/53374a7f79558e8453dc340a4f881b46dabb4eaf))
+
 ## [0.6.0](https://github.com/open-feature/flagd-schemas/compare/protobuf-v0.5.4...protobuf-v0.6.0) (2024-02-15)
 
 
