@@ -37,7 +37,7 @@ properties:
           dir, or available on the same HTTP path
         $ref: "./targeting.json"
   metadata:
-    name: Flag Set Metadata
+    title: Flag Set Metadata
     description: Metadata about the flag set, with keys of type string, and values of type boolean, string, or number.
     properties:
       flagSetId:
