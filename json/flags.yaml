@@ -139,4 +139,4 @@ definitions:
        - number
        - boolean
     # Metadata is optional
-    required:
+    required: []
