@@ -44,6 +44,9 @@ message AnyFlag {
     double double_value = 5;
     google.protobuf.Struct object_value = 6;
   }
+
+  // Metadata about this flag, see https://openfeature.dev/specification/types/#flag-metadata
+  google.protobuf.Struct metadata = 7;
 }
 
 // Request body for boolean flag evaluation, used by the ResolveBoolean rpc.
