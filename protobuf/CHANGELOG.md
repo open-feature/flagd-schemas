@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.2](https://github.com/open-feature/flagd-schemas/compare/protobuf-v0.6.1...protobuf-v0.6.2) (2024-12-05)
+
+
+### ✨ New Features
+
+* add metadata to the AnyFlag response used for bulk eval ([#176](https://github.com/open-feature/flagd-schemas/issues/176)) ([3acc9e4](https://github.com/open-feature/flagd-schemas/commit/3acc9e44fcd4686318c242248c1621cc3cdd4c41))
+
 ## [0.6.1](https://github.com/open-feature/flagd-schemas/compare/protobuf-v0.6.0...protobuf-v0.6.1) (2024-08-28)
 
 
