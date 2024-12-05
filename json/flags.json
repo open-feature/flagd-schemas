@@ -54,13 +54,12 @@
       "title": "Flag Set Metadata",
       "description": "Metadata about the flag set, with keys of type string, and values of type boolean, string, or number.",
       "properties": {
-        "id": {
+        "flagSetId": {
           "description": "The unique identifier for the flag set.",
           "type": "string"
         },
         "version": {
-          "description": "The version of the flag set.",
-          "type": "string"
+          "description": "The version of the flag set."
         }
       },
       "$ref": "#/definitions/metadata"
