@@ -11,7 +11,6 @@
       "defaultVariant": "red",
       "state": "ENABLED",
       "metadata": {
-        "flagSetId": "blah",
         "boolean": true,
         "string": "string",
         "float": 1.23,
@@ -20,7 +19,7 @@
     }
   },
   "metadata": {
-    "flagSetId": "sso/dev",
+    "id": "sso/dev",
     "version": "1.0.0",
     "boolean": true,
     "string": "string",
