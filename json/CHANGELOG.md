@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.10](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.9...json/json-schema-v0.2.10) (2025-01-06)
+
+
+### ✨ New Features
+
+* rename named top-level prop from id to flagSetId ([#177](https://github.com/open-feature/flagd-schemas/issues/177)) ([bb4d9fd](https://github.com/open-feature/flagd-schemas/commit/bb4d9fd6dc4f0b8a1af77335404c949697b766e2))
+
 ## [0.2.9](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.8...json/json-schema-v0.2.9) (2024-12-05)
 
 
