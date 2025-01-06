@@ -19,7 +19,7 @@
     }
   },
   "metadata": {
-    "id": "sso/dev",
+    "flagSetId": "sso/dev",
     "version": "1.0.0",
     "boolean": true,
     "string": "string",
