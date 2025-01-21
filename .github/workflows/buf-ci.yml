@@ -14,5 +14,5 @@ jobs:
       - uses: actions/checkout@v4
       - uses: bufbuild/buf-action@v1
         with:
-          input: protobuf
           token: ${{ secrets.BUF_TOKEN }}
+          breaking_against: ${{ github.event.repository.clone_url }}#format=git,commit=${{ github.event.pull_request.base.sha }},subdir=protobuf
