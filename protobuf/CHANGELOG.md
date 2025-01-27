@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.3](https://github.com/open-feature/flagd-schemas/compare/protobuf-v0.6.2...protobuf-v0.6.3) (2025-01-27)
+
+
+### ✨ New Features
+
+* add bulk metadata ([#180](https://github.com/open-feature/flagd-schemas/issues/180)) ([9ca6172](https://github.com/open-feature/flagd-schemas/commit/9ca6172cfe54f4025cfa04d5f0c517f95a93f602))
+
 ## [0.6.2](https://github.com/open-feature/flagd-schemas/compare/protobuf-v0.6.1...protobuf-v0.6.2) (2024-12-05)
 
 
