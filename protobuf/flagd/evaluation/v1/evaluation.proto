@@ -27,6 +27,9 @@ message ResolveAllRequest {
 message ResolveAllResponse {
   // Object structure describing the evaluated flags for the provided context.
   map<string, AnyFlag> flags = 1;
+
+  // Metadata for the bulk evaluation
+  google.protobuf.Struct metadata = 2;
 }
 
 // A variant type flag response.
@@ -45,7 +48,7 @@ message AnyFlag {
     google.protobuf.Struct object_value = 6;
   }
 
-  // Metadata about this flag, see https://openfeature.dev/specification/types/#flag-metadata
+  // Metadata for this evaluation
   google.protobuf.Struct metadata = 7;
 }
 
