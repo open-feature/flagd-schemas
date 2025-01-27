@@ -1,6 +1,6 @@
 module github.com/open-feature/flagd-schemas
 
-go 1.18
+go 1.23
 
 require github.com/xeipuuv/gojsonschema v1.2.0
 
