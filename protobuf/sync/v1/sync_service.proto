@@ -58,7 +58,7 @@ enum SyncState {
 
 // SyncFlagsResponse is the server response containing feature flag configurations and the state
 message SyncFlagsResponse {
-  // flagd feature flag configuration. Must be validated to schema - https://raw.githubusercontent.com/open-feature/schemas/main/json/flagd-definitions.json
+  // flagd feature flag configuration. Must be validated to schema - https://raw.githubusercontent.com/open-feature/flagd-schemas/main/json/flags.json
   string flag_configuration = 1;
 
   // State conveying the operation to be performed by flagd. See the descriptions of SyncState for an explanation of
@@ -84,7 +84,7 @@ message FetchAllFlagsRequest {
 
 //  FetchAllFlagsResponse is the server response containing feature flag configurations
 message FetchAllFlagsResponse {
-  // flagd feature flag configuration. Must be validated to schema - https://raw.githubusercontent.com/open-feature/schemas/main/json/flagd-definitions.json
+  // flagd feature flag configuration. Must be validated to schema - https://raw.githubusercontent.com/open-feature/flagd-schemas/main/json/flags.json
   string flag_configuration = 1;
 }
 
