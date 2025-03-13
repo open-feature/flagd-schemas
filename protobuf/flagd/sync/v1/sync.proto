@@ -37,10 +37,8 @@ message SyncFlagsRequest {
 message SyncFlagsResponse {
   // flagd feature flag configuration. Must be validated to schema - https://raw.githubusercontent.com/open-feature/schemas/main/json/flagd-definitions.json
   string flag_configuration = 1;
-  // String key indicating the type of event that is being received, for example, provider_ready or configuration_change
-  string type = 2;
   // Static context to be included in in-process evaluations (optional).
-  optional google.protobuf.Struct sync_context = 3;
+  optional google.protobuf.Struct sync_context = 2;
 }
 
 // FetchAllFlagsRequest is the request to fetch all flags. Clients send this request as the client in order to resync their internal state
