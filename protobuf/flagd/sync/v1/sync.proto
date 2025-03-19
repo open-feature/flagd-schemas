@@ -37,6 +37,8 @@ message SyncFlagsRequest {
 message SyncFlagsResponse {
   // flagd feature flag configuration. Must be validated to schema - https://raw.githubusercontent.com/open-feature/flagd-schemas/main/json/flags.json
   string flag_configuration = 1;
+  // Static context to be included in in-process evaluations (optional).
+  optional google.protobuf.Struct sync_context = 2;
 }
 
 // FetchAllFlagsRequest is the request to fetch all flags. Clients send this request as the client in order to resync their internal state
@@ -62,17 +64,23 @@ message FetchAllFlagsResponse {
 }
 
 // GetMetadataRequest is the request for retrieving metadata from the sync service
-message GetMetadataRequest {}
+message GetMetadataRequest {
+  option deprecated = true;
+}
 
 // GetMetadataResponse contains metadata from the sync service
+// DEPRECATED; use flagd.sync.v1.SyncFlagsResponse.sync_context
 message GetMetadataResponse {
   reserved 1; // old key/value metadata impl
   google.protobuf.Struct metadata = 2;
+  option deprecated = true;
 }
 
 // FlagService implements a server streaming to provide realtime flag configurations
 service FlagSyncService {
   rpc SyncFlags(SyncFlagsRequest) returns (stream SyncFlagsResponse) {}
   rpc FetchAllFlags(FetchAllFlagsRequest) returns (FetchAllFlagsResponse) {}
-  rpc GetMetadata(GetMetadataRequest) returns (GetMetadataResponse) {}
+  rpc GetMetadata(GetMetadataRequest) returns (GetMetadataResponse) {
+    option deprecated = true;
+  }
 }
