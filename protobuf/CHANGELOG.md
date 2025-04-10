@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.6.4](https://github.com/open-feature/flagd-schemas/compare/protobuf-v0.6.3...protobuf-v0.6.4) (2025-04-10)
+
+
+### ✨ New Features
+
+* add sync stream type and context ([#183](https://github.com/open-feature/flagd-schemas/issues/183)) ([9b0ee43](https://github.com/open-feature/flagd-schemas/commit/9b0ee43ecc477e277d41770034fa495ec78838fe))
+
+
+### 📚 Documentation
+
+* fix url for flags.json ([#182](https://github.com/open-feature/flagd-schemas/issues/182)) ([e840a03](https://github.com/open-feature/flagd-schemas/commit/e840a037dc49801185217f45cc404fc8ff2cd0d4))
+
 ## [0.6.3](https://github.com/open-feature/flagd-schemas/compare/protobuf-v0.6.2...protobuf-v0.6.3) (2025-01-27)
 
 
