@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.11](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.10...json/json-schema-v0.2.11) (2025-04-10)
+
+
+### 📚 Documentation
+
+* clarify that bucketing keys are strings ([#185](https://github.com/open-feature/flagd-schemas/issues/185)) ([c707f56](https://github.com/open-feature/flagd-schemas/commit/c707f563d0a1b35ebea802568c6d3151633bde31))
+
 ## [0.2.10](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.9...json/json-schema-v0.2.10) (2025-01-06)
 
 
