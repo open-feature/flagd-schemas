@@ -82,8 +82,8 @@
         },
         "defaultVariant": {
           "title": "Default Variant",
-          "description": "The variant to serve if no dynamic targeting applies (including if the targeting returns null).",
-          "type": "string"
+          "description": "Default variant to use. Set to null to use code-defined default.",
+          "type": ["string", "null"]
         },
         "targeting": {
           "$ref": "./targeting.json"
@@ -95,8 +95,7 @@
         }
       },
       "required": [
-        "state",
-        "defaultVariant"
+        "state"
       ]
     },
     "booleanVariants": {
