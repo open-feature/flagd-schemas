@@ -63,7 +63,7 @@ definitions:
         - DISABLED
       defaultVariant:
         title: Default Variant
-        description: Default variant to use. Set to null to use code-defined default.
+        description: The variant to serve if no dynamic targeting applies (including if the targeting returns null). Set to null to use code-defined default.
         type: 
         - string
         - null
