@@ -63,9 +63,10 @@ definitions:
         - DISABLED
       defaultVariant:
         title: Default Variant
-        description: The variant to serve if no dynamic targeting applies (including
-          if the targeting returns null).
-        type: string
+        description: The variant to serve if no dynamic targeting applies (including if the targeting returns null). Set to null to use code-defined default.
+        type: 
+        - string
+        - "null"
       targeting:
         $ref: "./targeting.json"
       metadata:
@@ -74,7 +75,6 @@ definitions:
         $ref: "#/definitions/metadata"
     required:
     - state
-    - defaultVariant
   booleanVariants:
     type: object
     properties:
