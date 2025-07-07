@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.12](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.11...json/json-schema-v0.2.12) (2025-07-07)
+
+
+### ✨ New Features
+
+* making default values optional ([#187](https://github.com/open-feature/flagd-schemas/issues/187)) ([6430ebc](https://github.com/open-feature/flagd-schemas/commit/6430ebcc191fa29cbe28fa9f8fa70f94d8b1c0d0))
+
 ## [0.2.11](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.10...json/json-schema-v0.2.11) (2025-04-10)
 
 
