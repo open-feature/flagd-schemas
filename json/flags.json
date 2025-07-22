@@ -45,10 +45,6 @@
       "description": "Defines flags for use in flagd providers, including typed variants and rules.",
       "type": "object",
       "properties": {
-        "flags": {
-          "title": "Flags",
-          "description": "Top-level flags array. All flags are defined here."
-        },
         "$evaluators": {
           "title": "Evaluators",
           "description": "Reusable targeting rules that can be referenced with \"$ref\": \"myRule\" in multiple flags.",
@@ -76,13 +72,9 @@
           },
           "$ref": "#/definitions/metadata"
         }
-      },
-      "required": [
-        "flags"
-      ]
+      }
     },
     "providerConfig": {
-      "$id": "https://flagd.dev/schema/v0/flags.json#/provider",
       "description": "Defines flags for use in flagd (not providers), including typed variants and rules.",
       "type": "object",
       "allOf": [
@@ -94,29 +86,36 @@
         "flags": {
           "$ref": "#/definitions/flagsMap"
         }
-      }
+      },
+      "required": [
+        "flags"
+      ]
     },
     "flagdConfig": {
-      "$id": "https://flagd.dev/schema/v0/flags.json#/flagd",
       "description": "Defines flags for use in flagd (not providers), including typed variants and rules.",
       "type": "object",
       "allOf": [
         {
           "$ref": "#/definitions/baseConfig"
+        },
+        {
+          "properties": {
+            "flags": {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/flagsMap"
+                },
+                {
+                  "$ref": "#/definitions/flagsArray"
+                }
+              ]
+            }
+          }
         }
       ],
-      "properties": {
-        "flags": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/flagsArray"
-            },
-            {
-              "$ref": "#/definitions/flagsMap"
-            }
-          ]
-        }
-      }
+      "required": [
+        "flags"
+      ]
     },
     "baseFlag": {
       "$comment": "base flag object; no title/description here, allows for better UX, keep it in the overrides",
@@ -152,8 +151,7 @@
           "minProperties": 1,
           "additionalProperties": false,
           "patternProperties": {
-            "^.{1,}$": {
-            }
+            "^.{1,}$": {}
           }
         }
       },
@@ -172,10 +170,6 @@
             "^.{1,}$": {
               "type": "boolean"
             }
-          },
-          "default": {
-            "true": true,
-            "false": false
           }
         }
       }
@@ -290,14 +284,12 @@
     "metadata": {
       "type": "object",
       "additionalProperties": {
-        "description": "Any additional key/value pair with value of type boolean, string, or number.",
         "type": [
           "string",
           "number",
           "boolean"
         ]
-      },
-      "required": []
+      }
     }
   }
 }
