@@ -1,11 +1,73 @@
 {
   "$id": "https://flagd.dev/schema/v0/flags.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "flagd Flag Configuration",
-  "description": "Defines flags for use in flagd, including typed variants and rules.",
-  "type": "object",
-  "properties": {
-    "flags": {
+  "$ref": "#/definitions/base",
+  "definitions": {
+    "base": {
+      "title": "flagd Flag Configuration",
+      "description": "Defines flags for use in flagd providers, including typed variants and rules.",
+      "type": "object",
+      "properties": {
+        "flags": {
+          "$ref": "#/definitions/flagsMap"
+        },
+        "$evaluators": {
+          "title": "Evaluators",
+          "description": "Reusable targeting rules that can be referenced with \"$ref\": \"myRule\" in multiple flags.",
+          "type": "object",
+          "additionalProperties": false,
+          "patternProperties": {
+            "^.{1,}$": {
+              "$comment": "this relative ref means that targeting.json MUST be in the same dir, or available on the same HTTP path",
+              "$ref": "./targeting.json"
+            }
+          }
+        },
+        "metadata": {
+          "title": "Flag Set Metadata",
+          "description": "Metadata about the flag set, with keys of type string, and values of type boolean, string, or number.",
+          "properties": {
+            "flagSetId": {
+              "description": "The unique identifier for the flag set.",
+              "type": "string"
+            },
+            "version": {
+              "description": "The version of the flag set.",
+              "type": "string"
+            }
+          },
+          "$ref": "#/definitions/metadata"
+        }
+      }
+    },
+    "flagdImport": {
+      "$id": "https://flagd.dev/schema/v0/flags.json#flagdImport",
+      "description": "Defines flags for use in flagd (not providers), including typed variants and rules.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/base"
+        },
+        {
+          "properties": {
+            "flags": {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/flagsArray"
+                },
+                {
+                  "$ref": "#/definitions/flagsMap"
+                }
+              ]
+            }
+          },
+          "required": [
+            "flags"
+          ]
+        }
+      ]
+    },
+    "flagsMap": {
       "title": "Flags",
       "description": "Top-level flags object. All flags are defined here.",
       "type": "object",
@@ -13,60 +75,33 @@
       "additionalProperties": false,
       "patternProperties": {
         "^.{1,}$": {
-          "oneOf": [
-            {
-              "title": "Boolean flag",
-              "description": "A flag having boolean values.",
-              "$ref": "#/definitions/booleanFlag"
-            },
-            {
-              "title": "String flag",
-              "description": "A flag having string values.",
-              "$ref": "#/definitions/stringFlag"
-            },
-            {
-              "title": "Numeric flag",
-              "description": "A flag having numeric values.",
-              "$ref": "#/definitions/numberFlag"
-            },
-            {
-              "title": "Object flag",
-              "description": "A flag having arbitrary object values.",
-              "$ref": "#/definitions/objectFlag"
-            }
-          ]
+          "$ref": "#/definitions/anyFlag"
         }
       }
     },
-    "$evaluators": {
-      "title": "Evaluators",
-      "description": "Reusable targeting rules that can be referenced with \"$ref\": \"myRule\" in multiple flags.",
-      "type": "object",
-      "additionalProperties": false,
-      "patternProperties": {
-        "^.{1,}$": {
-          "$comment": "this relative ref means that targeting.json MUST be in the same dir, or available on the same HTTP path",
-          "$ref": "./targeting.json"
-        }
+    "flagsArray": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/definitions/anyFlag"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "key": {
+                "description": "Key of the flag",
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "key"
+            ]
+          }
+        ]
       }
     },
-    "metadata": {
-      "title": "Flag Set Metadata",
-      "description": "Metadata about the flag set, with keys of type string, and values of type boolean, string, or number.",
-      "properties": {
-        "flagSetId": {
-          "description": "The unique identifier for the flag set.",
-          "type": "string"
-        },
-        "version": {
-          "description": "The version of the flag set.",
-          "type": "string"
-        }
-      },
-      "$ref": "#/definitions/metadata"
-    }
-  },
-  "definitions": {
     "flag": {
       "$comment": "base flag object; no title/description here, allows for better UX, keep it in the overrides",
       "type": "object",
@@ -161,8 +196,26 @@
         }
       }
     },
+    "anyFlag": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/booleanFlag"
+        },
+        {
+          "$ref": "#/definitions/numberFlag"
+        },
+        {
+          "$ref": "#/definitions/stringFlag"
+        },
+        {
+          "$ref": "#/definitions/objectFlag"
+        }
+      ]
+    },
     "booleanFlag": {
       "$comment": "merge the variants with the base flag to build our typed flags",
+      "title": "Boolean flag",
+      "description": "A flag having boolean values.",
       "allOf": [
         {
           "$ref": "#/definitions/flag"
@@ -173,6 +226,8 @@
       ]
     },
     "stringFlag": {
+      "title": "String flag",
+      "description": "A flag having string values.",
       "allOf": [
         {
           "$ref": "#/definitions/flag"
@@ -183,6 +238,8 @@
       ]
     },
     "numberFlag": {
+      "title": "Numeric flag",
+      "description": "A flag having numeric values.",
       "allOf": [
         {
           "$ref": "#/definitions/flag"
@@ -193,6 +250,8 @@
       ]
     },
     "objectFlag": {
+      "title": "Object flag",
+      "description": "A flag having arbitrary object values.",
       "allOf": [
         {
           "$ref": "#/definitions/flag"
