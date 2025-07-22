@@ -1,15 +1,53 @@
 {
   "$id": "https://flagd.dev/schema/v0/flags.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$ref": "#/definitions/base",
+  "$ref": "#/definitions/providerConfig",
   "definitions": {
-    "base": {
+    "flagsMap": {
+      "title": "Flags",
+      "description": "Top-level flags object. All flags are defined here.",
+      "type": "object",
+      "$comment": "flag objects are one of the 4 flag types defined in definitions",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^.{1,}$": {
+          "$ref": "#/definitions/anyFlag"
+        }
+      }
+    },
+    "flagsArray": {
+      "title": "Flags",
+      "description": "Top-level flags array. All flags are defined here.",
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/definitions/anyFlag"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "key": {
+                "description": "Key of the flag",
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "key"
+            ]
+          }
+        ]
+      }
+    },
+    "baseConfig": {
       "title": "flagd Flag Configuration",
       "description": "Defines flags for use in flagd providers, including typed variants and rules.",
       "type": "object",
       "properties": {
         "flags": {
-          "$ref": "#/definitions/flagsMap"
+          "title": "Flags",
+          "description": "Top-level flags array. All flags are defined here."
         },
         "$evaluators": {
           "title": "Evaluators",
@@ -38,71 +76,49 @@
           },
           "$ref": "#/definitions/metadata"
         }
-      }
+      },
+      "required": [
+        "flags"
+      ]
     },
-    "flagdImport": {
-      "$id": "https://flagd.dev/schema/v0/flags.json#flagdImport",
+    "providerConfig": {
+      "$id": "https://flagd.dev/schema/v0/flags.json#/provider",
       "description": "Defines flags for use in flagd (not providers), including typed variants and rules.",
       "type": "object",
       "allOf": [
         {
-          "$ref": "#/definitions/base"
-        },
+          "$ref": "#/definitions/baseConfig"
+        }
+      ],
+      "properties": {
+        "flags": {
+          "$ref": "#/definitions/flagsMap"
+        }
+      }
+    },
+    "flagdConfig": {
+      "$id": "https://flagd.dev/schema/v0/flags.json#/flagd",
+      "description": "Defines flags for use in flagd (not providers), including typed variants and rules.",
+      "type": "object",
+      "allOf": [
         {
-          "properties": {
-            "flags": {
-              "oneOf": [
-                {
-                  "$ref": "#/definitions/flagsArray"
-                },
-                {
-                  "$ref": "#/definitions/flagsMap"
-                }
-              ]
+          "$ref": "#/definitions/baseConfig"
+        }
+      ],
+      "properties": {
+        "flags": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/flagsArray"
+            },
+            {
+              "$ref": "#/definitions/flagsMap"
             }
-          },
-          "required": [
-            "flags"
           ]
         }
-      ]
-    },
-    "flagsMap": {
-      "title": "Flags",
-      "description": "Top-level flags object. All flags are defined here.",
-      "type": "object",
-      "$comment": "flag objects are one of the 4 flag types defined in definitions",
-      "additionalProperties": false,
-      "patternProperties": {
-        "^.{1,}$": {
-          "$ref": "#/definitions/anyFlag"
-        }
       }
     },
-    "flagsArray": {
-      "type": "array",
-      "items": {
-        "allOf": [
-          {
-            "$ref": "#/definitions/anyFlag"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "key": {
-                "description": "Key of the flag",
-                "type": "string",
-                "minLength": 1
-              }
-            },
-            "required": [
-              "key"
-            ]
-          }
-        ]
-      }
-    },
-    "flag": {
+    "baseFlag": {
       "$comment": "base flag object; no title/description here, allows for better UX, keep it in the overrides",
       "type": "object",
       "properties": {
@@ -130,10 +146,20 @@
           "title": "Flag Metadata",
           "description": "Metadata about an individual feature flag, with keys of type string, and values of type boolean, string, or number.",
           "$ref": "#/definitions/metadata"
+        },
+        "variants": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": false,
+          "patternProperties": {
+            "^.{1,}$": {
+            }
+          }
         }
       },
       "required": [
-        "state"
+        "state",
+        "variants"
       ]
     },
     "booleanVariants": {
@@ -218,7 +244,7 @@
       "description": "A flag having boolean values.",
       "allOf": [
         {
-          "$ref": "#/definitions/flag"
+          "$ref": "#/definitions/baseFlag"
         },
         {
           "$ref": "#/definitions/booleanVariants"
@@ -230,7 +256,7 @@
       "description": "A flag having string values.",
       "allOf": [
         {
-          "$ref": "#/definitions/flag"
+          "$ref": "#/definitions/baseFlag"
         },
         {
           "$ref": "#/definitions/stringVariants"
@@ -242,7 +268,7 @@
       "description": "A flag having numeric values.",
       "allOf": [
         {
-          "$ref": "#/definitions/flag"
+          "$ref": "#/definitions/baseFlag"
         },
         {
           "$ref": "#/definitions/numberVariants"
@@ -254,7 +280,7 @@
       "description": "A flag having arbitrary object values.",
       "allOf": [
         {
-          "$ref": "#/definitions/flag"
+          "$ref": "#/definitions/baseFlag"
         },
         {
           "$ref": "#/definitions/objectVariants"
