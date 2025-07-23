@@ -23,10 +23,10 @@ func init() {
 
 	// Add the Flag Definition schema
 	flagsFile, err := os.Open(flagsJson)
+	defer flagsFile.Close()
 	if err != nil {
 		log.Fatalf("Failed to open flags schema file: %v", err)
 	}
-	defer flagsFile.Close()
 	json, _ := jsonschema.UnmarshalJSON(flagsFile)
 	if err := compiler.AddResource("https://flagd.dev/schema/v0/flags.json", json); err != nil {
 		log.Fatalf("Failed to add flags schema: %v", err)
@@ -34,10 +34,10 @@ func init() {
 
 	// Add the Targeting schema
 	targetingFile, err := os.Open(targetingJson)
+	defer targetingFile.Close()
 	if err != nil {
 		log.Fatalf("Failed to open targeting schema file: %v", err)
 	}
-	defer targetingFile.Close()
 	json, _ = jsonschema.UnmarshalJSON(targetingFile)
 	if err := compiler.AddResource("https://flagd.dev/schema/v0/targeting.json", json); err != nil {
 		log.Fatalf("Failed to add targeting schema: %v", err)

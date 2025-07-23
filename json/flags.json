@@ -28,7 +28,7 @@
             "type": "object",
             "properties": {
               "key": {
-                "description": "Key of the flag",
+                "description": "Key of the flag: uniquely identifies this flag within it's flagSet",
                 "type": "string",
                 "minLength": 1
               }
@@ -75,7 +75,7 @@
       }
     },
     "providerConfig": {
-      "description": "Defines flags for use in flagd (not providers), including typed variants and rules.",
+      "description": "Defines flags for use in providers (not flagd), including typed variants and rules.",
       "type": "object",
       "allOf": [
         {
