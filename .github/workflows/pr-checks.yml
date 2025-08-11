@@ -18,7 +18,7 @@ jobs:
         with:
           github_token: ${{ github.token }}
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       # Lint your Protobuf sources
       - uses: bufbuild/buf-lint-action@v1
         with:
@@ -32,7 +32,7 @@ jobs:
         with:
           github_token: ${{ github.token }}
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Buf format check
         run: buf format -d --exit-code
 
@@ -44,7 +44,7 @@ jobs:
         with:
           github_token: ${{ github.token }}
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       # Run breaking change detection against the last commit
       - uses: bufbuild/buf-breaking-action@v1
         with:
@@ -55,7 +55,7 @@ jobs:
   validate-schema:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       
       # Use ajv to validate schema
       - name: Setup node
