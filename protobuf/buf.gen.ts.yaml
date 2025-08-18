@@ -1,8 +1,8 @@
-version: v1
+version: v2
 plugins:
-  - plugin: buf.build/community/stephenh-ts-proto:v1.156.0
+  - remote: buf.build/community/stephenh-ts-proto:v1.156.0
     out: ../proto/ts
-    opt: 
+    opt:
       - outputServices=grpc-js
       - forceLong=string
       - esModuleInterop=true
