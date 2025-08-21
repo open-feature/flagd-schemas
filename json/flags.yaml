@@ -60,7 +60,7 @@ definitions:
         $ref: "#/definitions/flagsMap"
     required: [flags]
   flagdConfig:
-    description: Defines flags for use in flagd (not providers), including typed variants and rules.
+    description: Defines flags for use in the flagd daemon (a superset of what's available in providers), including typed variants and rules. Flags can be defined as an array or an object.
     type: object
     allOf:
       - $ref: "#/definitions/baseConfig"

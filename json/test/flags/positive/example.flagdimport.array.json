@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../flags.json#/definitions/flagdConfig",
+  "$schema": "../../../flagd.json",
   "flags": [
     {
       "key": "myBoolFlag",

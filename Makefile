@@ -43,8 +43,9 @@ gen-rust: install-buf guard-GOPATH
 	${GOPATH}/bin/buf generate buf.build/open-feature/flagd --template protobuf/buf.gen.rust.yaml
 
 gen-schema-json: install-yq
-	yq eval -o=json json/flags.yaml > json/flags.json
 	yq eval -o=json json/targeting.yaml > json/targeting.json
+	yq eval -o=json json/flags.yaml > json/flags.json
+	yq eval -o=json json/flagd.yaml > json/flagd.json
 	
 .PHONY: test
 test: gen-schema-json ajv-validate-flagd-schema

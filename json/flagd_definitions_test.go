@@ -2,17 +2,19 @@ package flagd_definitions_test
 
 import (
 	"fmt"
-	"github.com/santhosh-tekuri/jsonschema/v6"
 	"log"
 	"os"
 	"path/filepath"
 	"strings"
 	"testing"
+
+	"github.com/santhosh-tekuri/jsonschema/v6"
 )
 
 var compiler *jsonschema.Compiler
 
 const (
+	flagdJson     = "./flagd.json"
 	flagsJson     = "./flags.json"
 	targetingJson = "./targeting.json"
 )
@@ -21,13 +23,24 @@ func init() {
 	// Create a new JSON Schema compiler
 	compiler = jsonschema.NewCompiler()
 
-	// Add the Flag Definition schema
+	// Add the Flagd Daemon schema
+	flagdFile, err := os.Open(flagdJson)
+	defer flagdFile.Close()
+	if err != nil {
+		log.Fatalf("Failed to open flags schema file: %v", err)
+	}
+	json, _ := jsonschema.UnmarshalJSON(flagdFile)
+	if err := compiler.AddResource("https://flagd.dev/schema/v0/flagd.json", json); err != nil {
+		log.Fatalf("Failed to add flagd schema: %v", err)
+	}
+
+	// Add the Flag schema
 	flagsFile, err := os.Open(flagsJson)
 	defer flagsFile.Close()
 	if err != nil {
 		log.Fatalf("Failed to open flags schema file: %v", err)
 	}
-	json, _ := jsonschema.UnmarshalJSON(flagsFile)
+	json, _ = jsonschema.UnmarshalJSON(flagsFile)
 	if err := compiler.AddResource("https://flagd.dev/schema/v0/flags.json", json); err != nil {
 		log.Fatalf("Failed to add flags schema: %v", err)
 	}
