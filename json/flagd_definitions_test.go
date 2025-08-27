@@ -57,7 +57,23 @@ func init() {
 	}
 }
 
-func TestPositiveFlagParsing(t *testing.T) {
+func TestPositiveFlagdParsing(t *testing.T) {
+
+	if err := walkPath(true, "./test/flagd/positive"); err != nil {
+		t.Error(err)
+		t.FailNow()
+	}
+}
+
+func TestNegativeFlagdParsing(t *testing.T) {
+
+	if err := walkPath(true, "./test/flagd/negative"); err != nil {
+		t.Error(err)
+		t.FailNow()
+	}
+}
+
+func TestPositiveFlagsParsing(t *testing.T) {
 
 	if err := walkPath(true, "./test/flags/positive"); err != nil {
 		t.Error(err)
@@ -65,7 +81,7 @@ func TestPositiveFlagParsing(t *testing.T) {
 	}
 }
 
-func TestNegativeFlagParsing(t *testing.T) {
+func TestNegativeFlagsParsing(t *testing.T) {
 	if err := walkPath(false, "./test/flags/negative"); err != nil {
 		t.Error(err)
 		t.FailNow()
