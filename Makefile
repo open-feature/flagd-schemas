@@ -54,5 +54,6 @@ test: gen-schema-json ajv-validate-flagd-schema
 ajv-validate-flagd-schema:
 	@if ! npm ls ajv-cli; then npm ci; fi
 	npx ajv compile -s json/targeting.json
-# 	load the targeting json so flag.json can reference it
+# load dependent schemas with -r
 	npx ajv compile -r json/targeting.json -s json/flags.json
+	npx ajv compile -r json/targeting.json -r json/flags.json -s json/flagd.json
