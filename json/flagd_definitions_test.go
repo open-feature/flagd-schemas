@@ -2,6 +2,7 @@ package flagd_definitions_test
 
 import (
 	"fmt"
+	flagd_definitions "github.com/open-feature/flagd-schemas/json"
 	"log"
 	"os"
 	"path/filepath"
@@ -13,44 +14,26 @@ import (
 
 var compiler *jsonschema.Compiler
 
-const (
-	flagdJson     = "./flagd.json"
-	flagsJson     = "./flags.json"
-	targetingJson = "./targeting.json"
-)
-
 func init() {
 	// Create a new JSON Schema compiler
 	compiler = jsonschema.NewCompiler()
 
 	// Add the Flagd Daemon schema
-	flagdFile, err := os.Open(flagdJson)
-	defer flagdFile.Close()
-	if err != nil {
-		log.Fatalf("Failed to open flags schema file: %v", err)
-	}
+	flagdFile := strings.NewReader(flagd_definitions.FlagdSchema)
 	json, _ := jsonschema.UnmarshalJSON(flagdFile)
 	if err := compiler.AddResource("https://flagd.dev/schema/v0/flagd.json", json); err != nil {
 		log.Fatalf("Failed to add flagd schema: %v", err)
 	}
 
 	// Add the Flag schema
-	flagsFile, err := os.Open(flagsJson)
-	defer flagsFile.Close()
-	if err != nil {
-		log.Fatalf("Failed to open flags schema file: %v", err)
-	}
+	flagsFile := strings.NewReader(flagd_definitions.FlagSchema)
 	json, _ = jsonschema.UnmarshalJSON(flagsFile)
 	if err := compiler.AddResource("https://flagd.dev/schema/v0/flags.json", json); err != nil {
 		log.Fatalf("Failed to add flags schema: %v", err)
 	}
 
 	// Add the Targeting schema
-	targetingFile, err := os.Open(targetingJson)
-	defer targetingFile.Close()
-	if err != nil {
-		log.Fatalf("Failed to open targeting schema file: %v", err)
-	}
+	targetingFile := strings.NewReader(flagd_definitions.TargetingSchema)
 	json, _ = jsonschema.UnmarshalJSON(targetingFile)
 	if err := compiler.AddResource("https://flagd.dev/schema/v0/targeting.json", json); err != nil {
 		log.Fatalf("Failed to add targeting schema: %v", err)
@@ -139,7 +122,7 @@ func walkPath(shouldPass bool, root string) error {
 				return fmt.Errorf("The value of `$schema` is not a string")
 			}
 		} else {
-			schema, err = compiler.Compile(targetingJson)
+			schema, err = compiler.Compile("https://flagd.dev/schema/v0/targeting.json")
 		}
 
 		// Validate the instance against the schema
