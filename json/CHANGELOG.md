@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.13](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.12...json/json-schema-v0.2.13) (2025-08-29)
+
+
+### ✨ New Features
+
+* add new jsons to the deftinitions, and utilize those in the tests ([#194](https://github.com/open-feature/flagd-schemas/issues/194)) ([beb9f6b](https://github.com/open-feature/flagd-schemas/commit/beb9f6b870d42237f0ba8b8f1a48fbb431005d7b))
+* Allow map configurations for flagd and further improvements ([#190](https://github.com/open-feature/flagd-schemas/issues/190)) ([3a4396c](https://github.com/open-feature/flagd-schemas/commit/3a4396c00de561b012ee0334138de46a48a24c8a))
+
 ## [0.2.12](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.11...json/json-schema-v0.2.12) (2025-07-07)
 
 
