@@ -37,7 +37,7 @@ jobs:
     if: ${{ needs.release-please.outputs.releases_created && needs.release-please.outputs.buf_release_tag }}
     steps:
       # Run `git checkout`
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ needs.release-please.outputs.buf_release_tag }}
       # Install the `buf` CLI
@@ -53,7 +53,7 @@ jobs:
     if: ${{ needs.release-please.outputs.releases_created && needs.release-please.outputs.json_release_tag }}
     steps:
       # Run `git checkout`
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ needs.release-please.outputs.json_release_tag }}
       - uses: JasonEtco/create-an-issue@v2
