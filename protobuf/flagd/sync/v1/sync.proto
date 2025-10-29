@@ -30,7 +30,7 @@ message SyncFlagsRequest {
   // flag configurations from a collection, select the source of the flag or combine this to any desired underlying
   // filtering mechanism.
   //    ex:- selector: 'source=database,app=weatherapp'
-  string selector = 2;
+  string selector = 2 [deprecated = true]; // remember to reserve field number 2 if this is removed;
 }
 
 // SyncFlagsResponse is the server response containing feature flag configurations and the state
@@ -54,7 +54,7 @@ message FetchAllFlagsRequest {
   // flag configurations from a collection, select the source of the flag or combine this to any desired underlying
   // filtering mechanism.
   //    ex:- selector: 'source=database,app=weatherapp'
-  string selector = 2;
+  string selector = 2 [deprecated = true]; // remember to reserve field number 2 if this is removed;
 }
 
 // FetchAllFlagsResponse is the server response containing feature flag configurations
