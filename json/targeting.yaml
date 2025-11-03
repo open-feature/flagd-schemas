@@ -1,20 +1,20 @@
 $id: "https://flagd.dev/schema/v0/targeting.json"
 $schema: http://json-schema.org/draft-07/schema#
 title: flagd Targeting
-description:
-  Defines targeting logic for flagd; a extension of JSONLogic, including
-  purpose-built feature-flagging operations. Note that this schema applies
-  to top-level objects; no additional properties are supported, including "$schema",
-  which means built-in JSON-schema support is not possible in editors.
-  Please use flags.json (which imports this schema) for a rich editor experience.
+description: Defines targeting logic for flagd; a extension of JSONLogic, including purpose-built feature-flagging operations.
 type: object
 anyOf:
-  - $comment: we need this to support empty targeting
-    type: object
-    additionalProperties: false
-    properties: {}
-  - $ref: "#/definitions/anyRule"
+  - $ref: "#/definitions/targeting"
 definitions:
+  targeting:
+    title: Targeting
+    description: An expression returning a value which is coerced to a string to be used as a targeting key, or null (to fall back to defaultVariant). If targeting returns a value which is not a variant key, it's considered an error.
+    anyOf:
+      - $comment: we need this to support empty targeting
+        type: object
+        additionalProperties: false
+        properties: {}
+      - $ref: "#/definitions/anyRule"
   primitive:
     oneOf:
       - description:
@@ -380,26 +380,22 @@ definitions:
               - $ref: "#/definitions/semVerString"
               - $ref: "#/definitions/varRule"
   fractionalWeightArg:
-    description: Distribution for all possible variants, with their associated weighting.
+    $comment: if we remove the "sum to 100" restriction, update the descriptions below!
+    description: Distribution for all possible variants, with their associated weighting out of 100.
     type: array
-    minItems: 1
+    minItems: 2
     maxItems: 2
     items:
-      - description:
-          If this bucket is randomly selected, this string is used to as
-          a key to retrieve the associated value from the "variants" object.
+      - description: If this bucket is randomly selected, this string is used to as a key to retrieve the associated value from the "variants" object.
         type: string
-      - description: Weighted distribution for this variant key.
+      - description: Weighted distribution for this variant key (must sum to 100).
         type: number
   fractionalOp:
     type: array
     minItems: 3
     $comment: there seems to be a bug here, where ajv gives a warning (not an error) because maxItems doesn't equal the number of entries in items, though this is valid in this case
     items:
-      - description:
-          Bucketing value used in pseudorandom assignment; should be a string that is unique
-          and stable for each subject of flag evaluation. Defaults to a concatenation
-          of the flagKey and targetingKey.
+      - description: Bucketing value used in pseudorandom assignment; should be unique and stable for each subject of flag evaluation. Defaults to a concatenation of the flagKey and targetingKey.
         $ref: "#/definitions/anyRule"
       - $ref: "#/definitions/fractionalWeightArg"
       - $ref: "#/definitions/fractionalWeightArg"
