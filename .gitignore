@@ -12,5 +12,6 @@ proto/
 
 # IDE
 .idea
+.cursor/
 
 node_modules
