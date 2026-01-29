@@ -17,21 +17,6 @@ option java_package = "dev.openfeature.flagd.grpc.evaluation.v2";
 option php_namespace = "OpenFeature\\Providers\\Flagd\\Schema\\Grpc\\Evaluation\\V2";
 option ruby_package = "OpenFeature::Flagd::Provider::Grpc::Evaluation::V2";
 
-// Request body for bulk flag evaluation, used by the ResolveAll rpc.
-message ResolveAllRequest {
-  // Object structure describing the EvaluationContext used in the flag evaluation, see https://openfeature.dev/docs/reference/concepts/evaluation-context
-  google.protobuf.Struct context = 1;
-}
-
-// Response body for bulk flag evaluation, used by the ResolveAll rpc.
-message ResolveAllResponse {
-  // Object structure describing the evaluated flags for the provided context.
-  map<string, AnyFlag> flags = 1;
-
-  // Metadata for the bulk evaluation
-  google.protobuf.Struct metadata = 2;
-}
-
 // A variant type flag response.
 message AnyFlag {
   // The reason for the given return value, see https://openfeature.dev/docs/specification/types#resolution-details
@@ -189,7 +174,6 @@ message EventStreamRequest {}
 
 // Service defines the exposed rpcs of flagd
 service Service {
-  rpc ResolveAll(ResolveAllRequest) returns (ResolveAllResponse) {}
   rpc ResolveBoolean(ResolveBooleanRequest) returns (ResolveBooleanResponse) {}
   rpc ResolveString(ResolveStringRequest) returns (ResolveStringResponse) {}
   rpc ResolveFloat(ResolveFloatRequest) returns (ResolveFloatResponse) {}
