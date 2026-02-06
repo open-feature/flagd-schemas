@@ -420,6 +420,62 @@ definitions:
         oneOf:
           - $ref: "#/definitions/fractionalOp"
           - $ref: "#/definitions/fractionalShorthandOp"
+  rolloutArg:
+    description: A variant key (string) or a JSONLogic expression.
+    oneOf:
+      - type: string
+      - $ref: "#/definitions/anyRule"
+  rolloutShorthandOp:
+    description: "Shorthand rollout: [startTime, endTime, to]. Uses defaultVariant as from."
+    type: array
+    minItems: 3
+    maxItems: 3
+    items:
+      - description: Unix timestamp (seconds) when rollout begins (0% on to).
+        type: integer
+      - description: Unix timestamp (seconds) when rollout completes (100% on to).
+        type: integer
+      - $ref: "#/definitions/rolloutArg"
+  rolloutLonghandOp:
+    description: "Longhand rollout: [startTime, endTime, from, to]."
+    type: array
+    minItems: 4
+    maxItems: 4
+    items:
+      - description: Unix timestamp (seconds) when rollout begins (0% on to).
+        type: integer
+      - description: Unix timestamp (seconds) when rollout completes (100% on to).
+        type: integer
+      - $ref: "#/definitions/rolloutArg"
+      - $ref: "#/definitions/rolloutArg"
+  rolloutWithBucketByOp:
+    description: "Rollout with custom bucketBy: [bucketBy, startTime, endTime, from, to]."
+    type: array
+    minItems: 5
+    maxItems: 5
+    items:
+      - description: JSONLogic expression for bucketing value (e.g., {"var":"email"}).
+        $ref: "#/definitions/anyRule"
+      - description: Unix timestamp (seconds) when rollout begins (0% on to).
+        type: integer
+      - description: Unix timestamp (seconds) when rollout completes (100% on to).
+        type: integer
+      - $ref: "#/definitions/rolloutArg"
+      - $ref: "#/definitions/rolloutArg"
+  rolloutRule:
+    type: object
+    additionalProperties: false
+    properties:
+      rollout:
+        title: Rollout Operation
+        description: >
+          Time-based progressive feature rollout. Gradually transitions users from
+          one expression to another over a specified time period using deterministic
+          hashing. For complex distributions, compose with the "fractional" operator.
+        oneOf:
+          - $ref: "#/definitions/rolloutShorthandOp"
+          - $ref: "#/definitions/rolloutLonghandOp"
+          - $ref: "#/definitions/rolloutWithBucketByOp"
   reference:
     additionalProperties: false
     type: object
@@ -448,3 +504,4 @@ definitions:
       - $ref: "#/definitions/stringCompareRule"
       - $ref: "#/definitions/ruleSemVer"
       - $ref: "#/definitions/fractionalRule"
+      - $ref: "#/definitions/rolloutRule"
