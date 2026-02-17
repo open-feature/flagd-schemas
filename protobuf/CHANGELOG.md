@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.5](https://github.com/open-feature/flagd-schemas/compare/protobuf-v0.6.4...protobuf-v0.6.5) (2026-02-17)
+
+
+### ✨ New Features
+
+* deprecate selector body field ([#199](https://github.com/open-feature/flagd-schemas/issues/199)) ([f839659](https://github.com/open-feature/flagd-schemas/commit/f839659ef0a1bebb3ff4b5243680dcddbe29eab6))
+* Make value and defaultVariant explicitly optional ([#204](https://github.com/open-feature/flagd-schemas/issues/204)) ([7b9017a](https://github.com/open-feature/flagd-schemas/commit/7b9017a00b1fccbf2a4a27e919071a3f402acb68))
+
 ## [0.6.4](https://github.com/open-feature/flagd-schemas/compare/protobuf-v0.6.3...protobuf-v0.6.4) (2025-04-10)
 
 
