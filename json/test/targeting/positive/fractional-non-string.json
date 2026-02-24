@@ -1,0 +1,15 @@
+{
+  "fractional": [
+    ["clubs", 1],
+    [true, 1],
+    [1, 1],
+    [{
+      "fractional": [
+        ["clubs", 25],
+        ["diamonds", 25],
+        ["hearts", 25],
+        ["spades", 25]
+      ]
+    }, 1]
+  ]
+}
