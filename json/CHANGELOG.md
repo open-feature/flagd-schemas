@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.14](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.13...json/json-schema-v0.2.14) (2026-03-30)
+
+
+### ✨ New Features
+
+* support non-string, nesting fractional variants ([#207](https://github.com/open-feature/flagd-schemas/issues/207)) ([faca84b](https://github.com/open-feature/flagd-schemas/commit/faca84b1220993d9e49f09adcdcad1583dabebc2))
+
 ## [0.2.13](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.12...json/json-schema-v0.2.13) (2025-08-29)
 
 
