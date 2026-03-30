@@ -1,0 +1,6 @@
+{
+  "fractional": [
+    ["on",  { "-": [{ "var": "$flagd.timestamp" }, 1740000000] }],
+    ["off", { "-": [1800000000, { "var": "$flagd.timestamp" }] }]
+  ]
+}

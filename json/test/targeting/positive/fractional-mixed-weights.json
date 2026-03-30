@@ -1,0 +1,7 @@
+{
+  "fractional": [
+    { "cat": [{ "var": "$flagd.flagKey" }, { "var": "email" }] },
+    ["on",  { "-": [{ "var": "$flagd.timestamp" }, 1740000000] }],
+    ["off", 100]
+  ]
+}
