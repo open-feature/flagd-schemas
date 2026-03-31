@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.15](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.14...json/json-schema-v0.2.15) (2026-03-31)
+
+
+### ✨ New Features
+
+* add minimum weight constraint to fractional operator ([#209](https://github.com/open-feature/flagd-schemas/issues/209)) ([869fb61](https://github.com/open-feature/flagd-schemas/commit/869fb61fc66b7e1a514562f82a81634989bb0aac))
+
 ## [0.2.14](https://github.com/open-feature/flagd-schemas/compare/json/json-schema-v0.2.13...json/json-schema-v0.2.14) (2026-03-30)
 
 
