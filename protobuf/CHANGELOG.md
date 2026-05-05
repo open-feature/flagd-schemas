@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.6](https://github.com/open-feature/flagd-schemas/compare/protobuf-v0.6.5...protobuf-v0.6.6) (2026-05-05)
+
+
+### 🐛 Bug Fixes
+
+* add LICENSE to protobuf BSR module root ([#212](https://github.com/open-feature/flagd-schemas/issues/212)) ([7fc195b](https://github.com/open-feature/flagd-schemas/commit/7fc195bef2b0857405c024347a663d2e83d585f6))
+
 ## [0.6.5](https://github.com/open-feature/flagd-schemas/compare/protobuf-v0.6.4...protobuf-v0.6.5) (2026-02-17)
 
 
