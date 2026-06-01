@@ -3,5 +3,10 @@
   "private": true,
   "devDependencies": {
     "ajv-cli": "^5.0.0"
+  },
+  "overrides": {
+    "ajv-cli": {
+      "fast-json-patch": "^3.1.1"
+    }
   }
 }
