@@ -2,11 +2,6 @@
   "name": "@openfeature/schemas",
   "private": true,
   "devDependencies": {
-    "ajv-cli": "^5.0.0"
-  },
-  "overrides": {
-    "ajv-cli": {
-      "fast-json-patch": "^3.1.1"
-    }
+    "@jirutka/ajv-cli": "^6.0.0"
   }
 }
