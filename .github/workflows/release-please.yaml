@@ -17,7 +17,7 @@ jobs:
 
     # Release-please creates a PR that tracks all changes
     steps:
-      - uses: googleapis/release-please-action@v3
+      - uses: googleapis/release-please-action@db8f2c60ee802b3748b512940dde88eabd7b7e01 # v3
         id: release
         with:
           command: manifest
@@ -37,14 +37,16 @@ jobs:
     if: ${{ needs.release-please.outputs.releases_created && needs.release-please.outputs.buf_release_tag }}
     steps:
       # Run `git checkout`
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           ref: ${{ needs.release-please.outputs.buf_release_tag }}
       # Install the `buf` CLI
-      - uses: bufbuild/buf-setup-action@v1
+      - uses: bufbuild/buf-setup-action@a47c93e0b1648d5651a065437926377d060baa99 # v1
       # Push module to the BSR
       - name: bsr-push
-        run: BUF_TOKEN="${{ secrets.BUF_TOKEN }}" buf push --tag "${{ needs.release-please.outputs.buf_release_tag }}" protobuf
+        env:
+          BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
+        run: buf push --tag "${{ needs.release-please.outputs.buf_release_tag }}" protobuf
 
   create-schema-store-issue:
     needs: release-please
@@ -53,10 +55,10 @@ jobs:
     if: ${{ needs.release-please.outputs.releases_created && needs.release-please.outputs.json_release_tag }}
     steps:
       # Run `git checkout`
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           ref: ${{ needs.release-please.outputs.json_release_tag }}
-      - uses: JasonEtco/create-an-issue@v2
+      - uses: JasonEtco/create-an-issue@1b14a70e4d8dc185e5cc76d3bec9eab20257b2c5 # v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: ${{ needs.release-please.outputs.json_release_tag }}
