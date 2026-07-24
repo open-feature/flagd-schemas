@@ -14,13 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Install the `buf` CLI
-      - uses: bufbuild/buf-setup-action@v1
+      - uses: bufbuild/buf-setup-action@a47c93e0b1648d5651a065437926377d060baa99 # v1
         with:
           github_token: ${{ github.token }}
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
       # Lint your Protobuf sources
-      - uses: bufbuild/buf-lint-action@v1
+      - uses: bufbuild/buf-lint-action@06f9dd823d873146471cfaaf108a993fe00e5325 # v1
         with:
           input: protobuf
 
@@ -28,11 +28,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Install the `buf` CLI
-      - uses: bufbuild/buf-setup-action@v1
+      - uses: bufbuild/buf-setup-action@a47c93e0b1648d5651a065437926377d060baa99 # v1
         with:
           github_token: ${{ github.token }}
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
       - name: Buf format check
         run: buf format -d --exit-code
 
@@ -40,13 +40,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Install the `buf` CLI
-      - uses: bufbuild/buf-setup-action@v1
+      - uses: bufbuild/buf-setup-action@a47c93e0b1648d5651a065437926377d060baa99 # v1
         with:
           github_token: ${{ github.token }}
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
       # Run breaking change detection against the last commit
-      - uses: bufbuild/buf-breaking-action@v1
+      - uses: bufbuild/buf-breaking-action@c57b3d842a5c3f3b454756ef65305a50a587c5ba # v1
         with:
           input: protobuf
           against: 'https://github.com/open-feature/schemas.git#branch=main,ref=HEAD~1,subdir=protobuf'
@@ -55,18 +55,18 @@ jobs:
   validate-schema:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
       
       # Use ajv to validate schema
       - name: Setup node
-        uses: actions/setup-node@v4.0.1
+        uses: actions/setup-node@b39b52d1213e96004bfcb1c61a8a6fa8ab84f3e8 # v4.0.1
 
       - name: Validate schema 
         run: make ajv-validate-flagd-schema
 
       # Run go test suite to validate the json schema against positive and/or negative validations in /json/test
       - name: Set up Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@7b8cf10d4e4a01d4992d18a89f4d7dc5a3e6d6f4 # v4
         with:
           go-version: ${{ env.GO_VERSION }}
       - name: Validate Schema
