@@ -196,7 +196,10 @@
           "additionalProperties": false,
           "patternProperties": {
             "^.{1,}$": {
-              "type": "number"
+              "type": "number",
+              "$comment": "bounded to the IEEE-754 double-precision safe integer range (+/-(2^53 - 1)) to ensure lossless representation across all supported languages",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
             }
           }
         }
