@@ -12,8 +12,8 @@ package flagd.evaluation.v1;
 
 import "google/protobuf/struct.proto";
 
-option deprecated = true;
 option csharp_namespace = "OpenFeature.Flagd.Grpc.Evaluation";
+option deprecated = true;
 option go_package = "flagd/evaluation/v1";
 option java_package = "dev.openfeature.flagd.grpc.evaluation";
 option php_namespace = "OpenFeature\\Providers\\Flagd\\Schema\\Grpc\\Evaluation";
