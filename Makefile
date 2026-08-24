@@ -1,4 +1,4 @@
-BUF_VERSION=v1.26.1
+BUF_VERSION=v1.50.0
 
 guard-%:
 	@ if [ "${${*}}" = "" ]; then \
