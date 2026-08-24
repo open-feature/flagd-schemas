@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.7](https://github.com/open-feature/flagd-schemas/compare/protobuf-v0.6.6...protobuf-v0.6.7) (2026-08-24)
+
+
+### ✨ New Features
+
+* deprecate flagd/evaluation/v1 ([#227](https://github.com/open-feature/flagd-schemas/issues/227)) ([832308c](https://github.com/open-feature/flagd-schemas/commit/832308cd985e5163b68654dca87900b47a8fd404))
+
 ## [0.6.6](https://github.com/open-feature/flagd-schemas/compare/protobuf-v0.6.5...protobuf-v0.6.6) (2026-05-05)
 
 
