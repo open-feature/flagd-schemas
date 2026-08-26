@@ -10,49 +10,17 @@ env:
   GO_VERSION: 1.22
 
 jobs:
-  lint-protos:
+  buf:
     runs-on: ubuntu-latest
     steps:
-      # Install the `buf` CLI
-      - uses: bufbuild/buf-setup-action@a47c93e0b1648d5651a065437926377d060baa99 # v1
-        with:
-          github_token: ${{ github.token }}
       - name: Checkout repository
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
-      # Lint your Protobuf sources
-      - uses: bufbuild/buf-lint-action@06f9dd823d873146471cfaaf108a993fe00e5325 # v1
+      - uses: bufbuild/buf-action@8c6a16e16f12ba20b6470afa9c2ba9b5ba8c97c3 # v1.5.0
         with:
+          version: '1.50.0'
           input: protobuf
+          pr_comment: false
 
-  buf-format:
-    runs-on: ubuntu-latest
-    steps:
-      # Install the `buf` CLI
-      - uses: bufbuild/buf-setup-action@a47c93e0b1648d5651a065437926377d060baa99 # v1
-        with:
-          github_token: ${{ github.token }}
-      - name: Checkout repository
-        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
-      - name: Buf format check
-        run: buf format -d --exit-code
-
-  buf-breaking-changes:
-    runs-on: ubuntu-latest
-    steps:
-      # Install the `buf` CLI
-      - uses: bufbuild/buf-setup-action@a47c93e0b1648d5651a065437926377d060baa99 # v1
-        with:
-          github_token: ${{ github.token }}
-          version: 1.72.0
-      - name: Checkout repository
-        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
-      # Run breaking change detection against the last commit
-      - uses: bufbuild/buf-breaking-action@c57b3d842a5c3f3b454756ef65305a50a587c5ba # v1
-        with:
-          input: protobuf
-          against: 'https://github.com/open-feature/schemas.git#branch=main,ref=HEAD~1,subdir=protobuf'
-
-  
   validate-schema:
     runs-on: ubuntu-latest
     steps:
@@ -78,4 +46,3 @@ jobs:
       - name: Check no diff 
         run: |
           if [ ! -z "$(git status --porcelain)" ]; then echo "JSON schema generation produced diff. Run 'make gen-schema-json' and commit results."; exit 1; fi
-          

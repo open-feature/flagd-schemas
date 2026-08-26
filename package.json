@@ -2,6 +2,6 @@
   "name": "@openfeature/schemas",
   "private": true,
   "devDependencies": {
-    "ajv-cli": "^5.0.0"
+    "@jirutka/ajv-cli": "^6.0.0"
   }
 }
