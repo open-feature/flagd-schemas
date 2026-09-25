@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../flags.json",
+  "flags": {
+    "myIntFlag": {
+      "state": "ENABLED",
+      "variants": {
+        "min": -9007199254740991,
+        "max": 9007199254740991
+      },
+      "defaultVariant": "max"
+    }
+  }
+}
