@@ -1,6 +1,7 @@
 {
   "bootstrap-sha": "0618fc5db2590ed69549a42b2c703104d3da36c7",
   "monorepo-tags": true,
+  "signoff": "OpenFeature Bot <109696520+openfeaturebot@users.noreply.github.com>",
   "packages": {
     "protobuf": {
       "package-name": "protobuf",
