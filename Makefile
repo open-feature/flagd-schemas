@@ -1,4 +1,4 @@
-BUF_VERSION=v1.26.1
+BUF_VERSION=v1.50.0
 
 guard-%:
 	@ if [ "${${*}}" = "" ]; then \
@@ -52,8 +52,8 @@ test: gen-schema-json ajv-validate-flagd-schema
 	go test -v ./json
 
 ajv-validate-flagd-schema:
-	@if ! npm ls ajv-cli; then npm ci; fi
-	npx ajv compile -s json/targeting.json
+	@if ! npm ls @jirutka/ajv-cli; then npm ci; fi
+	npx ajv compile -s json/targeting.json -o /dev/null
 # load dependent schemas with -r
-	npx ajv compile -r json/targeting.json -s json/flags.json
-	npx ajv compile -r json/targeting.json -r json/flags.json -s json/flagd.json
+	npx ajv compile -r json/targeting.json -s json/flags.json -o /dev/null
+	npx ajv compile -r json/targeting.json -r json/flags.json -s json/flagd.json -o /dev/null
