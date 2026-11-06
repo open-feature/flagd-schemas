@@ -28,7 +28,7 @@ jobs:
       
       # Use ajv to validate schema
       - name: Setup node
-        uses: actions/setup-node@b39b52d1213e96004bfcb1c61a8a6fa8ab84f3e8 # v4.0.1
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
 
       - name: Validate schema 
         run: make ajv-validate-flagd-schema
