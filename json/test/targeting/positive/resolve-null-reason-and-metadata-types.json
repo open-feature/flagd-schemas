@@ -1,0 +1,11 @@
+{
+  "resolve": [
+    "on",
+    null,
+    [
+      ["details", "x"],
+      ["weight", 10],
+      ["pilot", true]
+    ]
+  ]
+}

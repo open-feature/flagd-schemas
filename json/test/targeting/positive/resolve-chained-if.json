@@ -1,0 +1,15 @@
+{
+  "if": [
+    { "===": [{ "var": "customerId" }, "customer-A"] },
+    {
+      "resolve": [
+        "alpha",
+        "TARGETING_MATCH",
+        [["details", "explicit allowlist for enterprise pilot"]]
+      ]
+    },
+    { "in": [{ "var": "customerId" }, ["customer-B1", "customer-B2"]] },
+    { "resolve": ["beta", "TARGETING_MATCH"] },
+    { "resolve": ["ga", "FALLTHROUGH"] }
+  ]
+}

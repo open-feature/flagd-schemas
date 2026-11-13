@@ -13,6 +13,9 @@
     },
     {
       "$ref": "#/definitions/anyRule"
+    },
+    {
+      "$ref": "#/definitions/resolveRule"
     }
   ],
   "definitions": {
@@ -173,7 +176,11 @@
         "if": {
           "title": "If Operator",
           "description": "The if statement takes 1 or more arguments: a condition (\"if\"), what to do if its true (\"then\", optional, defaults to returning true), and what to do if its false (\"else\", optional, defaults to returning false). Note that the else condition can be used as an else-if statement by adding additional arguments.",
-          "$ref": "#/definitions/variadicOp"
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/resultArg"
+          }
         },
         "==": {
           "title": "Lose Equality Operation",
@@ -461,8 +468,8 @@
       "maxItems": 2,
       "items": [
         {
-          "description": "If this bucket is randomly selected, this JSONLogic will be evaluated, and the result will be used as the variant key to return from the variants map.",
-          "$ref": "#/definitions/args"
+          "description": "The variant for this bucket. Every bucket's variant is evaluated; the result from the selected bucket is used as the variant key to return from the variants map.",
+          "$ref": "#/definitions/resultArg"
         },
         {
           "description": "Weighted distribution for this variant key. Must be a non-negative integer. Can be a JSONLogic expression that evaluates to a number (e.g. for time-based progressive rollouts); computed negative weights are clamped to 0 at evaluation time. The total weight sum across all variants must not exceed 2,147,483,647.",
@@ -532,6 +539,94 @@
           "title": "Reference",
           "description": "A reference to another entity, used for $evaluators (shared rules).",
           "type": "string"
+        }
+      }
+    },
+    "resultArg": {
+      "$comment": "an argument whose value may be returned as the targeting result, so it also accepts resolve. Used by \"if\" and by \"fractional\" bucket variants. The schema can't tell a result from a condition, or a \"fractional\" whose result is consumed (e.g. inside \"==\"), so implementations reject resolve in those positions at load time.",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/args"
+        },
+        {
+          "$ref": "#/definitions/resolveRule"
+        }
+      ]
+    },
+    "resolveRule": {
+      "$comment": "deliberately not part of anyRule, so resolve is rejected anywhere its result would be consumed (e.g. inside \"==\" or \"cat\").",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resolve"
+      ],
+      "properties": {
+        "resolve": {
+          "title": "Resolve Operation",
+          "description": "Terminates targeting with a variant, and optionally a custom reason and metadata for the branch that fired. Only valid as the whole targeting rule, as a result of an \"if\", or as a \"fractional\" bucket variant.",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": [
+            {
+              "description": "The variant key to resolve; equivalent to returning the plain string. Be sure that the variant is present as a key in the variants!",
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "description": "Booleans are converted to strings (\"true\"/\"false\"), and used as keys to retrieve the associated value from the \"variants\" object.",
+                  "type": "boolean"
+                },
+                {
+                  "description": "Computed variants are coerced like plain targeting results.",
+                  "$ref": "#/definitions/anyRule"
+                }
+              ]
+            },
+            {
+              "description": "Optional free-form reason, overriding the \"TARGETING_MATCH\" reason for this branch. A null reason keeps \"TARGETING_MATCH\".",
+              "oneOf": [
+                {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                {
+                  "$ref": "#/definitions/anyRule"
+                }
+              ]
+            },
+            {
+              "description": "Optional metadata as [key, value] pairs, merged over flag-set and flag metadata (rule values win). \"details\" is a well-known key, explaining why this branch fired.",
+              "type": "array",
+              "items": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
+                "items": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "oneOf": [
+                      {
+                        "type": [
+                          "string",
+                          "number",
+                          "boolean"
+                        ]
+                      },
+                      {
+                        "$ref": "#/definitions/anyRule"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
         }
       }
     },

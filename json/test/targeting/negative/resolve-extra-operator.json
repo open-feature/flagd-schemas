@@ -1,0 +1,1 @@
+{ "resolve": ["on"], "if": [true, "on"] }
