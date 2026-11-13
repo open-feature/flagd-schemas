@@ -1,0 +1,6 @@
+{
+  "fractional": [
+    [{ "resolve": ["on", "SPLIT", [["details", "treatment"]]] }, 10],
+    [{ "resolve": ["off", "SPLIT", [["details", "holdback"]]] }, 90]
+  ]
+}
