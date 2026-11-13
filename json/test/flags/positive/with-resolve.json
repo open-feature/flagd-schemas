@@ -1,0 +1,28 @@
+{
+  "$schema": "../../../flags.json",
+  "flags": {
+    "enable-mainframe-access": {
+      "state": "ENABLED",
+      "defaultVariant": "off",
+      "variants": {
+        "on": true,
+        "off": false
+      },
+      "metadata": {
+        "details": "overridden by the rule when it fires"
+      },
+      "targeting": {
+        "if": [
+          { "ends_with": [{ "var": "email" }, "@ingen.com"] },
+          {
+            "resolve": [
+              "on",
+              "ALLOWLIST",
+              [["details", "ingen employees"]]
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
