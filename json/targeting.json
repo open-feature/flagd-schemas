@@ -182,11 +182,7 @@
         "if": {
           "title": "If Operator",
           "description": "The if statement takes 1 or more arguments: a condition (\"if\"), what to do if its true (\"then\", optional, defaults to returning true), and what to do if its false (\"else\", optional, defaults to returning false). Note that the else condition can be used as an else-if statement by adding additional arguments.",
-          "type": "array",
-          "minItems": 1,
-          "items": {
-            "$ref": "#/definitions/args"
-          }
+          "$ref": "#/definitions/variadicOp"
         },
         "==": {
           "title": "Lose Equality Operation",
