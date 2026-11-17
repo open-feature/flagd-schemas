@@ -466,7 +466,9 @@ definitions:
                   Booleans are converted to strings ("true"/"false"), and used as keys
                   to retrieve the associated value from the "variants" object.
                 type: boolean
-              - description: Computed variants are coerced like plain targeting results.
+              - description: >-
+                  Computed variants are coerced like plain targeting results;
+                  booleans become "true"/"false", and the behavior of numbers is not defined.
                 $ref: "#/definitions/anyRule"
           - description:
               Optional free-form reason, overriding the "TARGETING_MATCH" reason for this branch.
@@ -474,22 +476,30 @@ definitions:
             oneOf:
               - type: [string, "null"]
               - $ref: "#/definitions/anyRule"
-          - description:
+          - description: >-
               Optional metadata as [key, value] pairs, merged over flag-set and flag metadata
               (rule values win). "details" is a well-known key, explaining why this branch fired.
               "flagSetId" and "version" are reserved for flag-set metadata and can't be overridden.
-            type: array
-            items:
-              type: array
-              minItems: 2
-              maxItems: 2
-              items:
-                - type: string
-                  not:
-                    enum: [flagSetId, version]
-                - oneOf:
-                    - type: [string, number, boolean]
+              The list itself, each pair, and each key may also be a JSONLogic expression;
+              computed keys are not checked for reserved names.
+            oneOf:
+              - $ref: "#/definitions/anyRule"
+              - type: array
+                items:
+                  oneOf:
                     - $ref: "#/definitions/anyRule"
+                    - type: array
+                      minItems: 2
+                      maxItems: 2
+                      items:
+                        - oneOf:
+                            - type: string
+                              not:
+                                enum: [flagSetId, version]
+                            - $ref: "#/definitions/anyRule"
+                        - oneOf:
+                            - type: [string, number, boolean]
+                            - $ref: "#/definitions/anyRule"
   args:
     oneOf:
       - $ref: "#/definitions/reference"
