@@ -1,0 +1,12 @@
+{
+  "if": [
+    { "var": "x" },
+    {
+      "fractional": [
+        [{ "resolve": ["on"] }, 50],
+        [{ "resolve": ["off"] }, 50]
+      ]
+    },
+    { "resolve": ["fallback"] }
+  ]
+}
