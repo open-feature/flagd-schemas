@@ -568,12 +568,28 @@
       "properties": {
         "if": {
           "title": "If Operator (terminal)",
-          "description": "Terminal if: then/else branches accept resolve and other terminal operations in addition to plain args.",
+          "description": "Terminal if: then/else branches accept resolve and other terminal operations in addition to plain args. The first condition can't be resolve, unless it's the only clause (which is returned as the result).",
           "type": "array",
           "minItems": 1,
-          "items": {
-            "$ref": "#/definitions/terminalResultArg"
-          }
+          "anyOf": [
+            {
+              "maxItems": 1,
+              "items": {
+                "$ref": "#/definitions/terminalResultArg"
+              }
+            },
+            {
+              "minItems": 2,
+              "items": [
+                {
+                  "$ref": "#/definitions/args"
+                }
+              ],
+              "additionalItems": {
+                "$ref": "#/definitions/terminalResultArg"
+              }
+            }
+          ]
         }
       }
     },
