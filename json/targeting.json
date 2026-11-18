@@ -546,7 +546,7 @@
     },
     "terminalResultArg": {
       "$comment": "an argument whose value may be returned as a terminal targeting result; accepts resolve and nested terminal if/fractional. Used only in terminalIfRule and terminalFractionalWeightArg, which are reachable only from the root or from other terminal positions.",
-      "oneOf": [
+      "anyOf": [
         {
           "$ref": "#/definitions/args"
         },
