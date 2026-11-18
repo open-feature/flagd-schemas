@@ -32,7 +32,7 @@
           "type": "null"
         },
         {
-          "description": "When returned from rules, booleans are converted to strings (\"true\"/\"false\"), and used to as keys to retrieve the associated value from the \"variants\" object. Be sure that the returned string is present as a key in the variants!",
+          "description": "When returned from rules, booleans are coerced to strings (\"true\"/\"false\"), and used as keys to retrieve the associated value from the \"variants\" object. Be sure that the returned string is present as a key in the variants!",
           "type": "boolean"
         },
         {
@@ -567,8 +567,8 @@
       "additionalProperties": false,
       "properties": {
         "if": {
-          "title": "If Operator (terminal)",
-          "description": "Terminal if: then/else branches accept resolve and other terminal operations in addition to plain args. The first condition can't be resolve, unless it's the only clause (which is returned as the result).",
+          "title": "If Operator",
+          "description": "The if statement takes 1 or more arguments: a condition (\"if\"), what to do if its true (\"then\", optional, defaults to returning true), and what to do if its false (\"else\", optional, defaults to returning false). Note that the else condition can be used as an else-if statement by adding additional arguments. The \"then\" and \"else\" results may also be a \"resolve\". The first condition can't be a \"resolve\", unless it's the only argument (which is returned as the result).",
           "type": "array",
           "minItems": 1,
           "anyOf": [
@@ -594,7 +594,7 @@
       }
     },
     "terminalFractionalWeightArg": {
-      "description": "Terminal distribution bucket; the variant position accepts resolve and other terminal operations.",
+      "description": "Distribution for all possible variants, with their associated weighting. The variant may also be a \"resolve\".",
       "type": "array",
       "minItems": 1,
       "maxItems": 2,
@@ -650,8 +650,8 @@
       "additionalProperties": false,
       "properties": {
         "fractional": {
-          "title": "Fractional Operation (terminal)",
-          "description": "Terminal fractional distribution; bucket variants accept resolve and other terminal operations in addition to plain args.",
+          "title": "Fractional Operation",
+          "description": "Deterministic, pseudorandom fractional distribution. Bucket variants may also be a \"resolve\".",
           "oneOf": [
             {
               "$ref": "#/definitions/terminalFractionalOp"
@@ -685,7 +685,7 @@
                   "type": "string"
                 },
                 {
-                  "description": "Booleans are converted to strings (\"true\"/\"false\"), and used as keys to retrieve the associated value from the \"variants\" object.",
+                  "description": "Booleans are coerced to strings (\"true\"/\"false\"), and used as keys to retrieve the associated value from the \"variants\" object.",
                   "type": "boolean"
                 },
                 {
@@ -709,7 +709,7 @@
               ]
             },
             {
-              "description": "Optional metadata as [key, value] pairs, merged over flag-set and flag metadata (rule values win). \"details\" is a well-known key, explaining why this branch fired. \"flagSetId\" and \"version\" are reserved for flag-set metadata and can't be overridden. The list itself, each pair, and each key may also be a JSONLogic expression; computed keys are not checked for reserved names.",
+              "description": "Optional metadata as [key, value] pairs, merged over flag set and flag metadata (rule values win). \"details\" is a well-known key, explaining why this branch fired. The list and each pair may also be a JSONLogic expression.",
               "oneOf": [
                 {
                   "$ref": "#/definitions/anyRule"
@@ -727,6 +727,7 @@
                         "maxItems": 2,
                         "items": [
                           {
+                            "description": "Metadata key; may also be a JSONLogic expression. \"flagSetId\" and \"version\" are reserved for flag set metadata and can't be overridden; computed keys are not checked for reserved names.",
                             "oneOf": [
                               {
                                 "type": "string",
