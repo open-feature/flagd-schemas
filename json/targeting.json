@@ -701,13 +701,23 @@
               ]
             },
             {
-              "description": "Optional free-form reason, overriding the \"TARGETING_MATCH\" reason for this branch. A null reason keeps \"TARGETING_MATCH\".",
+              "$comment": "reserved reasons are only checked for literals; a computed reason can't be checked here.",
+              "description": "Optional free-form reason, overriding the \"TARGETING_MATCH\" reason for this branch. A null reason keeps \"TARGETING_MATCH\". \"ERROR\", \"DISABLED\", \"DEFAULT\", \"FALLBACK\" and \"STATIC\" are reserved for flagd's own evaluation flow.",
               "oneOf": [
                 {
-                  "type": [
-                    "string",
-                    "null"
-                  ]
+                  "type": "null"
+                },
+                {
+                  "type": "string",
+                  "not": {
+                    "enum": [
+                      "ERROR",
+                      "DISABLED",
+                      "DEFAULT",
+                      "FALLBACK",
+                      "STATIC"
+                    ]
+                  }
                 },
                 {
                   "$ref": "#/definitions/anyRule"
