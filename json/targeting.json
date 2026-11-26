@@ -117,7 +117,8 @@
           "type": "array",
           "items": [
             {
-              "type": "number"
+              "type": "integer",
+              "minimum": 0
             },
             {
               "type": "array",
@@ -129,13 +130,91 @@
         }
       }
     },
-    "binaryOrTernaryOp": {
+    "scalarArg": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/ruleArg"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "scalarUnaryOrBinaryOp": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "items": {
+        "$ref": "#/definitions/scalarArg"
+      }
+    },
+    "scalarBinaryOp": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "$ref": "#/definitions/scalarArg"
+      }
+    },
+    "scalarBinaryOrTernaryOp": {
       "type": "array",
       "minItems": 2,
       "maxItems": 3,
       "items": {
-        "$ref": "#/definitions/args"
+        "$ref": "#/definitions/scalarArg"
       }
+    },
+    "scalarVariadicOp": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/scalarArg"
+      }
+    },
+    "integerArg": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/ruleArg"
+        },
+        {
+          "type": "integer"
+        }
+      ]
+    },
+    "substrOp": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 3,
+      "items": [
+        {
+          "title": "Source",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ruleArg"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "title": "Start",
+          "$ref": "#/definitions/integerArg"
+        },
+        {
+          "title": "Length",
+          "$ref": "#/definitions/integerArg"
+        }
+      ]
     },
     "binaryOrTernaryRule": {
       "type": "object",
@@ -144,15 +223,15 @@
         "substr": {
           "title": "Substring Operation",
           "description": "Get a portion of a string. Give a positive start position to return everything beginning at that index. Give a negative start position to work backwards from the end of the string, then return everything. Give a positive length to express how many characters to return.",
-          "$ref": "#/definitions/binaryOrTernaryOp"
+          "$ref": "#/definitions/substrOp"
         },
         "<": {
           "title": "Less-Than/Between Operation. Can be used to test that one value is between two others.",
-          "$ref": "#/definitions/binaryOrTernaryOp"
+          "$ref": "#/definitions/scalarBinaryOrTernaryOp"
         },
         "<=": {
           "title": "Less-Than-Or-Equal-To/Between Operation. Can be used to test that one value is between two others.",
-          "$ref": "#/definitions/binaryOrTernaryOp"
+          "$ref": "#/definitions/scalarBinaryOrTernaryOp"
         }
       }
     },
@@ -163,6 +242,53 @@
       "items": {
         "$ref": "#/definitions/args"
       }
+    },
+    "iterativeOp": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": [
+        {
+          "$ref": "#/definitions/args"
+        },
+        {
+          "title": "Condition",
+          "description": "The test applied to each array element; a rule, reference, or boolean.",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ruleArg"
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        }
+      ]
+    },
+    "inOp": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": [
+        {
+          "$ref": "#/definitions/args"
+        },
+        {
+          "title": "Haystack",
+          "description": "The string or array to search; a string, array, rule, or reference.",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ruleArg"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "array"
+            }
+          ]
+        }
+      ]
     },
     "binaryRule": {
       "title": "Binary Operation",
@@ -197,20 +323,20 @@
         },
         ">": {
           "title": "Greater-Than Operation",
-          "$ref": "#/definitions/binaryOp"
+          "$ref": "#/definitions/scalarBinaryOp"
         },
         ">=": {
           "title": "Greater-Than-Or-Equal-To Operation",
-          "$ref": "#/definitions/binaryOp"
+          "$ref": "#/definitions/scalarBinaryOp"
         },
         "%": {
           "title": "Modulo Operation",
           "description": "Finds the remainder after the first argument is divided by the second argument.",
-          "$ref": "#/definitions/binaryOp"
+          "$ref": "#/definitions/scalarBinaryOp"
         },
         "/": {
           "title": "Division Operation",
-          "$ref": "#/definitions/binaryOp"
+          "$ref": "#/definitions/scalarBinaryOp"
         },
         "map": {
           "title": "Map Operation",
@@ -220,27 +346,27 @@
         "filter": {
           "title": "Filter Operation",
           "description": "Keep only elements of the array that pass a test. Note, that inside the logic being used to filter, var operations are relative to the array element being worked on.",
-          "$ref": "#/definitions/binaryOp"
+          "$ref": "#/definitions/iterativeOp"
         },
         "all": {
           "title": "All Operation",
           "description": "Perform a test on each member of that array, returning true if all pass. Inside the test code, var operations are relative to the array element being tested.",
-          "$ref": "#/definitions/binaryOp"
+          "$ref": "#/definitions/iterativeOp"
         },
         "none": {
           "title": "None Operation",
           "description": "Perform a test on each member of that array, returning true if none pass. Inside the test code, var operations are relative to the array element being tested.",
-          "$ref": "#/definitions/binaryOp"
+          "$ref": "#/definitions/iterativeOp"
         },
         "some": {
           "title": "Some Operation",
           "description": "Perform a test on each member of that array, returning true if some pass. Inside the test code, var operations are relative to the array element being tested.",
-          "$ref": "#/definitions/binaryOp"
+          "$ref": "#/definitions/iterativeOp"
         },
         "in": {
           "title": "In Operation",
           "description": "If the second argument is an array, tests that the first argument is a member of the array.",
-          "$ref": "#/definitions/binaryOp"
+          "$ref": "#/definitions/inOp"
         }
       }
     },
@@ -257,26 +383,6 @@
           "items": {
             "$ref": "#/definitions/args"
           }
-        }
-      }
-    },
-    "associativeOp": {
-      "type": "array",
-      "minItems": 2,
-      "items": {
-        "$ref": "#/definitions/args"
-      }
-    },
-    "associativeRule": {
-      "title": "Mathematically Associative Operation",
-      "description": "Operation applicable to 2 or more parameters.",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "*": {
-          "title": "Multiplication Operation",
-          "description": "Multiplication; associative, will accept and unlimited amount of arguments.",
-          "$ref": "#/definitions/associativeOp"
         }
       }
     },
@@ -338,21 +444,26 @@
         "+": {
           "title": "Addition Operation",
           "description": "Addition; associative, will accept and unlimited amount of arguments.",
-          "$ref": "#/definitions/variadicOp"
+          "$ref": "#/definitions/scalarVariadicOp"
+        },
+        "*": {
+          "title": "Multiplication Operation",
+          "description": "Multiplication; associative, will accept and unlimited amount of arguments.",
+          "$ref": "#/definitions/scalarVariadicOp"
         },
         "-": {
           "title": "Subtraction Operation",
-          "$ref": "#/definitions/variadicOp"
+          "$ref": "#/definitions/scalarUnaryOrBinaryOp"
         },
         "max": {
           "title": "Maximum Operation",
           "description": "Return the maximum from a list of values.",
-          "$ref": "#/definitions/variadicOp"
+          "$ref": "#/definitions/scalarVariadicOp"
         },
         "min": {
           "title": "Minimum Operation",
           "description": "Return the minimum from a list of values.",
-          "$ref": "#/definitions/variadicOp"
+          "$ref": "#/definitions/scalarVariadicOp"
         },
         "merge": {
           "title": "Merge Operation",
@@ -535,13 +646,20 @@
         }
       }
     },
-    "args": {
+    "ruleArg": {
       "oneOf": [
         {
           "$ref": "#/definitions/reference"
         },
         {
           "$ref": "#/definitions/anyRule"
+        }
+      ]
+    },
+    "args": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/ruleArg"
         },
         {
           "$ref": "#/definitions/primitive"
@@ -564,9 +682,6 @@
         },
         {
           "$ref": "#/definitions/binaryOrTernaryRule"
-        },
-        {
-          "$ref": "#/definitions/associativeRule"
         },
         {
           "$ref": "#/definitions/unaryRule"

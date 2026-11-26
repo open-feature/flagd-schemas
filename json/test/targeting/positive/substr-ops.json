@@ -1,0 +1,7 @@
+{
+  "and": [
+    { "substr": [{ "var": "name" }, 0, 3] },
+    { "substr": ["openfeature", -7] },
+    { "substr": [{ "$ref": "some-ref" }, { "var": "start" }] }
+  ]
+}

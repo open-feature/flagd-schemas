@@ -1,0 +1,8 @@
+{
+  "and": [
+    { "in": ["rue", { "var": "user" }] },
+    { "in": ["rue", "true"] },
+    { "in": ["rue", ["rue", "bob"]] },
+    { "in": ["rue", { "$ref": "some-ref" }] }
+  ]
+}

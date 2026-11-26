@@ -1,0 +1,8 @@
+{
+  "and": [
+    { "some": [{ "var": "users" }, { "in": ["rue", { "var": "" }] }] },
+    { "all": [[1, 2, 3], true] },
+    { "none": [{ "var": "users" }, { "$ref": "some-ref" }] },
+    { "filter": [{ "var": "users" }, { "in": ["rue", { "var": "" }] }] }
+  ]
+}
