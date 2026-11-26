@@ -539,20 +539,19 @@ definitions:
                   Booleans are coerced to strings ("true"/"false"), and used as keys
                   to retrieve the associated value from the "variants" object.
                 type: boolean
+              - description:
+                  A null variant falls back like a plain null result, to the "defaultVariant",
+                  or to the code default if there is none.
+                type: "null"
               - description: >-
                   Computed variants are coerced like plain targeting results;
                   booleans become "true"/"false", and the behavior of numbers is not defined.
                 $ref: "#/definitions/anyRule"
-          - $comment: "reserved reasons are only checked for literals; a computed reason can't be checked here."
-            description:
-              Optional free-form reason, overriding the "TARGETING_MATCH" reason for this branch.
-              A null reason keeps "TARGETING_MATCH". Reasons other than "TARGETING_MATCH" and "SPLIT"
-              that are defined by OpenFeature or flagd are reserved.
+          - description:
+              Optional free-form reason, replacing the reason the equivalent plain result would report.
+              A null reason keeps it. Standard reasons are allowed, but never change the outcome.
             oneOf:
-              - type: "null"
-              - type: string
-                not:
-                  enum: [ERROR, DISABLED, DEFAULT, FALLBACK, STATIC, CACHED, STALE, UNKNOWN]
+              - type: [string, "null"]
               - $ref: "#/definitions/anyRule"
           - description: >-
               Optional metadata as [key, value] pairs, merged over flag set and flag metadata
