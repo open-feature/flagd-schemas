@@ -1,0 +1,7 @@
+{
+  "if": [
+    { "var": "beta" },
+    { "resolve": [true, "BETA"] },
+    { "resolve": [false] }
+  ]
+}

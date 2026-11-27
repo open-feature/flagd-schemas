@@ -1,0 +1,7 @@
+{
+  "if": [
+    { "var": "x" },
+    { "if": [{ "var": "y" }, { "resolve": ["on"] }, { "resolve": ["off"] }] },
+    { "resolve": ["fallback"] }
+  ]
+}

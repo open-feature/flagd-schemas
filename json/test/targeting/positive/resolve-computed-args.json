@@ -1,0 +1,7 @@
+{
+  "resolve": [
+    { "var": "variant" },
+    { "cat": ["SEGMENT_", { "var": "segment" }] },
+    [["details", { "cat": ["segment=", { "var": "segment" }] }]]
+  ]
+}

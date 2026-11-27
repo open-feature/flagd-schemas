@@ -1,0 +1,12 @@
+{
+  "if": [
+    {
+      "fractional": [
+        [{ "resolve": ["on"] }, 10],
+        [{ "resolve": ["off"] }, 90]
+      ]
+    },
+    "a",
+    "b"
+  ]
+}
